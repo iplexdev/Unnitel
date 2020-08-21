@@ -5,8 +5,10 @@ class ManageDevices extends StatefulWidget {
   @override
   _ManageDevicesState createState() => _ManageDevicesState();
 }
+  enum SingingCharacter { huaweiWifi, eMbile, zong,huawei4g }
 
 class _ManageDevicesState extends State<ManageDevices> {
+  SingingCharacter _character = SingingCharacter.huaweiWifi;
   // Back arraow widget
   Widget _backArrowWidget() {
     return Container(
@@ -80,61 +82,171 @@ class _ManageDevicesState extends State<ManageDevices> {
         children: <Widget>[
           ListTile(
               leading: Image.asset('assets/images/wifi_icon.png'),
-              title: Text('Notification Settings'),
-              subtitle: Text('SSID:'),
-              trailing: IconButton(
-                  icon: Icon(Icons.arrow_right_sharp),
-                  onPressed: () {
-                    //  Navigator.push(context, MaterialPageRoute(builder: (context)=> NotificationScreen()));
-                  })),
+              title: Text('Huawei WIFI Family'),
+              subtitle: Row(
+                children: [
+                  Text('SSID:'),
+                  Text(
+                    'Huawei WIFI Device 333',
+                    style: TextStyle(
+                        fontWeight: FontWeight.normal,
+                        fontSize: 14,
+                        color: Colors.black),
+                  )
+                ],
+              ),
+              trailing:
+                 Row(
+                  // crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Radio(
+                      value: SingingCharacter.huaweiWifi,
+                       groupValue: _character,
+                        onChanged: (SingingCharacter value) {
+                          setState(() {
+                            _character = value;
+                          });
+                        }),
+                    IconButton(
+                        icon: Icon(Icons.more_vert),
+                        onPressed: () {
+                          //  Navigator.push(context, MaterialPageRoute(builder: (context)=> NotificationScreen()));
+                        }),
+                  ],
+              ),
+              ),
           new Divider(
             color: Hexcolor('#5D6561'),
             thickness: 0,
             indent: 10,
             endIndent: 20,
+            height: 0,
           ),
           ListTile(
               leading: Image.asset('assets/images/wifi_icon.png'),
-              title: Text('Change password'),
-              subtitle: Text('SSID:'),
-              trailing: IconButton(
-                  icon: Icon(Icons.arrow_right_sharp),
-                  onPressed: () {
-                    //  Navigator.push(context, MaterialPageRoute(builder: (context) => ChangePassword()));
-                  })),
-          new Divider(
-            color: Hexcolor('#5D6561'),
-            thickness: 0,
-            indent: 10,
-            endIndent: 20,
-          ),
-          ListTile(
-              leading: Image.asset('assets/images/wifi_icon.png'),
-              title: Text('Change Particulars'),
-              subtitle: Text('SSID:'),
-              trailing: IconButton(
-                  icon: Icon(Icons.arrow_right_sharp),
-                  onPressed: () {
-                    //  Navigator.push(context, MaterialPageRoute(builder: (context) => Profile()));
-                  })),
-         new Divider(
-            color: Hexcolor('#5D6561'),
-            thickness: 0,
-            indent: 10,
-            endIndent: 20,
-          ),
-          ListTile(
-              leading: Image.asset('assets/images/wifi_icon.png'),
-              title: Text('Help'),
-              subtitle: Text('SSID:'),
-              trailing: IconButton(
-                  icon: Icon(Icons.arrow_right_sharp), onPressed: () {})
+              title: Text('EMobile Device'),
+              subtitle: Row(
+                children: [
+                  Text('SSID:'),
+                  Text('EMobile Device',
+                      style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 14,
+                          color: Colors.black))
+                ],
+              ),
+              trailing: 
+               Row(
+                  // crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Radio(
+                      value: SingingCharacter.eMbile,
+                       groupValue: _character,
+                        onChanged: (SingingCharacter value) {
+                          setState(() {
+                            _character = value;
+                          });
+                        }),
+                    IconButton(
+                        icon: Icon(Icons.more_vert),
+                        onPressed: () {
+                          //  Navigator.push(context, MaterialPageRoute(builder: (context)=> NotificationScreen()));
+                        }),
+                  ],
+              ),
                   ),
-        new Divider(
+          new Divider(
             color: Hexcolor('#5D6561'),
             thickness: 0,
             indent: 10,
             endIndent: 20,
+            height: 0,
+          ),
+          ListTile(
+              leading: Image.asset('assets/images/wifi_icon.png'),
+              title: Text('Zong 4G Device'),
+              subtitle: Row(
+                children: [
+                  Text('SSID:'),
+                  Text('Zong 4G',
+                      style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 14,
+                          color: Colors.black))
+                ],
+              ),
+              trailing:  Row(
+                  // crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Radio(
+                      value: SingingCharacter.zong,
+                       groupValue: _character,
+                        onChanged: (SingingCharacter value) {
+                          setState(() {
+                            _character = value;
+                          });
+                        }),
+                    IconButton(
+                        icon: Icon(Icons.more_vert),
+                        onPressed: () {
+                          //  Navigator.push(context, MaterialPageRoute(builder: (context)=> NotificationScreen()));
+                        }),
+                  ],
+              ),
+                  ),
+          new Divider(
+            color: Hexcolor('#5D6561'),
+            thickness: 0,
+            indent: 10,
+            endIndent: 20,
+            height: 0,
+          ),
+          ListTile(
+              leading: Image.asset('assets/images/wifi_icon.png'),
+              title: Text('Huawei 4G '),
+              subtitle: Row(
+                children: [
+                  Text('SSID:'),
+                  Text('Huawei WIFI Device 333',
+                      style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 14,
+                          color: Colors.black))
+                ],
+              ),
+              trailing:  Row(
+                  // crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Radio(
+                      value: SingingCharacter.huawei4g,
+                       groupValue: _character,
+                        onChanged: (SingingCharacter value) {
+                          setState(() {
+                            _character = value;
+                          });
+                        }),
+                    IconButton(
+                        icon: Icon(Icons.more_vert),
+                        onPressed: () {
+                          //  Navigator.push(context, MaterialPageRoute(builder: (context)=> NotificationScreen()));
+                        }),
+                  ],
+              ),
+                  ),
+          new Divider(
+            color: Hexcolor('#5D6561'),
+            thickness: 0,
+            indent: 10,
+            endIndent: 20,
+            height: 0,
           ),
         ],
       ),
@@ -169,7 +281,7 @@ class _ManageDevicesState extends State<ManageDevices> {
                     color: Hexcolor('#5D6561'),
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
