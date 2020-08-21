@@ -952,7 +952,8 @@ class _HomeScreenState extends State<HomeScreen>
                   )
                 ],
               );
-            });
+            }
+            );
       },
       child: Container(
         width: MediaQuery.of(context).size.width,

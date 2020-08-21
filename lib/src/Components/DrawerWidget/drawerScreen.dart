@@ -1,7 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:unniTel/src/Components/Auth/login.dart';
 import 'package:unniTel/src/Components/Packages/packagesList.dart';
+import 'package:unniTel/src/Components/Settings/Manage%20Devices/manageDevice.dart';
 import 'package:unniTel/src/Components/Settings/setting.dart';
 import 'package:unniTel/src/Components/UserProfile/profile.dart';
 import 'package:unniTel/src/Components/mainScreen.dart';
@@ -70,6 +72,10 @@ class _DrawerScreenState extends State<DrawerScreen> {
                        break;
                        case 'Settings' : {
                          Navigator.push(context, MaterialPageRoute(builder: (context) => Settings()));
+                       }
+                       break;
+                       case 'Devices': {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ManageDevices()));
                        }
                        break;
                      }

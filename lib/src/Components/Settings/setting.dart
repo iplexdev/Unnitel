@@ -77,7 +77,7 @@ class _SettingsState extends State<Settings> {
                             title: Text('Notification Settings'),
                             trailing: IconButton(
                                 icon: Icon(
-                                    Icons.arrow_right_sharp),
+                                   Icons.arrow_right_alt_outlined,color: Colors.black,size: 30,),
                                 onPressed: () {
                                  Navigator.push(context, MaterialPageRoute(builder: (context)=> NotificationScreen()));
                                 })),
@@ -85,14 +85,15 @@ class _SettingsState extends State<Settings> {
                           color: Hexcolor('#5D6561'),
                           thickness: 0,
                           indent: 70,
-                          endIndent: 40,
+                          height: 0,
+                          endIndent: 20,
                         ),
                         ListTile(
                             leading: Image.asset('assets/images/data_remianing_icon.png'),
                             title: Text('Change password'),
                              trailing: IconButton(
                                 icon: Icon(
-                                    Icons.arrow_right_sharp),
+                                    Icons.arrow_right_alt_outlined,color: Colors.black,size: 30,),
                                 onPressed: () {
                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ChangePassword()));
                                 })),
@@ -100,14 +101,15 @@ class _SettingsState extends State<Settings> {
                           color: Hexcolor('#5D6561'),
                           thickness: 0,
                           indent: 70,
-                          endIndent: 40,
+                         endIndent: 20,
+                          height: 0,
                         ),
                         ListTile(
                             leading: Image.asset('assets/images/change_part_icon.png'),
                             title: Text('Change Particulars'),
                              trailing: IconButton(
                                 icon: Icon(
-                                    Icons.arrow_right_sharp),
+                                    Icons.arrow_right_alt_outlined,color: Colors.black,size: 30,),
                                 onPressed: () {
                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Profile()));
                                 })),
@@ -115,14 +117,15 @@ class _SettingsState extends State<Settings> {
                           color: Hexcolor('#5D6561'),
                           thickness: 0,
                           indent: 70,
-                          endIndent: 40,
+                          endIndent: 20,
+                          height: 0,
                         ),
                         ListTile(
                             leading: Image.asset('assets/images/help_icon.png'),
                             title: Text('Help'),
                              trailing: IconButton(
                                 icon: Icon(
-                                    Icons.arrow_right_sharp),
+                                    Icons.arrow_right_alt_outlined,color: Colors.black,size: 30,),
                                 onPressed: () {
                                  
                                 })),
@@ -130,14 +133,15 @@ class _SettingsState extends State<Settings> {
                           color: Hexcolor('#5D6561'),
                           thickness: 0,
                           indent: 70,
-                          endIndent: 40,
+                          endIndent: 20,
+                          height: 0,
                         ),
                         ListTile(
                             leading: Image.asset('assets/images/manage_device.png'),
                             title: Text('Manage Devices'),
                              trailing: IconButton(
                                 icon: Icon(
-                                    Icons.arrow_right_sharp),
+                                   Icons.arrow_right_alt_outlined,color: Colors.black,size: 30,),
                                 onPressed: () {
                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ManageDevices()));
                                 })),
@@ -145,22 +149,23 @@ class _SettingsState extends State<Settings> {
                           color: Hexcolor('#5D6561'),
                           thickness: 0,
                           indent: 70,
-                          endIndent: 40,
+                          endIndent: 20,
+                          height: 0,
                         ),
                         ListTile(
                             leading: Image.asset('assets/images/logouts_icon.png'),
                             title: Text('Sign Out'),
                              trailing: IconButton(
                                 icon: Icon(
-                                    Icons.arrow_right_sharp),
+                                    Icons.arrow_right_alt_outlined,color: Colors.black,size: 30,),
                                 onPressed: () {
                                  Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
                                 })),
                            new Divider(
-                          color: Hexcolor('#5D6561'),
-                          thickness: 0,
+                          color: Hexcolor('#707070'),
                           indent: 70,
-                          endIndent: 40,
+                          endIndent: 20,
+                          height: 0,
                         ),
                       ],
                     ),
