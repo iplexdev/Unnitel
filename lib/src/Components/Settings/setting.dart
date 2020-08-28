@@ -6,6 +6,7 @@ import 'package:unniTel/src/Components/Settings/Manage%20Devices/manageDevice.da
 import 'package:unniTel/src/Components/Settings/Notification/notificationsScreen.dart';
 import 'package:unniTel/src/Components/UserProfile/profile.dart';
 import 'package:unniTel/src/Components/mainScreen.dart';
+
 class Settings extends StatefulWidget {
   @override
   _SettingsState createState() => _SettingsState();
@@ -34,7 +35,6 @@ class _SettingsState extends State<Settings> {
                     color: Colors.black,
                   ),
                 ),
-                
               ]),
             ),
           ),
@@ -42,44 +42,53 @@ class _SettingsState extends State<Settings> {
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-         appBar: AppBar(
-            elevation: 0.0,
-            leading: _backArrowWidget(),
-            title: Padding(
-              padding: const EdgeInsets.only(top:10),
-              child: Text(
-                'Settings',
-                style: TextStyle(fontSize: 20, color: Colors.black),
-                textAlign: TextAlign.center,
-              ),
+        appBar: AppBar(
+          elevation: 0.0,
+          leading: _backArrowWidget(),
+          title: Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Text(
+              'Settings',
+              style: TextStyle(fontSize: 20, color: Colors.black),
+              textAlign: TextAlign.center,
             ),
-            backgroundColor: Colors.white,
           ),
-          body: Container(
-            child: Stack(
-              children: [
-                Column(
-                  children: [
-                     new Divider(
-                      color: Hexcolor('#5D6561'),
-                    ),
-                    Container(
-                      height: 500,
+          backgroundColor: Colors.white,
+        ),
+        body: Container(
+          child: Stack(
+            children: [
+              Column(
+                children: [
+                  new Divider(
+                    color: Hexcolor('#5D6561'),
+                  ),
+                  Container(
+                    height: 500,
                     child: ListView(
                       children: <Widget>[
                         ListTile(
-                            leading: Image.asset('assets/images/notification_icon.png'),
+                            leading: Image.asset(
+                                'assets/images/notification_icon.png'),
                             title: Text('Notification Settings'),
                             trailing: IconButton(
                                 icon: Icon(
-                                   Icons.arrow_right_alt_outlined,color: Colors.black,size: 30,),
+                                  Icons.arrow_right_alt_outlined,
+                                  color: Colors.black,
+                                  size: 30,
+                                ),
                                 onPressed: () {
-                                 Navigator.push(context, MaterialPageRoute(builder: (context)=> NotificationScreen()));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              NotificationScreen()));
                                 })),
                         new Divider(
                           color: Hexcolor('#5D6561'),
@@ -89,31 +98,46 @@ class _SettingsState extends State<Settings> {
                           endIndent: 20,
                         ),
                         ListTile(
-                            leading: Image.asset('assets/images/data_remianing_icon.png'),
+                            leading: Image.asset(
+                                'assets/images/data_remianing_icon.png'),
                             title: Text('Change password'),
-                             trailing: IconButton(
+                            trailing: IconButton(
                                 icon: Icon(
-                                    Icons.arrow_right_alt_outlined,color: Colors.black,size: 30,),
+                                  Icons.arrow_right_alt_outlined,
+                                  color: Colors.black,
+                                  size: 30,
+                                ),
                                 onPressed: () {
-                                 Navigator.push(context, MaterialPageRoute(builder: (context) => ChangePassword()));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ChangePassword()));
                                 })),
-                            new Divider(
+                        new Divider(
                           color: Hexcolor('#5D6561'),
                           thickness: 0,
                           indent: 70,
-                         endIndent: 20,
+                          endIndent: 20,
                           height: 0,
                         ),
                         ListTile(
-                            leading: Image.asset('assets/images/change_part_icon.png'),
+                            leading: Image.asset(
+                                'assets/images/change_part_icon.png'),
                             title: Text('Change Particulars'),
-                             trailing: IconButton(
+                            trailing: IconButton(
                                 icon: Icon(
-                                    Icons.arrow_right_alt_outlined,color: Colors.black,size: 30,),
+                                  Icons.arrow_right_alt_outlined,
+                                  color: Colors.black,
+                                  size: 30,
+                                ),
                                 onPressed: () {
-                                 Navigator.push(context, MaterialPageRoute(builder: (context) => Profile()));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Profile()));
                                 })),
-                            new Divider(
+                        new Divider(
                           color: Hexcolor('#5D6561'),
                           thickness: 0,
                           indent: 70,
@@ -123,13 +147,14 @@ class _SettingsState extends State<Settings> {
                         ListTile(
                             leading: Image.asset('assets/images/help_icon.png'),
                             title: Text('Help'),
-                             trailing: IconButton(
+                            trailing: IconButton(
                                 icon: Icon(
-                                    Icons.arrow_right_alt_outlined,color: Colors.black,size: 30,),
-                                onPressed: () {
-                                 
-                                })),
-                            new Divider(
+                                  Icons.arrow_right_alt_outlined,
+                                  color: Colors.black,
+                                  size: 30,
+                                ),
+                                onPressed: () {})),
+                        new Divider(
                           color: Hexcolor('#5D6561'),
                           thickness: 0,
                           indent: 70,
@@ -137,15 +162,23 @@ class _SettingsState extends State<Settings> {
                           height: 0,
                         ),
                         ListTile(
-                            leading: Image.asset('assets/images/manage_device.png'),
+                            leading:
+                                Image.asset('assets/images/manage_device.png'),
                             title: Text('Manage Devices'),
-                             trailing: IconButton(
+                            trailing: IconButton(
                                 icon: Icon(
-                                   Icons.arrow_right_alt_outlined,color: Colors.black,size: 30,),
+                                  Icons.arrow_right_alt_outlined,
+                                  color: Colors.black,
+                                  size: 30,
+                                ),
                                 onPressed: () {
-                                 Navigator.push(context, MaterialPageRoute(builder: (context) => ManageDevices()));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ManageDevices()));
                                 })),
-                            new Divider(
+                        new Divider(
                           color: Hexcolor('#5D6561'),
                           thickness: 0,
                           indent: 70,
@@ -153,15 +186,22 @@ class _SettingsState extends State<Settings> {
                           height: 0,
                         ),
                         ListTile(
-                            leading: Image.asset('assets/images/logouts_icon.png'),
+                            leading:
+                                Image.asset('assets/images/logouts_icon.png'),
                             title: Text('Sign Out'),
-                             trailing: IconButton(
+                            trailing: IconButton(
                                 icon: Icon(
-                                    Icons.arrow_right_alt_outlined,color: Colors.black,size: 30,),
+                                  Icons.arrow_right_alt_outlined,
+                                  color: Colors.black,
+                                  size: 30,
+                                ),
                                 onPressed: () {
-                                 Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LoginScreen()));
                                 })),
-                           new Divider(
+                        new Divider(
                           color: Hexcolor('#707070'),
                           indent: 70,
                           endIndent: 20,
@@ -170,28 +210,34 @@ class _SettingsState extends State<Settings> {
                       ],
                     ),
                   )
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom:50),
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Positioned(
-                      child:Column(
-                        //  crossAxisAlignment: CrossAxisAlignment.end,
-                         mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                           Image.asset('assets/images/footer_logo.png',),
-                           SizedBox(height: 10,),
-                           Text('App v.3.4.30',style:TextStyle(fontSize:12,color:Hexcolor('#888485'))),
-                        ],
-                      ),
-          ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 50),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Positioned(
+                    child: Column(
+                      //  crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Image.asset(
+                          'assets/images/footer_logo.png',
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text('App v.3.4.30',
+                            style: TextStyle(
+                                fontSize: 12, color: Hexcolor('#888485'))),
+                      ],
+                    ),
                   ),
-                )
-              ],
-            ),
+                ),
+              )
+            ],
           ),
+        ),
       ),
     );
   }

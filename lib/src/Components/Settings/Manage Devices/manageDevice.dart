@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-
+import 'package:unniTel/src/Components/mainScreen.dart';
 class ManageDevices extends StatefulWidget {
   @override
   _ManageDevicesState createState() => _ManageDevicesState();
@@ -19,7 +19,8 @@ class _ManageDevicesState extends State<ManageDevices> {
         children: [
           InkWell(
             onTap: () {
-              Navigator.pop(context);
+              // Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen()));
             },
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 10),
@@ -42,22 +43,22 @@ class _ManageDevicesState extends State<ManageDevices> {
 // DONE NEW DEVICE BUTTON
   Widget _saveNewDevice() {
     return InkWell(
-      onTap: () {
-        Navigator.pop(context);
-      },
-    child:Container(
-      width: MediaQuery.of(context).size.width,
-      alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(vertical: 15),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(12)),
-        color: Colors.lime[600],
-      ),
-      child: Text(
-        'DONE',
-        style: TextStyle(fontSize: 20, color: Colors.white),
-      ),
-    ));
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          alignment: Alignment.center,
+          padding: EdgeInsets.symmetric(vertical: 15),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+            color: Colors.lime[600],
+          ),
+          child: Text(
+            'DONE',
+            style: TextStyle(fontSize: 20, color: Colors.white),
+          ),
+        ));
   }
 
   // Add New Device Widget
@@ -67,7 +68,9 @@ class _ManageDevicesState extends State<ManageDevices> {
         // SHOW BOTTOM MODAL SHEET
         showModalBottomSheet(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25.0),
+             borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(25),
+            topRight: Radius.circular(25),),
             ),
             context: context,
             isScrollControlled: true,
@@ -84,7 +87,7 @@ class _ManageDevicesState extends State<ManageDevices> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 120.0),
+                            padding: const EdgeInsets.only(left: 100.0),
                             child: Text(
                               'ADD NEW DEVICE',
                               style: TextStyle(
@@ -107,16 +110,19 @@ class _ManageDevicesState extends State<ManageDevices> {
                     Container(
                       height: 300,
                       alignment: Alignment.topLeft,
-                      padding: EdgeInsets.symmetric(horizontal: 12,vertical: 12),
-                      child: Column(
-                        
-                        children: [
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                      child: Column(children: [
                         Column(children: [
                           new Align(
-                             alignment: Alignment.centerLeft,
-                            child:Text('SSID',style: TextStyle(color: Hexcolor("#9D9D9C"),fontSize: 14),),
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'SSID',
+                              style: TextStyle(
+                                  color: Hexcolor("#9D9D9C"), fontSize: 14),
+                            ),
                           ),
-                          SizedBox(height:10),
+                          SizedBox(height: 10),
                           TextFormField(
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
@@ -134,13 +140,15 @@ class _ManageDevicesState extends State<ManageDevices> {
                             keyboardType: TextInputType.text,
                           )
                         ]),
-                          SizedBox(height:10),
+                        SizedBox(height: 10),
                         Column(children: [
                           new Align(
                             alignment: Alignment.centerLeft,
-                            child:Text('Passcode',style:TextStyle(color: Hexcolor("#9D9D9C"),fontSize: 14)),
+                            child: Text('Passcode',
+                                style: TextStyle(
+                                    color: Hexcolor("#9D9D9C"), fontSize: 14)),
                           ),
-                          SizedBox(height:10),
+                          SizedBox(height: 10),
                           TextFormField(
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
@@ -209,12 +217,14 @@ class _ManageDevicesState extends State<ManageDevices> {
             subtitle: Row(
               children: [
                 Text('SSID:'),
-                Text(
-                  'Huawei WIFI Device 333',
-                  style: TextStyle(
-                      fontWeight: FontWeight.normal,
-                      fontSize: 14,
-                      color: Colors.black),
+                Flexible(
+                  child: Text(
+                    'Huawei WIFI Device 333',
+                    style: TextStyle(
+                        fontWeight: FontWeight.normal,
+                        fontSize: 14,
+                        color: Colors.black),
+                  ),
                 )
               ],
             ),
@@ -337,11 +347,13 @@ class _ManageDevicesState extends State<ManageDevices> {
             subtitle: Row(
               children: [
                 Text('SSID:'),
-                Text('Huawei WIFI Device 333',
-                    style: TextStyle(
-                        fontWeight: FontWeight.normal,
-                        fontSize: 14,
-                        color: Colors.black))
+                Flexible(
+                  child: Text('Huawei WIFI Device 333',
+                      style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 14,
+                          color: Colors.black)),
+                )
               ],
             ),
             trailing: Row(

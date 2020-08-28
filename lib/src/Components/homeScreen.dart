@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'package:fdottedline/fdottedline.dart';
+import 'package:unniTel/src/Components/DataPackages/Top-up-Widget/topUpWidget.dart';
 import 'package:unniTel/src/Components/Settings/setting.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -97,7 +98,8 @@ class _HomeScreenState extends State<HomeScreen>
   Widget _topUpWidget() {
     return InkWell(
       onTap: () {
-        // Navigate to New Password Screen
+        // Navigate to TopUp Widget Screen
+        Navigator.push(context, MaterialPageRoute(builder: (context) => TopUpWidget()));
       },
       child: Container(
         width: 100,
@@ -152,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen>
               ),
               Container(
                   child: Padding(
-                padding: const EdgeInsets.only(top: 20.0, left: 10, right: 15),
+                padding: const EdgeInsets.only(top: 20.0, left: 20, right: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -220,7 +222,7 @@ class _HomeScreenState extends State<HomeScreen>
               ),
               Container(
                   child: Padding(
-                padding: const EdgeInsets.only(top: 20.0, left: 10, right: 15),
+                padding: const EdgeInsets.only(top: 20.0, left: 20, right: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -288,7 +290,7 @@ class _HomeScreenState extends State<HomeScreen>
               ),
               Container(
                   child: Padding(
-                padding: const EdgeInsets.only(top: 20.0, left: 10, right: 15),
+                padding: const EdgeInsets.only(top: 20.0, left: 20, right: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -356,7 +358,7 @@ class _HomeScreenState extends State<HomeScreen>
               ),
               Container(
                   child: Padding(
-                padding: const EdgeInsets.only(top: 20.0, left: 10, right: 15),
+                padding: const EdgeInsets.only(top: 20.0, left: 20, right: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -683,37 +685,43 @@ class _HomeScreenState extends State<HomeScreen>
                 SizedBox(height: 3),
                 Text(
                   '11:45 am, 11 jun',
-                  style: TextStyle(fontSize: 18, color: Colors.black),
+                  style: TextStyle(fontSize: 16, color: Colors.black),
                 )
               ],
             )
           ]),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Image.asset('assets/images/blue_icon.png'),
-            SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 23),
-                Text(
-                  'Length of session',
-                  style: TextStyle(fontSize: 12, color: Hexcolor('#9D9D9C')),
+          Flexible(
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Image.asset('assets/images/blue_icon.png'),
+              SizedBox(width: 10),
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 23),
+                    Text(
+                      'Length of session',
+                      style: TextStyle(fontSize: 12, color: Hexcolor('#9D9D9C')),
+                    ),
+                    SizedBox(height: 3),
+                    Text(
+                      '3d : 8h : 11min 21s',
+                      style: TextStyle(fontSize: 16, color: Colors.black),
+                    )
+                  ],
                 ),
-                SizedBox(height: 3),
-                Text(
-                  '3d : 8h : 11min 21s',
-                  style: TextStyle(fontSize: 18, color: Colors.black),
-                )
-              ],
-            )
-          ]),
+              )
+            ]),
+          ),
         ],
       ),
       // 2nd COL
       Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        // mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween, 
+            children: [
             Image.asset('assets/images/pink_icon.png'),
             SizedBox(width: 10),
             Column(
@@ -727,31 +735,37 @@ class _HomeScreenState extends State<HomeScreen>
                 SizedBox(height: 3),
                 Text(
                   '10 MB',
-                  style: TextStyle(fontSize: 18, color: Colors.black),
+                  style: TextStyle(fontSize: 16, color: Colors.black),
                 )
               ],
             )
           ]),
-          Row(children: [
-            SizedBox(width: 80),
-            Image.asset('assets/images/green_icon.png'),
-            SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          Flexible(
+            child: Row(
+
               children: [
-                SizedBox(height: 23),
-                Text(
-                  'Connected Devices',
-                  style: TextStyle(fontSize: 12, color: Hexcolor('#9D9D9C')),
+              SizedBox(width: 80),
+              Image.asset('assets/images/green_icon.png'),
+              SizedBox(width: 10),
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 23),
+                    Text(
+                      'Connected Devices',
+                      style: TextStyle(fontSize: 12, color: Hexcolor('#9D9D9C')),
+                    ),
+                    SizedBox(height: 3),
+                    Text(
+                      '09',
+                      style: TextStyle(fontSize: 16, color: Colors.black),
+                    )
+                  ],
                 ),
-                SizedBox(height: 3),
-                Text(
-                  '09',
-                  style: TextStyle(fontSize: 18, color: Colors.black),
-                )
-              ],
-            )
-          ]),
+              )
+            ]),
+          ),
         ],
       ),
     ]);
@@ -820,7 +834,10 @@ class _HomeScreenState extends State<HomeScreen>
       onTap: () {
         showModalBottomSheet(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25.0),
+              // borderRadius: BorderRadius.circular(25.0),
+               borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(25),
+            topRight: Radius.circular(25),),
             ),
             context: context,
             builder: (BuildContext context) {

@@ -89,6 +89,10 @@ flutter:
      - assets/images/atrate_icon.png
      - assets/images/data_remianing_icon.png
      - assets/images/battery_icon.png
+     - assets/images/congrulation_bg.png
+     - assets/images/bubble_icon.png
+     - assets/images/package_icon.png
+
 
 
 

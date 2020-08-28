@@ -21,7 +21,7 @@ class _ProfileState extends State<Profile> {
         children: [
           InkWell(
             onTap: () {
-              if(widget.data == 'home') {
+              if(widget.data == 'home' || widget.data == 'myAccount') {
                 Navigator.push(context,
                   MaterialPageRoute(builder: (context) => MainScreen()));
               } else {
@@ -189,13 +189,15 @@ class _ProfileState extends State<Profile> {
                           )
                           .toList(),
                     ),
+                    SizedBox(height:100),
+                    _deleteUserWidget()
                   ],
                 ),
-                Positioned(
-                  child: _deleteUserWidget(),
-                  bottom: 20,
-                  left: 40,
-                )
+                // Positioned(
+                //   child: _deleteUserWidget(),
+                //   bottom: 20,
+                //   left: 40,
+                // )
               ],
             ),
           )),

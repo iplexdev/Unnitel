@@ -53,7 +53,7 @@ class _PackagesListState extends State<PackagesList> {
             backgroundColor: Colors.white,
           ),
           body: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              margin: EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: packagesList
                     .map(
@@ -79,7 +79,7 @@ class _PackagesListState extends State<PackagesList> {
                           Container(
                               child: Padding(
                             padding: const EdgeInsets.only(
-                                top: 20.0, left: 10, right: 15),
+                                top: 20.0, left: 20,right: 15),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -108,7 +108,7 @@ class _PackagesListState extends State<PackagesList> {
                                   ],
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 110.0),
+                                  padding: const EdgeInsets.only(left: 100.0),
                                   child: FDottedLine(
                                     color: Hexcolor("#F0F1F6"),
                                     height: 60.0,
@@ -116,22 +116,27 @@ class _PackagesListState extends State<PackagesList> {
                                     space: 2,
                                   ),
                                 ),
-                                Container(
-                                  alignment: Alignment.center,
-                                  height: 25,
-                                  width: 57,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      border: Border.all(
-                                        color: Colors.transparent,
-                                        width: 1,
+                                Flexible(
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    height: 25,
+                                    width: 57,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(12),
+                                        border: Border.all(
+                                          color: Colors.transparent,
+                                          width: 1,
+                                        ),
+                                        color: Hexcolor('#F9FBE8')),
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        e['action'],
+                                        style: TextStyle(
+                                            color: Hexcolor('#C2D21D'),
+                                            fontSize: 12.0),
                                       ),
-                                      color: Hexcolor('#F9FBE8')),
-                                  child: Text(
-                                    e['action'],
-                                    style: TextStyle(
-                                        color: Hexcolor('#C2D21D'),
-                                        fontSize: 12.0),
+                                    ),
                                   ),
                                 )
                               ],

@@ -315,21 +315,23 @@ Widget _socialLoginWidget() {
             )
             )
           ),
-          Container(
-            width: 150,
-            margin: EdgeInsets.only(left: 10),
-           decoration: BoxDecoration(
-             color:Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(15)),
-            border: Border.all(width:0.5, color:Colors.black45)
-           ),
-           alignment: Alignment.center,
-            child: Image(
-              image: AssetImage(
-                'assets/images/google_icon.png',
-              ),
-              height: 36,
-              ),
+          Flexible(
+            child: Container(
+              width: 150,
+              margin: EdgeInsets.only(left: 10),
+             decoration: BoxDecoration(
+               color:Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(15)),
+              border: Border.all(width:0.5, color:Colors.black45)
+             ),
+             alignment: Alignment.center,
+              child: Image(
+                image: AssetImage(
+                  'assets/images/google_icon.png',
+                ),
+                height: 36,
+                ),
+            ),
           )
       ]
     ),

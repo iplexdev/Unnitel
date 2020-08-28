@@ -63,7 +63,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                        }
                        break;
                        case 'My Account': {
-                         Navigator.push(context, MaterialPageRoute(builder: (context) => Profile()));
+                         Navigator.push(context, MaterialPageRoute(builder: (context) => Profile(data:'myAccount')));
                        }
                        break;
                        case 'Packages' :{
