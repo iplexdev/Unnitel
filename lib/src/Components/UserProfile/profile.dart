@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:unniTel/src/Components/UserProfile/editProfile.dart';
-import 'package:unniTel/src/Components/UserProfile/userDummyInfo.dart';
+// import 'package:unniTel/src/Components/UserProfile/userDummyInfo.dart';
 import 'package:unniTel/src/Components/mainScreen.dart';
 import 'package:unniTel/src/Components/Auth/login.dart';
 
 class Profile extends StatefulWidget {
   final String data;
-  Profile({Key key, this.data}):super(key: key);
+  final accountData;
+  Profile({Key key, this.data, this.accountData}):super(key: key);
   @override
   _ProfileState createState() => _ProfileState();
   
 }
 
 class _ProfileState extends State<Profile> {
+  SharedPreferences sharedPreferences;
   // Back arraow widget
   Widget _backArrowWidget() {
     return Container(
@@ -23,7 +26,7 @@ class _ProfileState extends State<Profile> {
             onTap: () {
               if(widget.data == 'home' || widget.data == 'myAccount') {
                 Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => MainScreen()));
+                  MaterialPageRoute(builder: (context) => MainScreen(res: widget.accountData['accountData'],)));
               } else {
                 Navigator.pop(context); 
               }
@@ -49,9 +52,12 @@ class _ProfileState extends State<Profile> {
   // DELETE USER WIDGET
   Widget _deleteUserWidget() {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginScreen()));
+      onTap: () async {
+        sharedPreferences = await SharedPreferences.getInstance();
+        sharedPreferences.remove('token');
+        // ignore: deprecated_member_use
+        sharedPreferences.commit();
+        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => LoginScreen()), (route) => false);
       },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 100),
@@ -65,6 +71,7 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    print('Profile_Account_Data${widget.accountData}');
     return SafeArea(
       child: Scaffold(
           backgroundColor: Colors.white,
@@ -82,7 +89,7 @@ class _ProfileState extends State<Profile> {
               GestureDetector(
                   onTap: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => EditProfile()));
+                        MaterialPageRoute(builder: (context) => EditProfile(accountData: widget.accountData)));
                   },
                   child: Row(children: [
                     Padding(
@@ -147,9 +154,8 @@ class _ProfileState extends State<Profile> {
                     ),
                     // Column()
                     Column(
-                      children: userInfo
-                          .map(
-                            (e) => Container(
+                      children:[ 
+                        Container(
                               child: Padding(
                                 padding:
                                     const EdgeInsets.only(top: 25, bottom: 20),
@@ -159,7 +165,7 @@ class _ProfileState extends State<Profile> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Text(
-                                      e['title'],
+                                      'Name',
                                       style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.normal,
@@ -169,7 +175,7 @@ class _ProfileState extends State<Profile> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        Text(e['value'],
+                                        Text(widget.accountData['name'],
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 color: Hexcolor('#9D9D9C'))),
@@ -186,8 +192,122 @@ class _ProfileState extends State<Profile> {
                                     width: 0, color: Hexcolor('#5D6561')),
                               )),
                             ),
-                          )
-                          .toList(),
+                            Container(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 25, bottom: 20),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      'Country',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.black),
+                                    ),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Text(widget.accountData['country'],
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Hexcolor('#9D9D9C'))),
+                                      ],
+                                    ),
+                                    
+                                  ],
+                                ),
+                              ),
+                              margin:
+                                  const EdgeInsets.only(left: 15.0, right: 15),
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                bottom: BorderSide(
+                                    width: 0, color: Hexcolor('#5D6561')),
+                              )),
+                            ),
+                            Container(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 25, bottom: 20),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      'Email',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.black),
+                                    ),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Text(widget.accountData['email'],
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Hexcolor('#9D9D9C'))),
+                                      ],
+                                    ),
+                                    
+                                  ],
+                                ),
+                              ),
+                              margin:
+                                  const EdgeInsets.only(left: 15.0, right: 15),
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                bottom: BorderSide(
+                                    width: 0, color: Hexcolor('#5D6561')),
+                              )),
+                            ),
+                            Container(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 25, bottom: 20),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      'Mobile',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.black),
+                                    ),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Text(widget.accountData['mobile'],
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Hexcolor('#9D9D9C'))),
+                                      ],
+                                    ),
+                                    
+                                  ],
+                                ),
+                              ),
+                              margin:
+                                  const EdgeInsets.only(left: 15.0, right: 15),
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                bottom: BorderSide(
+                                    width: 0, color: Hexcolor('#5D6561')),
+                              )),
+                            ),
+                            
+                      ],
                     ),
                     SizedBox(height:100),
                     _deleteUserWidget()

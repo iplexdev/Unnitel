@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:unniTel/src/Components/Auth/PasswordVerification/changePassword.dart';
 import 'package:unniTel/src/Components/Auth/login.dart';
 import 'package:unniTel/src/Components/Settings/Manage%20Devices/manageDevice.dart';
@@ -8,12 +9,15 @@ import 'package:unniTel/src/Components/UserProfile/profile.dart';
 import 'package:unniTel/src/Components/mainScreen.dart';
 
 class Settings extends StatefulWidget {
+  final actualData;
+  const Settings({this.actualData});
   @override
   _SettingsState createState() => _SettingsState();
 }
 
 class _SettingsState extends State<Settings> {
   bool isEnable = false;
+  SharedPreferences sharedPreferences;
   // Back arraow widget
   Widget _backArrowWidget() {
     return Container(
@@ -23,7 +27,7 @@ class _SettingsState extends State<Settings> {
           InkWell(
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => MainScreen()));
+                  MaterialPageRoute(builder: (context) => MainScreen(res: widget.actualData,)));
             },
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 10),
@@ -135,7 +139,7 @@ class _SettingsState extends State<Settings> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Profile()));
+                                          builder: (context) => Profile(accountData: widget.actualData['accountData'],)));
                                 })),
                         new Divider(
                           color: Hexcolor('#5D6561'),
@@ -195,11 +199,12 @@ class _SettingsState extends State<Settings> {
                                   color: Colors.black,
                                   size: 30,
                                 ),
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => LoginScreen()));
+                                onPressed: () async {
+                                  sharedPreferences = await SharedPreferences.getInstance();
+                                  sharedPreferences.remove('token');
+                                  // ignore: deprecated_member_use
+                                  sharedPreferences.commit();
+                                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => LoginScreen()), (route) => false);
                                 })),
                         new Divider(
                           color: Hexcolor('#707070'),

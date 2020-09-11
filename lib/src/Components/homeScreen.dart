@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'package:fdottedline/fdottedline.dart';
+import 'package:unniTel/src/Components/Auth/login.dart';
 import 'package:unniTel/src/Components/DataPackages/Top-up-Widget/topUpWidget.dart';
 import 'package:unniTel/src/Components/Settings/setting.dart';
 
 class HomeScreen extends StatefulWidget {
   final data;
-  const HomeScreen({this.data});
+  final actualData;
+  const HomeScreen({this.data, this.actualData});
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -21,8 +24,10 @@ class _HomeScreenState extends State<HomeScreen>
   double scaleFactor = 1;
   bool isDrawrEnable = false;
   TabController _tabController;
+  SharedPreferences sharedPreferences;
   void initState() {
     super.initState();
+    checkLoginStatus();
     _tabController = TabController(vsync: this, length: 2);
   }
 
@@ -31,7 +36,13 @@ class _HomeScreenState extends State<HomeScreen>
     _tabIndex = _tabController.index + 1;
     _tabController.animateTo(_tabIndex);
   }
-
+  // Check login status
+  checkLoginStatus() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    if (sharedPreferences.getString('token') == null) {
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => LoginScreen()), (Route<dynamic> route) => false);
+    }
+  }
   @override
 // ********************* DATA PACKAGES WIDGETS ************
   Widget _speedoMeterWidgetDP() {
@@ -563,7 +574,7 @@ class _HomeScreenState extends State<HomeScreen>
     return GestureDetector(
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Settings()));
+            context, MaterialPageRoute(builder: (context) => Settings(actualData: widget.actualData)));
       },
       child: Container(
         margin: EdgeInsets.only(right: 10),

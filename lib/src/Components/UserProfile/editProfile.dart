@@ -6,6 +6,8 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EditProfile extends StatefulWidget {
+  final accountData;
+  const EditProfile({this.accountData});
   @override
   _EditProfileState createState() => _EditProfileState();
 }
@@ -24,7 +26,6 @@ class _EditProfileState extends State<EditProfile> {
    Widget _backArrowWidget() {
     return InkWell(
       onTap:() {
-        print('hello');
         Navigator.pop(context);
       },
        child: Container(
@@ -114,7 +115,7 @@ class _EditProfileState extends State<EditProfile> {
         _userNameField('Name'),
         _countryField('Country'),
         _phoneField('Mobile Phone'),
-        _addressField('Address')
+        // _addressField('Address')
       ]),
     );
   }
@@ -136,7 +137,8 @@ class _EditProfileState extends State<EditProfile> {
             height: 10,
           ),
           TextFormField(
-            controller: _userNameCntrl,
+            // controller: _userNameCntrl..text = widget.accountData['name'],
+            initialValue: widget.accountData['name'],
             decoration: InputDecoration(
               border: InputBorder.none,
               fillColor: Color(0xfff3f3f4),
@@ -150,9 +152,10 @@ class _EditProfileState extends State<EditProfile> {
                 return "Please Enter Name";
               } else if (!regExp.hasMatch(value)) {
                 return "Invalid user Name";
-              } else if (_userNameCntrl.text.length <= 4) {
-                return "too short";
-              }
+              } 
+              // else if (_userNameCntrl.text.length <= 4) {
+              //   return "too short";
+              // }
               return null;
             },
             onSaved: (value) => _userName = value,
@@ -195,7 +198,7 @@ class _EditProfileState extends State<EditProfile> {
                     Container(
                       width: MediaQuery.of(context).size.width - 70,
                       child: CountryCodePicker(
-                        initialSelection: 'PK',
+                        initialSelection: widget.accountData['country'],
                         showCountryOnly: true,
                         showOnlyCountryWhenClosed: true,
                         showFlag: false,
@@ -229,7 +232,8 @@ class _EditProfileState extends State<EditProfile> {
             ),
             SizedBox(height: 10),
             TextFormField(
-                      controller: _phoneNoCntrl,
+                      // controller: _phoneNoCntrl..text = widget.accountData['mobile'],
+                      initialValue: widget.accountData['mobile'],
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         fillColor: Color(0xfff3f3f4),
@@ -237,14 +241,16 @@ class _EditProfileState extends State<EditProfile> {
                         hintText: 'Phone No',
                       ),
                       validator: (value) {
-                        RegExp regExp = new RegExp(r'^[0-9]*$');
+                        // RegExp regExp = new RegExp(r'^[0-9]*$');
                         if (value.isEmpty) {
                           return "Please Enter Number";
-                        } else if (!regExp.hasMatch(value)) {
-                          return "Invalid Phone Number";
-                        } else if (_phoneNoCntrl.text.length <= 10) {
-                          return "Invalid";
-                        }
+                        } 
+                        // else if (!regExp.hasMatch(value)) {
+                        //   return "Invalid Phone Number";
+                        // } 
+                        // else if (_phoneNoCntrl.text.length <= 10) {
+                        //   return "Invalid";
+                        // }
                         return null;
                       },
                       onSaved: (value) => _phoneNo = value,
@@ -254,11 +260,8 @@ class _EditProfileState extends State<EditProfile> {
                         // ignore: deprecated_member_use
                         WhitelistingTextInputFormatter.digitsOnly
                       ],
-                      textInputAction: TextInputAction.next,
+                     textInputAction: TextInputAction.done,
                       focusNode: _phoneFocus,
-                      onFieldSubmitted: (_) {
-                        fieldFocusNode(context, _phoneFocus, _addressFocus);
-                      },
                     ),
             // Container(
             //   width: MediaQuery.of(context).size.width,
@@ -350,43 +353,43 @@ class _EditProfileState extends State<EditProfile> {
   }
 
 // _Address Field
-  Widget _addressField(String title) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.black45,
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              fillColor: Color(0xfff3f3f4),
-              filled: true,
-              hintText: 'Enter Address',
-            ),
-            validator: (value) {
-              if (value.isEmpty) {
-                return "Please Enter Name";
-              }
-              return null;
-            },
-            onSaved: (value) => _address = value,
-            keyboardType: TextInputType.text,
-            focusNode: _addressFocus,
-            textInputAction: TextInputAction.done,
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _addressField(String title) {
+  //   return Container(
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: <Widget>[
+  //         Text(
+  //           title,
+  //           style: TextStyle(
+  //             fontSize: 16,
+  //             color: Colors.black45,
+  //           ),
+  //         ),
+  //         SizedBox(
+  //           height: 10,
+  //         ),
+  //         TextFormField(
+  //           decoration: InputDecoration(
+  //             border: InputBorder.none,
+  //             fillColor: Color(0xfff3f3f4),
+  //             filled: true,
+  //             hintText: 'Enter Address',
+  //           ),
+  //           validator: (value) {
+  //             if (value.isEmpty) {
+  //               return "Please Enter Name";
+  //             }
+  //             return null;
+  //           },
+  //           onSaved: (value) => _address = value,
+  //           keyboardType: TextInputType.text,
+  //           focusNode: _addressFocus,
+  //           textInputAction: TextInputAction.done,
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -442,7 +445,6 @@ class _EditProfileState extends State<EditProfile> {
 // Focus Node for text field
 void fieldFocusNode(
     BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
-  print('message$currentFocus');
   currentFocus.unfocus();
   FocusScope.of(context).requestFocus(nextFocus);
 }

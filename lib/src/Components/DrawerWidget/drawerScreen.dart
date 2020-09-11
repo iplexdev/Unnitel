@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:unniTel/src/Components/Auth/login.dart';
 import 'package:unniTel/src/Components/Packages/packagesList.dart';
 import 'package:unniTel/src/Components/Settings/Manage%20Devices/manageDevice.dart';
@@ -9,11 +10,14 @@ import 'package:unniTel/src/Components/UserProfile/profile.dart';
 import 'package:unniTel/src/Components/mainScreen.dart';
 import 'package:unniTel/src/Components/utils/drawerItem.dart';
 class DrawerScreen extends StatefulWidget {
+  final accountData;
+  const DrawerScreen({this.accountData});
   @override
   _DrawerScreenState createState() => _DrawerScreenState();
 }
 
 class _DrawerScreenState extends State<DrawerScreen> {
+  SharedPreferences sharedPreferences;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,7 +43,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
               GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Profile(data: 'home')));
+                  MaterialPageRoute(builder: (context) => Profile(data: 'home', accountData: widget.accountData['accountData'],)));
                 },
                 child: Text('View Profile',style: TextStyle(fontSize: 14, color: Colors.white),),
               )
@@ -52,14 +56,19 @@ class _DrawerScreenState extends State<DrawerScreen> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(
-                onTap: () {
+                onTap: () async {
                      switch(e['title']) {
                        case 'Home': {
                          Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen()));
                        }
                        break;
                        case 'Sign Out': {
-                         Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                         sharedPreferences = await SharedPreferences.getInstance();
+                         sharedPreferences.remove('token');
+                         // ignore: deprecated_member_use
+                         sharedPreferences.commit();
+                         Navigator.of(context).pushAndRemoveUntil(
+                           MaterialPageRoute(builder: (BuildContext context) => LoginScreen()), (Route<dynamic> route) => false);
                        }
                        break;
                        case 'My Account': {

@@ -41,6 +41,8 @@ dependencies:
   country_code_picker: ^1.4.0
   image_picker: ^0.6.7+4
   fdottedline: ^1.0.1
+  http: ^0.12.2
+  shared_preferences: ^0.5.10
 
   
 

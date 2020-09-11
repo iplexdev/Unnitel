@@ -2,6 +2,8 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:unniTel/Api/api.dart';
 import 'package:unniTel/src/Components/Auth/PasswordVerification/forgotPassword.dart';
 import 'package:unniTel/src/Components/Auth/signup.dart';
 import 'package:unniTel/src/Components/mainScreen.dart';
@@ -20,8 +22,11 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   FocusNode _emailFocusNode = FocusNode();
   FocusNode _passwordFocusNode = FocusNode();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   String _email, _password ='';
+  bool _isLoading = false;
   // BackButton Start Widget
    Widget _logo() {
       return Container(
@@ -86,6 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
             validator: (email) => EmailValidator.validate(email) ? null 
             : 'Invalid Email',
             onSaved: (email) => _email = email,
+            controller: emailController,
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.emailAddress,
             autofocus: true,
@@ -123,6 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
             obscureText: true,
             keyboardType: TextInputType.text,
             focusNode: _passwordFocusNode,
+            controller: passwordController,
             onSaved: (pass) => _password = pass,
             validator: (pass) {
               Pattern pattern = r'^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$';
@@ -142,19 +149,32 @@ class _LoginScreenState extends State<LoginScreen> {
   }
   // Login Widget Start
     Widget _loginWidget() {
-      final data = Data(
-        email: _email,
-        password: _password
-      );
       return InkWell(
-        onTap: () {
+        onTap: () async {
+          
           if(_formKey.currentState.validate()) {
             _formKey.currentState.save();
-            toastMessage("Successfully Login");
-          Navigator.push(context,
-          MaterialPageRoute(builder: (context) => MainScreen()
-          ),
-          );
+            setState(() {
+            _isLoading = true;
+          });
+          var email = emailController.text;
+          var password = passwordController.text;
+          var res = await loginUser(email, password);
+          SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+          if(res.containsKey('status')) {
+            toastMessage(res['status']);
+            if(res['status'] == 'Login Successful') {
+              print('res $res');
+              setState(() {
+                _isLoading = false;
+              sharedPreferences.setString('token', res['token']);
+              Navigator.push(context, 
+              MaterialPageRoute(builder: (context) => MainScreen(res: res)));
+              });
+            }
+          } else {
+            toastMessage("Login Failed");
+          }
           }
         },
         child: Container(
@@ -320,7 +340,8 @@ Widget _registeredWidget() {
     return Scaffold(
       body: Container(
         height: height,
-        child: Stack(
+        child: _isLoading ? Center(child: CircularProgressIndicator(),):
+         Stack(
           children:<Widget>[
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
@@ -366,7 +387,6 @@ Widget _registeredWidget() {
 }
 // Function for Focusing Field
 void fieldFocusNode(BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
-  print('message$currentFocus');
   currentFocus.unfocus();
   FocusScope.of(context).requestFocus(nextFocus);
 }
