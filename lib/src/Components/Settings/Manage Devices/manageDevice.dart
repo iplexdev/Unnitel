@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:unniTel/src/Components/mainScreen.dart';
 class ManageDevices extends StatefulWidget {
+  final accountData;
+  const ManageDevices({this.accountData});
   @override
   _ManageDevicesState createState() => _ManageDevicesState();
 }
 
-enum SingingCharacter { huaweiWifi, eMbile, zong, huawei4g }
+// enum SingingCharacter { huaweiWifi, eMbile, zong, huawei4g }
 bool isEnable = false;
+int _character = 0;
 
 class _ManageDevicesState extends State<ManageDevices> {
-  SingingCharacter _character = SingingCharacter.huaweiWifi;
+  // SingingCharacter _character = SingingCharacter.huaweiWifi;
   // Back arraow widget
   Widget _backArrowWidget() {
     return Container(
@@ -20,7 +23,7 @@ class _ManageDevicesState extends State<ManageDevices> {
           InkWell(
             onTap: () {
               // Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen(res: widget.accountData,)));
             },
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 10),
@@ -204,22 +207,27 @@ class _ManageDevicesState extends State<ManageDevices> {
       ),
     );
   }
-
+ void _handleRadioValueChanged(int value) {
+    setState(() {
+      _character = value;
+    });
+  }
   // Manage Devices List
   Widget _devicesList() {
+     
     return Container(
       height: 500,
       child: ListView(
         children: <Widget>[
           ListTile(
             leading: Image.asset('assets/images/wifi_icon.png'),
-            title: Text('Huawei WIFI Family'),
+            title:Text( widget.accountData['devices'][0]['name']),
             subtitle: Row(
               children: [
                 Text('SSID:'),
                 Flexible(
                   child: Text(
-                    'Huawei WIFI Device 333',
+                    widget.accountData['devices'][0]['ssid'],
                     style: TextStyle(
                         fontWeight: FontWeight.normal,
                         fontSize: 14,
@@ -235,13 +243,10 @@ class _ManageDevicesState extends State<ManageDevices> {
               children: [
                 Radio(
                     activeColor: Hexcolor('#C2D22B'),
-                    value: SingingCharacter.huaweiWifi,
+                    value: 0,
                     groupValue: _character,
-                    onChanged: (SingingCharacter value) {
-                      setState(() {
-                        _character = value;
-                      });
-                    }),
+                    onChanged: _handleRadioValueChanged,
+                    ),
                 IconButton(
                     icon: Icon(Icons.more_vert),
                     onPressed: () {
@@ -259,11 +264,12 @@ class _ManageDevicesState extends State<ManageDevices> {
           ),
           ListTile(
             leading: Image.asset('assets/images/wifi_icon.png'),
-            title: Text('EMobile Device'),
+            title:Text( widget.accountData['devices'][1]['name']),
             subtitle: Row(
               children: [
                 Text('SSID:'),
-                Text('EMobile Device',
+                Text(
+                widget.accountData['devices'][1]['ssid'],
                     style: TextStyle(
                         fontWeight: FontWeight.normal,
                         fontSize: 14,
@@ -276,100 +282,11 @@ class _ManageDevicesState extends State<ManageDevices> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Radio(
-                    activeColor: Hexcolor('#C2D22B'),
-                    value: SingingCharacter.eMbile,
-                    groupValue: _character,
-                    onChanged: (SingingCharacter value) {
-                      setState(() {
-                        _character = value;
-                      });
-                    }),
-                IconButton(
-                    icon: Icon(Icons.more_vert),
-                    onPressed: () {
-                      //  Navigator.push(context, MaterialPageRoute(builder: (context)=> NotificationScreen()));
-                    }),
-              ],
-            ),
-          ),
-          new Divider(
-            color: Hexcolor('#5D6561'),
-            thickness: 0,
-            indent: 10,
-            endIndent: 20,
-            height: 0,
-          ),
-          ListTile(
-            leading: Image.asset('assets/images/wifi_icon.png'),
-            title: Text('Zong 4G Device'),
-            subtitle: Row(
-              children: [
-                Text('SSID:'),
-                Text('Zong 4G',
-                    style: TextStyle(
-                        fontWeight: FontWeight.normal,
-                        fontSize: 14,
-                        color: Colors.black))
-              ],
-            ),
-            trailing: Row(
-              // crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.end,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Radio(
-                    activeColor: Hexcolor('#C2D22B'),
-                    value: SingingCharacter.zong,
-                    groupValue: _character,
-                    onChanged: (SingingCharacter value) {
-                      setState(() {
-                        _character = value;
-                      });
-                    }),
-                IconButton(
-                    icon: Icon(Icons.more_vert),
-                    onPressed: () {
-                      //  Navigator.push(context, MaterialPageRoute(builder: (context)=> NotificationScreen()));
-                    }),
-              ],
-            ),
-          ),
-          new Divider(
-            color: Hexcolor('#5D6561'),
-            thickness: 0,
-            indent: 10,
-            endIndent: 20,
-            height: 0,
-          ),
-          ListTile(
-            leading: Image.asset('assets/images/wifi_icon.png'),
-            title: Text('Huawei 4G '),
-            subtitle: Row(
-              children: [
-                Text('SSID:'),
-                Flexible(
-                  child: Text('Huawei WIFI Device 333',
-                      style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontSize: 14,
-                          color: Colors.black)),
-                )
-              ],
-            ),
-            trailing: Row(
-              // crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.end,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Radio(
-                    activeColor: Hexcolor('#C2D22B'),
-                    value: SingingCharacter.huawei4g,
-                    groupValue: _character,
-                    onChanged: (SingingCharacter value) {
-                      setState(() {
-                        _character = value;
-                      });
-                    }),
+                          activeColor: Hexcolor('#C2D22B'),
+                          value: 1,
+                          groupValue: _character,
+                          onChanged: _handleRadioValueChanged,
+                          ),
                 IconButton(
                     icon: Icon(Icons.more_vert),
                     onPressed: () {

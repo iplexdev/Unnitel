@@ -138,7 +138,7 @@ class _EditProfileState extends State<EditProfile> {
           ),
           TextFormField(
             // controller: _userNameCntrl..text = widget.accountData['name'],
-            initialValue: widget.accountData['name'],
+            initialValue: widget.accountData['accountData']['name'],
             decoration: InputDecoration(
               border: InputBorder.none,
               fillColor: Color(0xfff3f3f4),
@@ -198,7 +198,7 @@ class _EditProfileState extends State<EditProfile> {
                     Container(
                       width: MediaQuery.of(context).size.width - 70,
                       child: CountryCodePicker(
-                        initialSelection: widget.accountData['country'],
+                        initialSelection: widget.accountData['accountData']['country'],
                         showCountryOnly: true,
                         showOnlyCountryWhenClosed: true,
                         showFlag: false,
@@ -233,7 +233,7 @@ class _EditProfileState extends State<EditProfile> {
             SizedBox(height: 10),
             TextFormField(
                       // controller: _phoneNoCntrl..text = widget.accountData['mobile'],
-                      initialValue: widget.accountData['mobile'],
+                      initialValue: widget.accountData['accountData']['mobile'],
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         fillColor: Color(0xfff3f3f4),
@@ -333,7 +333,7 @@ class _EditProfileState extends State<EditProfile> {
           _formKey.currentState.save();
           // toastMessage("Email Send Successfully");
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => MainScreen()));
+              context, MaterialPageRoute(builder: (context) => MainScreen(res: widget.accountData,)));
         }
       },
       child: Container(

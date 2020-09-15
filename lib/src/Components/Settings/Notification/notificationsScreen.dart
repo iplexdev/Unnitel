@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class NotificationScreen extends StatefulWidget {
+  final actualData;
+  const NotificationScreen({this.actualData});
   @override
   _NotificationScreenState createState() => _NotificationScreenState();
 }

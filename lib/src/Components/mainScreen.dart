@@ -7,7 +7,7 @@ class MainScreen extends StatelessWidget {
    const MainScreen({this.res});
   @override
   Widget build(BuildContext context) {
-    print('accoutn$res');
+    print('accoutFor_mainScreen $res');
     return Scaffold(
       body: Stack(
         children: [

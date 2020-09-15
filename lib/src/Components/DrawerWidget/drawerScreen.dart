@@ -43,7 +43,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
               GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Profile(data: 'home', accountData: widget.accountData['accountData'],)));
+                  MaterialPageRoute(builder: (context) => Profile(data: 'home', accountData: widget.accountData,)));
                 },
                 child: Text('View Profile',style: TextStyle(fontSize: 14, color: Colors.white),),
               )
@@ -59,7 +59,8 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 onTap: () async {
                      switch(e['title']) {
                        case 'Home': {
-                         Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen()));
+                         print('checkingHOME_Drawer ${widget.accountData}');
+                         Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen(res: widget.accountData,)));
                        }
                        break;
                        case 'Sign Out': {
@@ -72,19 +73,19 @@ class _DrawerScreenState extends State<DrawerScreen> {
                        }
                        break;
                        case 'My Account': {
-                         Navigator.push(context, MaterialPageRoute(builder: (context) => Profile(data:'myAccount')));
+                         Navigator.push(context, MaterialPageRoute(builder: (context) => Profile(data:'myAccount', accountData: widget.accountData,)));
                        }
                        break;
                        case 'Packages' :{
-                         Navigator.push(context, MaterialPageRoute(builder: (context) => PackagesList()));
+                         Navigator.push(context, MaterialPageRoute(builder: (context) => PackagesList( accountData: widget.accountData)));
                        }
                        break;
                        case 'Settings' : {
-                         Navigator.push(context, MaterialPageRoute(builder: (context) => Settings()));
+                         Navigator.push(context, MaterialPageRoute(builder: (context) => Settings(actualData: widget.accountData)));
                        }
                        break;
                        case 'Devices': {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ManageDevices()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ManageDevices(accountData: widget.accountData,)));
                        }
                        break;
                      }

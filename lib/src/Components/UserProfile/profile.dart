@@ -26,7 +26,7 @@ class _ProfileState extends State<Profile> {
             onTap: () {
               if(widget.data == 'home' || widget.data == 'myAccount') {
                 Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => MainScreen(res: widget.accountData['accountData'],)));
+                  MaterialPageRoute(builder: (context) => MainScreen(res: widget.accountData,)));
               } else {
                 Navigator.pop(context); 
               }
@@ -175,7 +175,7 @@ class _ProfileState extends State<Profile> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        Text(widget.accountData['name'],
+                                        Text(widget.accountData['accountData']['name'],
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 color: Hexcolor('#9D9D9C'))),
@@ -212,7 +212,7 @@ class _ProfileState extends State<Profile> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        Text(widget.accountData['country'],
+                                        Text(widget.accountData['accountData']['country'],
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 color: Hexcolor('#9D9D9C'))),
@@ -250,7 +250,7 @@ class _ProfileState extends State<Profile> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        Text(widget.accountData['email'],
+                                        Text(widget.accountData['accountData']['email'],
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 color: Hexcolor('#9D9D9C'))),
@@ -288,7 +288,7 @@ class _ProfileState extends State<Profile> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        Text(widget.accountData['mobile'],
+                                        Text(widget.accountData['accountData']['mobile'],
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 color: Hexcolor('#9D9D9C'))),

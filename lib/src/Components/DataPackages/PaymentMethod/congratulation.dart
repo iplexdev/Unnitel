@@ -4,6 +4,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:unniTel/src/Components/mainScreen.dart';
 
 class Congratulation extends StatefulWidget {
+  final actualData;
+  const Congratulation({this.actualData});
   @override
   _CongratulationState createState() => _CongratulationState();
 }
@@ -86,7 +88,7 @@ class _CongratulationState extends State<Congratulation> {
       onTap: () {
         toastMessage('Congratulations');
         Navigator.push(
-               context, MaterialPageRoute(builder: (context) => MainScreen()));
+               context, MaterialPageRoute(builder: (context) => MainScreen(res: widget.actualData)));
          },
          
       child: Container(

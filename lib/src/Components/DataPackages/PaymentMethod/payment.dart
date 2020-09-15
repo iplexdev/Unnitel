@@ -6,6 +6,9 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:unniTel/src/Components/DataPackages/PaymentMethod/congratulation.dart';
 
 class Payment extends StatefulWidget {
+  final selectedDevice;
+  final actualData;
+  const Payment({this.selectedDevice, this.actualData});
   @override
   _PaymentState createState() => _PaymentState();
 }
@@ -505,7 +508,7 @@ class _PaymentState extends State<Payment> {
           _formKey.currentState.save();
           toastMessage('Save Successfully', isSwitched);
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Congratulation()));
+              MaterialPageRoute(builder: (context) => Congratulation(actualData:widget.actualData)));
         } else {
           toastMessage('Please check Save this card', isSwitched);
         }

@@ -43,6 +43,7 @@ dependencies:
   fdottedline: ^1.0.1
   http: ^0.12.2
   shared_preferences: ^0.5.10
+  decimal: ^0.3.0
 
   
 
@@ -94,6 +95,7 @@ flutter:
      - assets/images/congrulation_bg.png
      - assets/images/bubble_icon.png
      - assets/images/package_icon.png
+     - assets/images/sg-flag-icon.png
 
 
 

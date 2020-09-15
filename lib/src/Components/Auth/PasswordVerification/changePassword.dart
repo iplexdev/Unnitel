@@ -4,6 +4,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:unniTel/src/Components/mainScreen.dart';
 
 class ChangePassword extends StatefulWidget {
+  final actualData;
+  const ChangePassword({this.actualData});
   @override
   _ChangePasswordState createState() => _ChangePasswordState();
 }
@@ -201,7 +203,7 @@ class _ChangePasswordState extends State<ChangePassword> {
           _formKey.currentState.save();
           toastMessage('New Password Save Successfully');
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => MainScreen()));
+              context, MaterialPageRoute(builder: (context) => MainScreen(res: widget.actualData,)));
         }
       },
       child: Container(

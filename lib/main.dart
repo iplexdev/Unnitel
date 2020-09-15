@@ -14,7 +14,7 @@ import 'package:unniTel/src/Components/mainScreen.dart';
         MaterialApp(
           title: 'Unnitel',
           debugShowCheckedModeBanner: false,
-          home: token == null ? LoginScreen() : MainScreen()
+          home: token == null ? LoginScreen() : LoginScreen()
         )
         );
     }

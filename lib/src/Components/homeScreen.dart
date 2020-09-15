@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,16 +10,17 @@ import 'package:unniTel/src/Components/DataPackages/Top-up-Widget/topUpWidget.da
 import 'package:unniTel/src/Components/Settings/setting.dart';
 
 class HomeScreen extends StatefulWidget {
+  
   final data;
   final actualData;
   const HomeScreen({this.data, this.actualData});
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
-
 bool isEnable = false;
-
+int _character = 0;
 class _HomeScreenState extends State<HomeScreen>
+
     with SingleTickerProviderStateMixin {
   double xOffset = 0;
   double yOffset = 0;
@@ -58,13 +61,13 @@ class _HomeScreenState extends State<HomeScreen>
                   fontWeight: FontWeight.bold,
                   fontSize: 14),
               ranges: <GaugeRange>[
-                GaugeRange(startValue: 0, endValue: 10, color: Colors.green),
+                GaugeRange(startValue: 0, endValue:  _character ==0 ? widget.actualData['devices'][0]['connectionStatus']['dataFlowGB'] : 0, color: Colors.green),
                 GaugeRange(
                     startValue: 100, endValue: 100, color: Colors.orange),
                 GaugeRange(startValue: 100, endValue: 100, color: Colors.red),
               ],
               pointers: <GaugePointer>[
-                NeedlePointer(value: 10)
+                NeedlePointer(value: _character ==0 ? widget.actualData['devices'][0]['connectionStatus']['dataFlowGB'] : 0)
               ],
               annotations: <GaugeAnnotation>[
                 GaugeAnnotation(
@@ -79,7 +82,8 @@ class _HomeScreenState extends State<HomeScreen>
                             height: 5,
                           ),
                           Text(
-                            '10.0 MB',
+                           _character == 0 ?(widget.actualData['devices'][0]['connectionStatus']['dataFlowGB']).toStringAsFixed(3):
+                        '0 MB',
                             style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -110,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen>
     return InkWell(
       onTap: () {
         // Navigate to TopUp Widget Screen
-        Navigator.push(context, MaterialPageRoute(builder: (context) => TopUpWidget()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => TopUpWidget(selectedDevice: _character,actualData : widget.actualData)));
       },
       child: Container(
         width: 100,
@@ -164,6 +168,7 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
               ),
               Container(
+                
                   child: Padding(
                 padding: const EdgeInsets.only(top: 20.0, left: 20, right: 20),
                 child: Row(
@@ -173,19 +178,24 @@ class _HomeScreenState extends State<HomeScreen>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '10GB No Expiry',
+                          _character ==0 ? widget.actualData['devices'][0]['dataPackages'][0]['goodsName']:
+                            widget.actualData['devices'][1]['dataPackages'][0]['goodsName'],
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.normal,
                               fontSize: 16.0),
                         ),
                         Text(
-                          'Remaining Balance 7.33GB',
+                          _character ==0 ? 
+                          'Remaining Balance:' + (widget.actualData['devices'][0]['dataPackages'][0]['remainingDataMB']).toString() + 'MB' :
+                          'Remaining Balance:' + (widget.actualData['devices'][1]['dataPackages'][0]['remainingDataMB']).toString() + 'MB',
                           style: TextStyle(
                               color: Hexcolor('#9D9D9C'), fontSize: 12.0),
                         ),
                         Text(
-                          'Purchase Date 2020.6.6',
+                          _character == 0?
+                          'Purchase Date:' + (widget.actualData['devices'][0]['dataPackages'][0]['purchaseDate']).toString(): 
+                          'Purchase Date:' + (widget.actualData['devices'][1]['dataPackages'][0]['purchaseDate']).toString(),
                           style: TextStyle(
                               color: Hexcolor('#9D9D9C'), fontSize: 12.0),
                         )
@@ -203,7 +213,7 @@ class _HomeScreenState extends State<HomeScreen>
                     Container(
                       alignment: Alignment.center,
                       height: 25,
-                      width: 55,
+                      width: _character == 0 || _character == 1 ? 80 : 55,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
@@ -212,14 +222,16 @@ class _HomeScreenState extends State<HomeScreen>
                           ),
                           color: Hexcolor('#E5F7F1')),
                       child: Text(
-                        'in Use',
+                       _character == 0 ? widget.actualData['devices'][0]['dataPackages'][0]['status'] 
+                       : widget.actualData['devices'][1]['dataPackages'][0]['status'] ,
                         style: TextStyle(
-                            color: Hexcolor('#00B074'), fontSize: 12.0),
+                            color: Hexcolor('#00B074'), fontSize: _character == 0 || _character == 1 ?  8.0 : 12),
                       ),
                     )
                   ],
                 ),
-              )),
+              )
+              ),
             ],
           ),
           // USE STACK 2
@@ -241,19 +253,24 @@ class _HomeScreenState extends State<HomeScreen>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Asia 03GB No Expiry',
+                          _character ==0 ? widget.actualData['devices'][0]['dataPackages'][1]['goodsName']:
+                          widget.actualData['devices'][1]['dataPackages'][1]['goodsName'],
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.normal,
                               fontSize: 16.0),
                         ),
                         Text(
-                          'Remaining Balance 7.33GB',
+                          _character == 0 ?
+                          'Remaining Balance:' + (widget.actualData['devices'][0]['dataPackages'][1]['remainingDataMB']).toString() + 'MB' :
+                          'Remaining Balance:' + (widget.actualData['devices'][1]['dataPackages'][1]['remainingDataMB']).toString() + 'MB',
                           style: TextStyle(
                               color: Hexcolor('#9D9D9C'), fontSize: 12.0),
                         ),
                         Text(
-                          'Purchase Date 2020.6.6',
+                          _character == 0?
+                          'Purchase Date:' + (widget.actualData['devices'][0]['dataPackages'][1]['purchaseDate']).toString():
+                            'Purchase Date:' + (widget.actualData['devices'][1]['dataPackages'][1]['purchaseDate']).toString(),
                           style: TextStyle(
                               color: Hexcolor('#9D9D9C'), fontSize: 12.0),
                         )
@@ -280,143 +297,8 @@ class _HomeScreenState extends State<HomeScreen>
                           ),
                           color: Hexcolor('#F9FBE8')),
                       child: Text(
-                        'Activated',
-                        style: TextStyle(
-                            color: Hexcolor('#C2D21D'), fontSize: 12.0),
-                      ),
-                    )
-                  ],
-                ),
-              )),
-            ],
-          ),
-          // USE STACK 3
-          Stack(
-            children: <Widget>[
-              Container(
-                child: Image.asset(
-                  'assets/images/mask_icon.png',
-                  height: 100,
-                ),
-              ),
-              Container(
-                  child: Padding(
-                padding: const EdgeInsets.only(top: 20.0, left: 20, right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Asia 03GB No Expiry',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 16.0),
-                        ),
-                        Text(
-                          'Remaining Balance 7.33GB',
-                          style: TextStyle(
-                              color: Hexcolor('#9D9D9C'), fontSize: 12.0),
-                        ),
-                        Text(
-                          'Purchase Date 2020.6.6',
-                          style: TextStyle(
-                              color: Hexcolor('#9D9D9C'), fontSize: 12.0),
-                        )
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 65.0),
-                      child: FDottedLine(
-                        color: Hexcolor("#F0F1F6"),
-                        height: 60.0,
-                        dottedLength: 4,
-                        space: 2,
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      height: 25,
-                      width: 58,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.transparent,
-                            width: 1,
-                          ),
-                          color: Hexcolor('#F9FBE8')),
-                      child: Text(
-                        'Activated',
-                        style: TextStyle(
-                            color: Hexcolor('#C2D21D'), fontSize: 12.0),
-                      ),
-                    )
-                  ],
-                ),
-              )),
-            ],
-          ),
-          // USE STACK 4
-          Stack(
-            children: <Widget>[
-              Container(
-                child: Image.asset(
-                  'assets/images/mask_icon.png',
-                  height: 100,
-                ),
-              ),
-              Container(
-                  child: Padding(
-                padding: const EdgeInsets.only(top: 20.0, left: 20, right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Asia 03GB No Expiry',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 16.0),
-                        ),
-                        Text(
-                          'Remaining Balance 7.33GB',
-                          style: TextStyle(
-                              color: Hexcolor('#9D9D9C'), fontSize: 12.0),
-                        ),
-                        Text(
-                          'Purchase Date 2020.6.6',
-                          style: TextStyle(
-                              color: Hexcolor('#9D9D9C'), fontSize: 12.0),
-                        )
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 65.0),
-                      child: FDottedLine(
-                        color: Hexcolor("#F0F1F6"),
-                        height: 60.0,
-                        dottedLength: 4,
-                        space: 2,
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      height: 25,
-                      width: 58,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.transparent,
-                            width: 1,
-                          ),
-                          color: Hexcolor('#F9FBE8')),
-                      child: Text(
-                        'Activated',
+                        _character == 0 ? widget.actualData['devices'][0]['dataPackages'][1]['status'] 
+                       :widget.actualData['devices'][1]['dataPackages'][1]['status'] ,
                         style: TextStyle(
                             color: Hexcolor('#C2D21D'), fontSize: 12.0),
                       ),
@@ -475,6 +357,7 @@ class _HomeScreenState extends State<HomeScreen>
 
 // Info Data Widget
   Widget _infoDataWidget() {
+    print('checkingRadioType==== $_character');
     return Container(
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Row(children: [
@@ -483,7 +366,7 @@ class _HomeScreenState extends State<HomeScreen>
             width: 5,
           ),
           Text(
-            '70%',
+            _character == 0 ? widget.actualData['devices'][0]['connectionStatus']['powerLeft'] : '0%',
             style: TextStyle(fontSize: 18, color: Hexcolor("#00B074")),
           ),
         ]),
@@ -494,8 +377,9 @@ class _HomeScreenState extends State<HomeScreen>
               width: 5,
             ),
             Text(
-              'Connected',
-              style: TextStyle(fontSize: 18, color: Hexcolor("#00B074")),
+              _character == 0 ? 'Connected' : 'Not Connected',
+              style: TextStyle(fontSize: 18, 
+               color: _character == 0 ? Hexcolor("#00B074") : Colors.red),
             ),
           ],
         ),
@@ -509,11 +393,11 @@ class _HomeScreenState extends State<HomeScreen>
         height: 320,
         child: SfRadialGauge(axes: <RadialAxis>[
           RadialAxis(minimum: 0, maximum: 100, ranges: <GaugeRange>[
-            GaugeRange(startValue: 0, endValue: 10, color: Colors.green),
+            GaugeRange(startValue: 0, endValue: _character ==0 ? widget.actualData['devices'][0]['connectionStatus']['dataFlowGB'] : 0, color: Colors.green),
             GaugeRange(startValue: 100, endValue: 100, color: Colors.orange),
             GaugeRange(startValue: 100, endValue: 100, color: Colors.red)
           ], pointers: <GaugePointer>[
-            NeedlePointer(value: 10)
+            NeedlePointer(value: _character ==0 ? widget.actualData['devices'][0]['connectionStatus']['dataFlowGB'] : 0)
           ], annotations: <GaugeAnnotation>[
             GaugeAnnotation(
                 widget: Container(
@@ -525,7 +409,8 @@ class _HomeScreenState extends State<HomeScreen>
                             TextStyle(fontSize: 12, color: Hexcolor("#9D9D9C")),
                       ),
                       Text(
-                        '10.0 MB',
+                        _character == 0 ?(widget.actualData['devices'][0]['connectionStatus']['dataFlowGB']).toStringAsFixed(3):
+                        '0 MB',
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
@@ -627,7 +512,12 @@ class _HomeScreenState extends State<HomeScreen>
         children: [
           Image.asset('assets/images/wifi_icon2.png'),
           SizedBox(width: 8),
-          Text('Good')
+          Text(
+            _character ==0 ?
+            widget.actualData['devices'][0]['connectionStatus']['signalQuality']:
+            'Not Connected',
+            style: TextStyle(color: _character !=0 ? Colors.red :Colors.green ),
+            )
         ],
       ),
     );
@@ -649,7 +539,8 @@ class _HomeScreenState extends State<HomeScreen>
             SizedBox(
               width: 20,
             ),
-            Image.asset('assets/images/usa_icon.png'),
+            _character==0 ? Image.asset('assets/images/sg-flag-icon.png'):
+             Image.asset('assets/images/usa_icon.png'),
             SizedBox(
               width: 20,
             ),
@@ -659,7 +550,9 @@ class _HomeScreenState extends State<HomeScreen>
                     fontSize: 12,
                     color: Hexcolor('#9D9D9C'),
                   )),
-              Text('United State',
+              Text(
+                _character == 0 ? widget.actualData['devices'][0]['connectionStatus']['country']:
+                '--', 
                   style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
@@ -690,13 +583,17 @@ class _HomeScreenState extends State<HomeScreen>
               children: [
                 SizedBox(height: 23),
                 Text(
-                  'Connected Since',
+                   'Connected Since',
                   style: TextStyle(fontSize: 12, color: Hexcolor('#9D9D9C')),
                 ),
                 SizedBox(height: 3),
-                Text(
-                  '11:45 am, 11 jun',
-                  style: TextStyle(fontSize: 16, color: Colors.black),
+                FittedBox(
+                  fit: BoxFit.contain,
+                  child: Text(
+                    _character == 0 ? widget.actualData['devices'][0]['connectionStatus']['connectedAt']:
+                     '0',
+                    style: TextStyle(fontSize: 16, color: Colors.black),
+                  ),
                 )
               ],
             )
@@ -716,7 +613,7 @@ class _HomeScreenState extends State<HomeScreen>
                     ),
                     SizedBox(height: 3),
                     Text(
-                      '3d : 8h : 11min 21s',
+                      '0',
                       style: TextStyle(fontSize: 16, color: Colors.black),
                     )
                   ],
@@ -745,7 +642,8 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
                 SizedBox(height: 3),
                 Text(
-                  '10 MB',
+                 _character ==0 ? (widget.actualData['devices'][0]['connectionStatus']['dataFlowGB']).toStringAsFixed(3)
+                 : '0 MB',
                   style: TextStyle(fontSize: 16, color: Colors.black),
                 )
               ],
@@ -769,7 +667,8 @@ class _HomeScreenState extends State<HomeScreen>
                     ),
                     SizedBox(height: 3),
                     Text(
-                      '09',
+                      _character == 0 ? (widget.actualData['devices'][0]['connectionStatus']['connectedDevices']).toString(): 
+                       '0',
                       style: TextStyle(fontSize: 16, color: Colors.black),
                     )
                   ],
@@ -834,13 +733,20 @@ class _HomeScreenState extends State<HomeScreen>
               // _contectionDetatilsWidget(),
             ],
           ),
-        )
-      ]),
+        ),
+      ]
+      ),
     ));
   }
 //  DropUp Widget
 
   Widget _dropUpWidget() {
+      void _handleRadioValueChanged(int value) {
+    setState(() {
+      _character = value;
+      Navigator.pop(context);
+    });
+  }
     return InkWell(
       onTap: () {
         showModalBottomSheet(
@@ -875,113 +781,65 @@ class _HomeScreenState extends State<HomeScreen>
                   new Divider(
                     color: Colors.black,
                   ),
-                  Container(
-                    height: 300,
+                   Container(
+                    height: 150,
                     child: ListView(
                       children: <Widget>[
                         ListTile(
-                            leading: Image.asset('assets/images/wifi_icon.png'),
-                            title: Text('Huawei Wifi'),
-                            trailing: IconButton(
-                                icon: Icon(isEnable
-                                    ? Icons.radio_button_checked
-                                    : Icons.radio_button_off_rounded),
-                                onPressed: () {
-                                  setState(() {
-                                    if (isEnable) {
-                                      print('on$isEnable');
-                                      isEnable = false;
-                                    } else {
-                                      print('off$isEnable');
-                                      isEnable = true;
-                                    }
-                                  });
-                                })),
-                        new Divider(
-                          color: Colors.black,
-                          thickness: 0,
-                          indent: 18,
-                          endIndent: 18,
+                          leading: Image.asset('assets/images/wifi_icon.png'),
+                          title:Text( widget.actualData['devices'][0]['name']),
+                          trailing: Row(
+                            // crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Radio(
+                                  activeColor: Hexcolor('#C2D22B'),
+                                  value: 0,
+                                  groupValue: _character,
+                                  onChanged: _handleRadioValueChanged,
+                                  ),
+                            ],
+                          ),
                         ),
-                        ListTile(
-                            leading: Image.asset('assets/images/wifi_icon.png'),
-                            title: Text('EMobile Device'),
-                            trailing: IconButton(
-                                icon: Icon(isEnable
-                                    ? Icons.radio_button_checked
-                                    : Icons.radio_button_off_rounded),
-                                onPressed: () {
-                                  setState(() {
-                                    if (isEnable) {
-                                      print('on$isEnable');
-                                      isEnable = false;
-                                    } else {
-                                      print('off$isEnable');
-                                      isEnable = true;
-                                    }
-                                  });
-                                })),
-                        new Divider(
-                          color: Colors.black,
-                          thickness: 0,
-                          indent: 18,
-                          endIndent: 18,
-                        ),
-                        ListTile(
-                            leading: Image.asset('assets/images/wifi_icon.png'),
-                            title: Text('Zong 4G Device'),
-                            trailing: IconButton(
-                                icon: Icon(isEnable
-                                    ? Icons.radio_button_checked
-                                    : Icons.radio_button_off_rounded),
-                                onPressed: () {
-                                  setState(() {
-                                    if (isEnable) {
-                                      print('on$isEnable');
-                                      isEnable = false;
-                                    } else {
-                                      print('off$isEnable');
-                                      isEnable = true;
-                                    }
-                                  });
-                                })),
-                        new Divider(
-                          color: Colors.black,
-                          thickness: 0,
-                          indent: 18,
-                          endIndent: 18,
-                        ),
-                        ListTile(
-                            leading: Image.asset('assets/images/wifi_icon.png'),
-                            title: Text('Huawei 4G'),
-                            trailing: IconButton(
-                                icon: Icon(isEnable
-                                    ? Icons.radio_button_checked
-                                    : Icons.radio_button_off_rounded),
-                                onPressed: () {
-                                  setState(() {
-                                    if (isEnable) {
-                                      print('on$isEnable');
-                                      isEnable = false;
-                                    } else {
-                                      print('off$isEnable');
-                                      isEnable = true;
-                                    }
-                                  });
-                                })),
-                        new Divider(
-                          color: Colors.black,
-                          thickness: 0,
-                          indent: 18,
-                          endIndent: 18,
-                        ),
+                new Divider(
+                  color: Hexcolor('#5D6561'),
+                  thickness: 0,
+                  indent: 10,
+                  endIndent: 20,
+                  height: 0,
+                ),
+                ListTile(
+                  leading: Image.asset('assets/images/wifi_icon.png'),
+                  title:Text( widget.actualData['devices'][1]['name']),
+                  trailing: Row(
+                    // crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Radio(
+                          activeColor: Hexcolor('#C2D22B'),
+                          value: 1,
+                          groupValue: _character,
+                          onChanged: _handleRadioValueChanged,
+                          ),
+                    ],
+                  ),
+                ),
+                new Divider(
+                  color: Hexcolor('#5D6561'),
+                  thickness: 0,
+                  indent: 10,
+                  endIndent: 20,
+                  height: 0,
+                ),
+              ],
+            ),
+          )
                       ],
-                    ),
-                  )
-                ],
-              );
-            }
-            );
+                    );
+          }
+        );
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -1022,6 +880,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
+    print('hon=== ${widget.actualData['devices'][0]['dataPackages'][0]}');
     return AnimatedContainer(
         transform: Matrix4.translationValues(xOffset, yOffset, 0)
           ..scale(scaleFactor),
@@ -1085,3 +944,4 @@ class _HomeScreenState extends State<HomeScreen>
         ));
   }
 }
+

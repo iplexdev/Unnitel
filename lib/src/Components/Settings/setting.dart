@@ -92,7 +92,7 @@ class _SettingsState extends State<Settings> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              NotificationScreen()));
+                                              NotificationScreen(actualData: widget.actualData)));
                                 })),
                         new Divider(
                           color: Hexcolor('#5D6561'),
@@ -116,7 +116,7 @@ class _SettingsState extends State<Settings> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              ChangePassword()));
+                                              ChangePassword(actualData: widget.actualData)));
                                 })),
                         new Divider(
                           color: Hexcolor('#5D6561'),
@@ -139,7 +139,7 @@ class _SettingsState extends State<Settings> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Profile(accountData: widget.actualData['accountData'],)));
+                                          builder: (context) => Profile(accountData: widget.actualData,)));
                                 })),
                         new Divider(
                           color: Hexcolor('#5D6561'),
@@ -180,7 +180,7 @@ class _SettingsState extends State<Settings> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              ManageDevices()));
+                                              ManageDevices(accountData: widget.actualData)));
                                 })),
                         new Divider(
                           color: Hexcolor('#5D6561'),

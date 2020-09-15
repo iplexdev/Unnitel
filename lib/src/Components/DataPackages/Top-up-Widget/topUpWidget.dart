@@ -3,6 +3,9 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:unniTel/src/Components/DataPackages/PaymentMethod/payment.dart';
 
 class TopUpWidget extends StatefulWidget {
+  final actualData;
+  final selectedDevice;
+  const TopUpWidget({this.selectedDevice, this.actualData});
   @override
   _TopUpWidgetState createState() => _TopUpWidgetState();
 }
@@ -108,16 +111,18 @@ class _TopUpWidgetState extends State<TopUpWidget> {
                 value: _value,
                 items: [
                   DropdownMenuItem(
-                    child: Text('Global'),
+                    child: Text(
+                       widget.selectedDevice ==0 ? widget.actualData['devices'][0]['dataPackages'][0]['goodsName']:
+                        widget.actualData['devices'][1]['dataPackages'][0]['goodsName'],
+                    ),
                     value: 1,
                   ),
                   DropdownMenuItem(
-                    child: Text('Asia Lite'),
+                    child: Text(
+                       widget.selectedDevice ==0 ? widget.actualData['devices'][0]['dataPackages'][1]['goodsName']:
+                        widget.actualData['devices'][1]['dataPackages'][1]['goodsName'],
+                    ),
                     value: 2,
-                  ),
-                  DropdownMenuItem(
-                    child: Text('Asia'),
-                    value: 3,
                   ),
                 ],
                 onChanged: (value) {
@@ -214,7 +219,7 @@ class _TopUpWidgetState extends State<TopUpWidget> {
                       children: [
                         Image.asset('assets/images/wifi_icon.png'),
                         SizedBox(width: 8),
-                        Text('Huawei WIFI Family'),
+                        Text(widget.actualData['devices'][0]['name']),
                       ],
                     ),
                     value: 1,
@@ -224,30 +229,10 @@ class _TopUpWidgetState extends State<TopUpWidget> {
                       children: [
                         Image.asset('assets/images/wifi_icon.png'),
                         SizedBox(width: 8),
-                        Text('EMobile Device'),
+                        Text(widget.actualData['devices'][1]['name']),
                       ],
                     ),
                     value: 2,
-                  ),
-                  DropdownMenuItem(
-                    child: Row(
-                      children: [
-                        Image.asset('assets/images/wifi_icon.png'),
-                        SizedBox(width: 8),
-                        Text('Zong 4G Device'),
-                      ],
-                    ),
-                    value: 3,
-                  ),
-                  DropdownMenuItem(
-                    child: Row(
-                      children: [
-                        Image.asset('assets/images/wifi_icon.png'),
-                        SizedBox(width: 8),
-                        Text('Huawei 4G '),
-                      ],
-                    ),
-                    value: 4,
                   ),
                 ],
                 onChanged: (value) {
@@ -262,10 +247,11 @@ class _TopUpWidgetState extends State<TopUpWidget> {
   }
 
   Widget _savePassWidget() {
+    print('checkingSelectedValue $_value');
     return InkWell(
       onTap: () {
         // Navigate to payment Widget
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Payment()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => Payment(selectedDevice: widget.selectedDevice,actualData : widget.actualData)));
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -285,6 +271,8 @@ class _TopUpWidgetState extends State<TopUpWidget> {
 
   @override
   Widget build(BuildContext context) {
+    print('TOP_UP_WIDGET ${widget.actualData}');
+    print('TOP_UP_WIDGET_selectedDevices ${widget.selectedDevice}');
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
