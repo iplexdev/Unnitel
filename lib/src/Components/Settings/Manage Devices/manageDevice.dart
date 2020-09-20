@@ -23,7 +23,7 @@ class _ManageDevicesState extends State<ManageDevices> {
           InkWell(
             onTap: () {
               // Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen(res: widget.accountData,)));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen(res: widget.accountData,charcter: _character)));
             },
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 10),

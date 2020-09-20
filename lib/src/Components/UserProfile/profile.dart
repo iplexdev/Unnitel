@@ -71,7 +71,6 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    print('Profile_Account_Data${widget.accountData}');
     return SafeArea(
       child: Scaffold(
           backgroundColor: Colors.white,

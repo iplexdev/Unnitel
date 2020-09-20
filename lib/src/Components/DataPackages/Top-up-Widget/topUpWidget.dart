@@ -19,6 +19,7 @@ class ListItem {
 
 class _TopUpWidgetState extends State<TopUpWidget> {
   int _value = 1;
+  int _selectedGB = 1;
   int _deviceIndex = 1;
   List<ListItem> _dropdownItems = [
     ListItem(1, "5GB"),
@@ -137,35 +138,53 @@ class _TopUpWidgetState extends State<TopUpWidget> {
   }
 
   Widget _selectPackagesData(String title) {
+    final index0 = widget.selectedDevice == 0 ?
+     widget.actualData['devices'][0]['dataPackages'][0]['goodsName']:
+      widget.actualData['devices'][1]['dataPackages'][0]['goodsName'];
+     final  _selectedGBAtIndex0= index0.split(' ');
+     final _index1 = widget.selectedDevice == 0 ?
+     widget.actualData['devices'][0]['dataPackages'][1]['goodsName']:
+      widget.actualData['devices'][1]['dataPackages'][1]['goodsName'];
+    final  _selectedGBAtIndex1= _index1.split(' ');
     return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: TextStyle(color: Hexcolor('#9D9D9C'), fontSize: 16),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text(
+          title,
+          style: TextStyle(color: Hexcolor('#9D9D9C'), fontSize: 16),
+        ),
+        SizedBox(height: 10),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              color: Colors.white,
+              border: Border.all(width: 1, color: Hexcolor('#DEDEDE'))),
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton(
+                value: _selectedGB,
+                items: [
+                  DropdownMenuItem(
+                    child: Text(
+                      _selectedGBAtIndex0[1]
+                    ),
+                    value: 1,
+                  ),
+                  DropdownMenuItem(
+                    child: Text(
+                      _selectedGBAtIndex1[1]
+                    ),
+                    value: 2,
+                  ),
+                ],
+                onChanged: (value) {
+                  setState(() {
+                    _selectedGB = value;
+                  });
+                }),
           ),
-          SizedBox(height: 10),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: Colors.white,
-                border: Border.all(width: 1, color: Hexcolor('#DEDEDE'))),
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton<ListItem>(
-                  value: _selectedItem,
-                  items: _dropdownMenuItems,
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedItem = value;
-                    });
-                  }),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ]),
     );
   }
 
@@ -196,58 +215,41 @@ class _TopUpWidgetState extends State<TopUpWidget> {
 
   Widget _devicesWidget(String title) {
     return Container(
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      child:Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:[
         Text(
           title,
           style: TextStyle(color: Hexcolor('#9D9D9C'), fontSize: 16),
         ),
         SizedBox(height: 10),
-        Container(
-          width: MediaQuery.of(context).size.width,
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            color: Colors.white,
-            border: Border.all(width: 1, color: Hexcolor('#DEDEDE')),
-          ),
-          child: DropdownButtonHideUnderline(
-            child: DropdownButton(
-                value: _deviceIndex,
-                items: [
-                  DropdownMenuItem(
-                    child: Row(
-                      children: [
-                        Image.asset('assets/images/wifi_icon.png'),
-                        SizedBox(width: 8),
-                        Text(widget.actualData['devices'][0]['name']),
-                      ],
-                    ),
-                    value: 1,
-                  ),
-                  DropdownMenuItem(
-                    child: Row(
-                      children: [
-                        Image.asset('assets/images/wifi_icon.png'),
-                        SizedBox(width: 8),
-                        Text(widget.actualData['devices'][1]['name']),
-                      ],
-                    ),
-                    value: 2,
-                  ),
-                ],
-                onChanged: (value) {
-                  setState(() {
-                    _deviceIndex = value;
-                  });
-                }),
-          ),
-        ),
-      ]),
+          Container(
+            width: MediaQuery.of(context).size.width,
+      alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+          border: Border.all(width: 1, color: Hexcolor('#DEDEDE')),
+          color: Colors.white),
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+         Image.asset('assets/images/wifi_icon.png'),
+         SizedBox(width: 8),
+          Text(
+            widget.selectedDevice == 0 ?  widget.actualData['devices'][0]['name']:
+             widget.actualData['devices'][1]['name'],
+            style: TextStyle(fontSize: 18,),
+          )
+        ],
+      ),
+          )
+        ]
+      )
     );
   }
 
   Widget _savePassWidget() {
-    print('checkingSelectedValue $_value');
     return InkWell(
       onTap: () {
         // Navigate to payment Widget
@@ -271,8 +273,6 @@ class _TopUpWidgetState extends State<TopUpWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print('TOP_UP_WIDGET ${widget.actualData}');
-    print('TOP_UP_WIDGET_selectedDevices ${widget.selectedDevice}');
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,

@@ -13,7 +13,8 @@ class HomeScreen extends StatefulWidget {
   
   final data;
   final actualData;
-  const HomeScreen({this.data, this.actualData});
+  final character;
+  const HomeScreen({this.data, this.actualData, this.character});
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -31,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen>
   void initState() {
     super.initState();
     checkLoginStatus();
+    _character = widget.character;
     _tabController = TabController(vsync: this, length: 2);
   }
 
@@ -357,7 +359,6 @@ class _HomeScreenState extends State<HomeScreen>
 
 // Info Data Widget
   Widget _infoDataWidget() {
-    print('checkingRadioType==== $_character');
     return Container(
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Row(children: [
@@ -861,7 +862,9 @@ class _HomeScreenState extends State<HomeScreen>
                   SizedBox(
                     width: 20,
                   ),
-                  Text('WIFI',
+                  Text(
+                     _character ==0 ? widget.actualData['devices'][0]['name']:
+                     widget.actualData['devices'][1]['name'],
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -880,7 +883,6 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    print('hon=== ${widget.actualData['devices'][0]['dataPackages'][0]}');
     return AnimatedContainer(
         transform: Matrix4.translationValues(xOffset, yOffset, 0)
           ..scale(scaleFactor),

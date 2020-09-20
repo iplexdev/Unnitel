@@ -164,7 +164,6 @@ class _LoginScreenState extends State<LoginScreen> {
           if(res.containsKey('status')) {
             toastMessage(res['status']);
             if(res['status'] == 'Login Successful') {
-              print('res $res');
               setState(() {
                 _isLoading = false;
               sharedPreferences.setString('token', res['token']);

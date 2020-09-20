@@ -59,7 +59,6 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 onTap: () async {
                      switch(e['title']) {
                        case 'Home': {
-                         print('checkingHOME_Drawer ${widget.accountData}');
                          Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen(res: widget.accountData,)));
                        }
                        break;
