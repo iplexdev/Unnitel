@@ -8,7 +8,7 @@ import 'package:fdottedline/fdottedline.dart';
 import 'package:unniTel/src/Components/Auth/login.dart';
 import 'package:unniTel/src/Components/DataPackages/Top-up-Widget/topUpWidget.dart';
 import 'package:unniTel/src/Components/Settings/setting.dart';
-
+import 'package:intl/intl.dart';
 class HomeScreen extends StatefulWidget {
   
   final data;
@@ -32,7 +32,14 @@ class _HomeScreenState extends State<HomeScreen>
   void initState() {
     super.initState();
     checkLoginStatus();
-    _character = widget.character;
+    // _character = 1;
+    setState(() {
+      if (widget.character != null) {
+         _character = widget.character ;
+      } else {
+        _character = 0;
+      }
+    });
     _tabController = TabController(vsync: this, length: 2);
   }
 
@@ -51,25 +58,44 @@ class _HomeScreenState extends State<HomeScreen>
   @override
 // ********************* DATA PACKAGES WIDGETS ************
   Widget _speedoMeterWidgetDP() {
+    final getActiveData = widget.actualData['devices'][0]['dataPackages'][1]['goodsName'].split(' ');
+    final getActiveDataPerson = widget.actualData['devices'][1]['dataPackages'][1]['goodsName'].split(' ');
+    final  _activeDialNo= getActiveData[1];
+    final _activeDialNoPerson = getActiveDataPerson[1];
+    final aciveDial = double.parse(_activeDialNo.replaceAll(new RegExp(r'[^0-9]'),''));
+    final aciveDialPerson = double.parse(_activeDialNoPerson.replaceAll(new RegExp(r'[^0-9]'),''));
+    final remainingData = (widget.actualData['devices'][0]['dataPackages'][1]['remainingDataMB']).toString();
+    final remainingDataPerson = (widget.actualData['devices'][1]['dataPackages'][1]['remainingDataMB']).toString();
+    final convertToGB = double.parse((remainingData));
+    final convertToGBPerson = double.parse((remainingDataPerson));
+    final chekboxshow = (convertToGB/1000).toStringAsFixed(1);
+    final chekboxshowPerson = (convertToGBPerson/1000).toStringAsFixed(1);
+    final convertToDouble = double.parse(chekboxshow);
+    final convertToDoublePerson = double.parse(chekboxshowPerson);
+    final checkPercent = (20/100)*3;
+    final fiftyPercent = (50/100)*3;
     return Container(
         color: Hexcolor('#6E0F24'),
         height: 320,
         child: SfRadialGauge(axes: <RadialAxis>[
           RadialAxis(
               minimum: 0,
-              maximum: 100,
+              maximum: _character ==0 ? aciveDial : aciveDialPerson,
               axisLabelStyle: GaugeTextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 14),
               ranges: <GaugeRange>[
-                GaugeRange(startValue: 0, endValue:  _character ==0 ? widget.actualData['devices'][0]['connectionStatus']['dataFlowGB'] : 0, color: Colors.green),
-                GaugeRange(
-                    startValue: 100, endValue: 100, color: Colors.orange),
-                GaugeRange(startValue: 100, endValue: 100, color: Colors.red),
+                GaugeRange(startValue: 0, endValue:  _character ==0 ? convertToDouble : convertToDoublePerson,
+                  color: _character == 0?
+            convertToDouble < checkPercent ?Colors.red : convertToDouble > checkPercent && convertToDouble < fiftyPercent ?Colors.orange:
+              convertToDouble > fiftyPercent ? Colors.green:null
+            :
+             convertToDoublePerson < checkPercent ?Colors.red : convertToDoublePerson > checkPercent && convertToDoublePerson < fiftyPercent ?Colors.orange:
+             convertToDoublePerson > fiftyPercent ? Colors.green:null),
               ],
               pointers: <GaugePointer>[
-                NeedlePointer(value: _character ==0 ? widget.actualData['devices'][0]['connectionStatus']['dataFlowGB'] : 0)
+                NeedlePointer(value: _character ==0 ? convertToDouble : convertToDoublePerson)
               ],
               annotations: <GaugeAnnotation>[
                 GaugeAnnotation(
@@ -84,8 +110,8 @@ class _HomeScreenState extends State<HomeScreen>
                             height: 5,
                           ),
                           Text(
-                           _character == 0 ?(widget.actualData['devices'][0]['connectionStatus']['dataFlowGB']).toStringAsFixed(3):
-                        '0 MB',
+                           _character == 0 ?(widget.actualData['devices'][0]['dataPackages'][1]['remainingDataMB']).toString() + "MB":
+                              chekboxshowPerson + "GB" ,
                             style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -95,7 +121,8 @@ class _HomeScreenState extends State<HomeScreen>
                             height: 5,
                           ),
                           Text(
-                            'Global 5GB',
+                            _character == 0? widget.actualData['devices'][0]['dataPackages'][1]['goodsName']:
+                            widget.actualData['devices'][1]['dataPackages'][1]['goodsName'],
                             style: TextStyle(fontSize: 12, color: Colors.white),
                           ),
                           SizedBox(
@@ -132,9 +159,10 @@ class _HomeScreenState extends State<HomeScreen>
           color: Colors.white,
         ),
         child: Text(
-          "Top-Up",
+          "Top Up".toUpperCase(),
           style: TextStyle(
-            fontSize: 14,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
             color: Hexcolor('#6E0F24'),
           ),
         ),
@@ -157,86 +185,24 @@ class _HomeScreenState extends State<HomeScreen>
 
   // Available Package List Widget
   Widget _availablePackageListWidget() {
+   final getPurchageDateAtIndex0 = _character == 0?
+         (widget.actualData['devices'][0]['dataPackages'][1]['purchaseDate']):
+        (widget.actualData['devices'][1]['dataPackages'][1]['purchaseDate']);
+    final DateFormat formatter = DateFormat('yyyy-MM-dd');
+    
+    var date = new DateTime.fromMicrosecondsSinceEpoch(getPurchageDateAtIndex0 * 1000);
+    var purchaseDate0 = formatter.format(date);
+    // For Index 1
+    final getPuchaseDateIndex1 = 
+    _character == 0? widget.actualData['devices'][0]['dataPackages'][0]['purchaseDate']: 
+     widget.actualData['devices'][1]['dataPackages'][0]['purchaseDate'];
+     final DateFormat formatter1 = DateFormat('yyyy-MM-dd');
+    var date1 = new DateTime.fromMicrosecondsSinceEpoch(getPuchaseDateIndex1 * 1000);
+    var purchaseDate1 = formatter.format(date1);
     return Container(
       child: Column(
         children: [
           // IN USE STACK 1
-          Stack(
-            children: <Widget>[
-              Container(
-                child: Image.asset(
-                  'assets/images/mask_icon.png',
-                  height: 100,
-                ),
-              ),
-              Container(
-                
-                  child: Padding(
-                padding: const EdgeInsets.only(top: 20.0, left: 20, right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          _character ==0 ? widget.actualData['devices'][0]['dataPackages'][0]['goodsName']:
-                            widget.actualData['devices'][1]['dataPackages'][0]['goodsName'],
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 16.0),
-                        ),
-                        Text(
-                          _character ==0 ? 
-                          'Remaining Balance:' + (widget.actualData['devices'][0]['dataPackages'][0]['remainingDataMB']).toString() + 'MB' :
-                          'Remaining Balance:' + (widget.actualData['devices'][1]['dataPackages'][0]['remainingDataMB']).toString() + 'MB',
-                          style: TextStyle(
-                              color: Hexcolor('#9D9D9C'), fontSize: 12.0),
-                        ),
-                        Text(
-                          _character == 0?
-                          'Purchase Date:' + (widget.actualData['devices'][0]['dataPackages'][0]['purchaseDate']).toString(): 
-                          'Purchase Date:' + (widget.actualData['devices'][1]['dataPackages'][0]['purchaseDate']).toString(),
-                          style: TextStyle(
-                              color: Hexcolor('#9D9D9C'), fontSize: 12.0),
-                        )
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 65.0),
-                      child: FDottedLine(
-                        color: Hexcolor("#F0F1F6"),
-                        height: 60.0,
-                        dottedLength: 4,
-                        space: 2,
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      height: 25,
-                      width: _character == 0 || _character == 1 ? 80 : 55,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.transparent,
-                            width: 1,
-                          ),
-                          color: Hexcolor('#E5F7F1')),
-                      child: Text(
-                       _character == 0 ? widget.actualData['devices'][0]['dataPackages'][0]['status'] 
-                       : widget.actualData['devices'][1]['dataPackages'][0]['status'] ,
-                        style: TextStyle(
-                            color: Hexcolor('#00B074'), fontSize: _character == 0 || _character == 1 ?  8.0 : 12),
-                      ),
-                    )
-                  ],
-                ),
-              )
-              ),
-            ],
-          ),
-          // USE STACK 2
           Stack(
             children: <Widget>[
               Container(
@@ -267,19 +233,17 @@ class _HomeScreenState extends State<HomeScreen>
                           'Remaining Balance:' + (widget.actualData['devices'][0]['dataPackages'][1]['remainingDataMB']).toString() + 'MB' :
                           'Remaining Balance:' + (widget.actualData['devices'][1]['dataPackages'][1]['remainingDataMB']).toString() + 'MB',
                           style: TextStyle(
-                              color: Hexcolor('#9D9D9C'), fontSize: 12.0),
+                              color: Hexcolor('#9D9D9C'), fontSize: 12.0, fontWeight: FontWeight.bold,),
                         ),
                         Text(
-                          _character == 0?
-                          'Purchase Date:' + (widget.actualData['devices'][0]['dataPackages'][1]['purchaseDate']).toString():
-                            'Purchase Date:' + (widget.actualData['devices'][1]['dataPackages'][1]['purchaseDate']).toString(),
+                         "Purchase Date: " + purchaseDate0.toString(),
                           style: TextStyle(
                               color: Hexcolor('#9D9D9C'), fontSize: 12.0),
                         )
                       ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 65.0),
+                       padding: const EdgeInsets.only(left: 45.0),
                       child: FDottedLine(
                         color: Hexcolor("#F0F1F6"),
                         height: 60.0,
@@ -287,27 +251,107 @@ class _HomeScreenState extends State<HomeScreen>
                         space: 2,
                       ),
                     ),
-                    Container(
-                      alignment: Alignment.center,
-                      height: 25,
-                      width: 58,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.transparent,
-                            width: 1,
-                          ),
-                          color: Hexcolor('#F9FBE8')),
-                      child: Text(
-                        _character == 0 ? widget.actualData['devices'][0]['dataPackages'][1]['status'] 
-                       :widget.actualData['devices'][1]['dataPackages'][1]['status'] ,
-                        style: TextStyle(
-                            color: Hexcolor('#C2D21D'), fontSize: 12.0),
+                    Flexible(
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 25,
+                        width: 58,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            color: Hexcolor('#F9FBE8')),
+                        child: Text(
+                          _character == 0 ? widget.actualData['devices'][0]['dataPackages'][1]['status'] == 'IN_USING' ? "ACTIVE" :""
+                         :widget.actualData['devices'][1]['dataPackages'][1]['status']== 'IN_USING' ? "ACTIVE" :"" ,
+                          style: TextStyle(
+                              color: Hexcolor('#C2D21D'), fontSize: 12.0),
+                        ),
                       ),
                     )
                   ],
                 ),
-              )),
+              )
+              ),
+            ],
+          ),
+          // USE STACK 2
+          Stack(
+            children: <Widget>[
+              Container(
+                child: Image.asset(
+                  'assets/images/mask_icon.png',
+                  height: 100,
+                ),
+              ),
+               Container(
+                
+                  child: Padding(
+                padding: const EdgeInsets.only(top: 20.0, left: 20, right: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          _character ==0 ? widget.actualData['devices'][0]['dataPackages'][0]['goodsName']:
+                            widget.actualData['devices'][1]['dataPackages'][0]['goodsName'],
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 16.0),
+                        ),
+                        Text(
+                          _character ==0 ? 
+                          'Remaining Balance:' + (widget.actualData['devices'][0]['dataPackages'][0]['remainingDataMB']).toString() + 'MB' :
+                          'Remaining Balance:' + (widget.actualData['devices'][1]['dataPackages'][0]['remainingDataMB']).toString() + 'MB',
+                          style: TextStyle(
+                              color: Hexcolor('#9D9D9C'), fontSize: 12.0, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                         "Purchase Date: " + purchaseDate1.toString(),
+                          style: TextStyle(
+                              color: Hexcolor('#9D9D9C'), fontSize: 12.0),
+                        )
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 45.0),
+                      child: FDottedLine(
+                        color: Hexcolor("#F0F1F6"),
+                        height: 60.0,
+                        dottedLength: 4,
+                        space: 2,
+                      ),
+                    ),
+                    Flexible(
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 25,
+                        width: 55,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            color: Hexcolor('#E5F7F1')),
+                        child: Text(
+                         _character == 0 ? widget.actualData['devices'][0]['dataPackages'][0]['status'] == 'NOT_ACTIVATED' ? "AVAILABLE" :""
+                         : widget.actualData['devices'][1]['dataPackages'][0]['status'] == 'NOT_ACTIVATED' ? "AVAILABLE" :"",
+                          style: TextStyle(
+                              color: Hexcolor('#00B074'), fontSize: _character == 0 || _character == 1 ?  8.0 : 12),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              )
+              ),
+              
             ],
           ),
         ],
@@ -319,9 +363,11 @@ class _HomeScreenState extends State<HomeScreen>
 // Drawer widget
   Widget _drawerWidget() {
     return Container(
+      margin: EdgeInsets.only(left: 6),
       child: Builder(
         builder: (BuildContext context) {
           return Container(
+            
             child: isDrawrEnable
                 ? IconButton(
                     icon: Image(
@@ -359,6 +405,8 @@ class _HomeScreenState extends State<HomeScreen>
 
 // Info Data Widget
   Widget _infoDataWidget() {
+    final _batteryPercentGet = (widget.actualData['devices'][0]['connectionStatus']['powerLeft']).split('%');
+    final _batterPercent = int.parse(_batteryPercentGet[0]);
     return Container(
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Row(children: [
@@ -367,20 +415,26 @@ class _HomeScreenState extends State<HomeScreen>
             width: 5,
           ),
           Text(
-            _character == 0 ? widget.actualData['devices'][0]['connectionStatus']['powerLeft'] : '0%',
-            style: TextStyle(fontSize: 18, color: Hexcolor("#00B074")),
+            _character == 0 ? widget.actualData['devices'][0]['connectionStatus']['powerLeft'] : 'N/A',
+            style: TextStyle(fontSize: 18, 
+            color: _batterPercent <= 20 ? Colors.red :
+             _batterPercent > 20 && _batterPercent <= 50 ? Colors.yellow:
+             _batterPercent > 50 && _batterPercent < 100 ? Colors.green:
+             Colors.green 
+            ),
           ),
         ]),
         Row(
           children: [
-            Image.asset('assets/images/wifi_icon2.png'),
+           _character == 0? Image.asset('assets/images/wifi_connected.png',width: 20,height: 20,):
+           Image.asset('assets/images/wifi_notConnected.png',width: 30,height: 20,),
             SizedBox(
-              width: 5,
+              width: 3,
             ),
             Text(
               _character == 0 ? 'Connected' : 'Not Connected',
               style: TextStyle(fontSize: 18, 
-               color: _character == 0 ? Hexcolor("#00B074") : Colors.red),
+               color: _character == 0 ? Colors.green : Colors.red),
             ),
           ],
         ),
@@ -390,15 +444,38 @@ class _HomeScreenState extends State<HomeScreen>
 
 // Speedo Meter widget
   Widget _speedoMeterWidget() {
+    final getActiveData = widget.actualData['devices'][0]['dataPackages'][1]['goodsName'].split(' ');
+    final getActiveDataPerson = widget.actualData['devices'][1]['dataPackages'][1]['goodsName'].split(' ');
+    final  _activeDialNo= getActiveData[1];
+    final _activeDialNoPerson = getActiveDataPerson[1];
+    final aciveDial = double.parse(_activeDialNo.replaceAll(new RegExp(r'[^0-9]'),''));
+    final aciveDialPerson = double.parse(_activeDialNoPerson.replaceAll(new RegExp(r'[^0-9]'),''));
+    final remainingData = (widget.actualData['devices'][0]['dataPackages'][1]['remainingDataMB']).toString();
+    final remainingDataPerson = (widget.actualData['devices'][1]['dataPackages'][1]['remainingDataMB']).toString();
+    final convertToGB = double.parse((remainingData));
+    final convertToGBPerson = double.parse((remainingDataPerson));
+    final chekboxshow = (convertToGB/1000).toStringAsFixed(1);
+    final chekboxshowPerson = (convertToGBPerson/1000).toStringAsFixed(1);
+    final convertToDouble = double.parse(chekboxshow);
+    final convertToDoublePerson = double.parse(chekboxshowPerson);
+    // final getPercentage = (( convertToDouble/aciveDial)*100);
+    // final getPercentagePerson = (( convertToDoublePerson/aciveDialPerson)*100);
+    final checkPercent = (20/100)*3;
+    final fiftyPercent = (50/100)*3;
     return Container(
         height: 320,
+        // width: width,
         child: SfRadialGauge(axes: <RadialAxis>[
-          RadialAxis(minimum: 0, maximum: 100, ranges: <GaugeRange>[
-            GaugeRange(startValue: 0, endValue: _character ==0 ? widget.actualData['devices'][0]['connectionStatus']['dataFlowGB'] : 0, color: Colors.green),
-            GaugeRange(startValue: 100, endValue: 100, color: Colors.orange),
-            GaugeRange(startValue: 100, endValue: 100, color: Colors.red)
+          RadialAxis(minimum: 0, maximum:_character == 0 ? aciveDial : aciveDialPerson, ranges: <GaugeRange>[
+            GaugeRange(startValue: 0, endValue: _character == 0 ? convertToDouble : convertToDoublePerson, 
+            color: _character == 0?
+            convertToDouble < checkPercent ?Colors.red : convertToDouble > checkPercent && convertToDouble < fiftyPercent ?Colors.orange:
+              convertToDouble > fiftyPercent ? Colors.green:null
+            :
+             convertToDoublePerson < checkPercent ?Colors.red : convertToDoublePerson > checkPercent && convertToDoublePerson < fiftyPercent ?Colors.orange:
+             convertToDoublePerson > fiftyPercent ? Colors.green:null ),
           ], pointers: <GaugePointer>[
-            NeedlePointer(value: _character ==0 ? widget.actualData['devices'][0]['connectionStatus']['dataFlowGB'] : 0)
+            NeedlePointer(value: _character ==0 ? convertToDouble :convertToDoublePerson)
           ], annotations: <GaugeAnnotation>[
             GaugeAnnotation(
                 widget: Container(
@@ -410,13 +487,14 @@ class _HomeScreenState extends State<HomeScreen>
                             TextStyle(fontSize: 12, color: Hexcolor("#9D9D9C")),
                       ),
                       Text(
-                        _character == 0 ?(widget.actualData['devices'][0]['connectionStatus']['dataFlowGB']).toStringAsFixed(3):
-                        '0 MB',
+                        _character == 0 ?(widget.actualData['devices'][0]['dataPackages'][1]['remainingDataMB']).toString() + "MB":
+                         chekboxshowPerson + "GB" ,
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        'Global 5GB',
+                        _character == 0 ? widget.actualData['devices'][0]['dataPackages'][1]['goodsName']:
+                        widget.actualData['devices'][1]['dataPackages'][1]['goodsName'],
                         style:
                             TextStyle(fontSize: 12, color: Hexcolor("#9D9D9C")),
                       ),
@@ -456,7 +534,7 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
 //  NavigateWidget
-  Widget _navigateWidget() {
+  Widget _settingWidget() {
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -467,7 +545,7 @@ class _HomeScreenState extends State<HomeScreen>
         child: Image.asset(
           'assets/images/settings_icon.png',
           height: 50,
-          width: 50,
+          width: 35,
         ),
       ),
     );
@@ -480,7 +558,7 @@ class _HomeScreenState extends State<HomeScreen>
         _dataPackagesWidget();
       },
       child: Container(
-        width: 120,
+        // width: 120,
         height: 50,
         margin: EdgeInsets.only(bottom: 10),
         alignment: Alignment.center,
@@ -491,11 +569,13 @@ class _HomeScreenState extends State<HomeScreen>
         child: ButtonBar(
           children: <Widget>[
             FlatButton(
-              child: Text(
-                "Packages",
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.white,
+              child: Center(
+                child: Text(
+                  "Package Details",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
                 ),
               ),
               onPressed: _toggleTab,
@@ -511,7 +591,9 @@ class _HomeScreenState extends State<HomeScreen>
     return Container(
       child: Row(
         children: [
-          Image.asset('assets/images/wifi_icon2.png'),
+          _character == 0? 
+          Image.asset('assets/images/wifi_icon2.png',width: 20,height: 20,):
+           Image.asset('assets/images/wifi_notConnected.png',width: 30,height: 20,),
           SizedBox(width: 8),
           Text(
             _character ==0 ?
@@ -540,8 +622,18 @@ class _HomeScreenState extends State<HomeScreen>
             SizedBox(
               width: 20,
             ),
-            _character==0 ? Image.asset('assets/images/sg-flag-icon.png'):
-             Image.asset('assets/images/usa_icon.png'),
+            CircleAvatar(
+            radius: 15,
+            backgroundColor: Colors.grey,
+            child: CircleAvatar(
+              backgroundImage: _character==0 ? 
+              AssetImage('assets/images/sg-flag-icon.png',):
+             AssetImage('assets/images/default-flag-icon.png'),
+              radius: 30,
+            ),
+  ),
+            // _character==0 ? Image.asset('assets/images/sg-flag-icon.png',):
+            //  Image.asset('assets/images/usa_icon.png'),
             SizedBox(
               width: 20,
             ),
@@ -572,59 +664,28 @@ class _HomeScreenState extends State<HomeScreen>
 // _contectionDetatilsWidget
 
   Widget _contectionDetatilsWidget() {
+    final DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm');
+    var check = widget.actualData['devices'][0]['connectionStatus']['connectedAt'];
+    var newStr = check.substring(0,10) + ' ' + check.substring(11,23);
+    DateTime dateTime = formatter.parse(newStr).toLocal();
+    final String formating = formatter.format(dateTime);
+    final dataConsmd = widget.actualData['devices'][0]['dataPackages'][1]['goodsName'].split(' ');
+    final dataConsmdPerson = widget.actualData['devices'][1]['dataPackages'][1]['goodsName'].split(' ');
+    final  _dataConsumed= dataConsmd[1];
+    final  _dataConsumedPerson= dataConsmdPerson[1];
+    final _totalDataInGB = int.parse(_dataConsumed.replaceAll(new RegExp(r'[^0-9]'),''));
+    final _totalDataInGBPerson = int.parse(_dataConsumedPerson.replaceAll(new RegExp(r'[^0-9]'),''));
+    final _convertIntoMb = (_totalDataInGB * 1000);
+    final _convertIntoMbPerson = (_totalDataInGBPerson * 1000);
+    final remainingData = widget.actualData['devices'][0]['dataPackages'][1]['remainingDataMB'];
+    final remainingDataPerson = widget.actualData['devices'][1]['dataPackages'][1]['remainingDataMB'];
+    final usedData = _convertIntoMb - remainingData;
+    final usedDataPerson =  _convertIntoMbPerson-remainingDataPerson;
+    final dataConsumed = (usedData).toStringAsFixed(0);
+    final dataConsumedPerson = (usedDataPerson).toStringAsFixed(0);
+    final dataSet = int.parse(dataConsumed);
+    final dataSetPerson = int.parse(dataConsumedPerson);
     return Column(children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Image.asset('assets/images/yellow_icon.png'),
-            SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 23),
-                Text(
-                   'Connected Since',
-                  style: TextStyle(fontSize: 12, color: Hexcolor('#9D9D9C')),
-                ),
-                SizedBox(height: 3),
-                FittedBox(
-                  fit: BoxFit.contain,
-                  child: Text(
-                    _character == 0 ? widget.actualData['devices'][0]['connectionStatus']['connectedAt']:
-                     '0',
-                    style: TextStyle(fontSize: 16, color: Colors.black),
-                  ),
-                )
-              ],
-            )
-          ]),
-          Flexible(
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Image.asset('assets/images/blue_icon.png'),
-              SizedBox(width: 10),
-              Flexible(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 23),
-                    Text(
-                      'Length of session',
-                      style: TextStyle(fontSize: 12, color: Hexcolor('#9D9D9C')),
-                    ),
-                    SizedBox(height: 3),
-                    Text(
-                      '0',
-                      style: TextStyle(fontSize: 16, color: Colors.black),
-                    )
-                  ],
-                ),
-              )
-            ]),
-          ),
-        ],
-      ),
-      // 2nd COL
       Row(
         // mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -642,11 +703,19 @@ class _HomeScreenState extends State<HomeScreen>
                   style: TextStyle(fontSize: 12, color: Hexcolor('#9D9D9C')),
                 ),
                 SizedBox(height: 3),
-                Text(
-                 _character ==0 ? (widget.actualData['devices'][0]['connectionStatus']['dataFlowGB']).toStringAsFixed(3)
-                 : '0 MB',
+                  // dataSet >= 1000 ? 
+                  Text(
+                 _character ==0 ? dataConsumed + "MB"
+                 : dataConsumedPerson + 'MB',
                   style: TextStyle(fontSize: 16, color: Colors.black),
                 )
+                // :
+                // Text(
+                //  _character ==0 ? dataConsumed + "MB"
+                //  : dataConsumedPerson + 'MB',
+                //   style: TextStyle(fontSize: 16, color: Colors.black),
+                // )
+                
               ],
             )
           ]),
@@ -670,6 +739,58 @@ class _HomeScreenState extends State<HomeScreen>
                     Text(
                       _character == 0 ? (widget.actualData['devices'][0]['connectionStatus']['connectedDevices']).toString(): 
                        '0',
+                      style: TextStyle(fontSize: 16, color: Colors.black),
+                    )
+                  ],
+                ),
+              )
+            ]),
+          ),
+        ],
+      ),
+      // 2nd Column
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Image.asset('assets/images/yellow_icon.png'),
+            SizedBox(width: 10),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 23),
+                Text(
+                   'Connected Since',
+                  style: TextStyle(fontSize: 12, color: Hexcolor('#9D9D9C')),
+                ),
+                SizedBox(height: 3),
+                FittedBox(
+                  fit: BoxFit.contain,
+                  child: Text(
+                    _character == 0 ? formating:
+                     'N/A',
+                    style: TextStyle(fontSize: 16, color: Colors.black),
+                  ),
+                )
+              ],
+            )
+          ]),
+          Flexible(
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Image.asset('assets/images/blue_icon.png'),
+              SizedBox(width: 10),
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 23),
+                    Text(
+                      'Time Connected',
+                      style: TextStyle(fontSize: 12, color: Hexcolor('#9D9D9C')),
+                    ),
+                    SizedBox(height: 3),
+                    Text(
+                      '0',
                       style: TextStyle(fontSize: 16, color: Colors.black),
                     )
                   ],
@@ -898,11 +1019,12 @@ class _HomeScreenState extends State<HomeScreen>
                   margin: EdgeInsets.only(top: 15),
                   child: AppBar(
                     leading: _drawerWidget(),
+                    centerTitle: true,
                     title: Image.asset('assets/images/home_logo.png',
                         height: 100, width: 100),
                     backgroundColor: Hexcolor('#6E0F24'),
                     actions: <Widget>[
-                      _navigateWidget(),
+                      _settingWidget(),
                     ],
                     bottom: TabBar(
                       controller: _tabController,
@@ -913,7 +1035,7 @@ class _HomeScreenState extends State<HomeScreen>
                         ),
                       ),
                       indicatorPadding: EdgeInsets.only(top: 50),
-                      indicatorWeight: 3.0,
+                      indicatorWeight: 5.0,
                       indicatorColor: Colors.white,
                       indicatorSize: TabBarIndicatorSize.label,
                       labelPadding: EdgeInsets.symmetric(horizontal: 60),
@@ -923,11 +1045,11 @@ class _HomeScreenState extends State<HomeScreen>
                       tabs: [
                         Container(
                           padding: EdgeInsets.symmetric(vertical: 5),
-                          child: Text('Connection'),
+                          child: Text('Connection',style: TextStyle(fontSize: 12,fontWeight: FontWeight.w600),),
                         ),
                         Container(
                           padding: EdgeInsets.symmetric(vertical: 5),
-                          child: Text('Data packages'),
+                          child: Text('Data packages',style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),),
                         ),
                       ],
                     ),

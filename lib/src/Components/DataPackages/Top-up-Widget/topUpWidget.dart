@@ -21,6 +21,7 @@ class _TopUpWidgetState extends State<TopUpWidget> {
   int _value = 1;
   int _selectedGB = 1;
   int _deviceIndex = 1;
+  int _setPrice = 8;
   List<ListItem> _dropdownItems = [
     ListItem(1, "5GB"),
     ListItem(2, "10GB"),
@@ -80,9 +81,9 @@ class _TopUpWidgetState extends State<TopUpWidget> {
   Widget _credientialWidget() {
     return Container(
       child: Column(children: <Widget>[
-        _selectPackages('Select Whether'),
+        _selectPackages('Region'),
         SizedBox(height: 20),
-        _selectPackagesData('Select GBs'),
+        _selectPackagesData('Package Size'),
         SizedBox(height: 20),
         _showPrices(),
         SizedBox(height: 20),
@@ -93,6 +94,10 @@ class _TopUpWidgetState extends State<TopUpWidget> {
 
   // Selected Packages Widget
   Widget _selectPackages(String title) {
+    final regionFieldIndex0 = widget.actualData['devices'][0]['dataPackages'][0]['goodsName'].split(' ');
+    final regionFieldIndex1 = widget.actualData['devices'][1]['dataPackages'][0]['goodsName'].split(' ');
+    final _regionDataIndex0 = regionFieldIndex0[0];
+    final _regionDataIndex1 = regionFieldIndex1[0];
     return Container(
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
@@ -113,15 +118,17 @@ class _TopUpWidgetState extends State<TopUpWidget> {
                 items: [
                   DropdownMenuItem(
                     child: Text(
-                       widget.selectedDevice ==0 ? widget.actualData['devices'][0]['dataPackages'][0]['goodsName']:
-                        widget.actualData['devices'][1]['dataPackages'][0]['goodsName'],
+                      _regionDataIndex1
+                      //  widget.selectedDevice ==0 ? _regionDataIndex0:
+                      //   _regionDataIndex1,
                     ),
                     value: 1,
                   ),
                   DropdownMenuItem(
                     child: Text(
-                       widget.selectedDevice ==0 ? widget.actualData['devices'][0]['dataPackages'][1]['goodsName']:
-                        widget.actualData['devices'][1]['dataPackages'][1]['goodsName'],
+                      _regionDataIndex0
+                      //  widget.selectedDevice ==0 ? widget.actualData['devices'][0]['dataPackages'][1]['goodsName']:
+                      //   widget.actualData['devices'][1]['dataPackages'][1]['goodsName'],
                     ),
                     value: 2,
                   ),
@@ -166,15 +173,31 @@ class _TopUpWidgetState extends State<TopUpWidget> {
                 items: [
                   DropdownMenuItem(
                     child: Text(
-                      _selectedGBAtIndex0[1]
+                      // _selectedGBAtIndex0[1]
+                      "1GB"
                     ),
                     value: 1,
                   ),
                   DropdownMenuItem(
                     child: Text(
-                      _selectedGBAtIndex1[1]
+                      // _selectedGBAtIndex1[1]
+                      "3GB"
                     ),
                     value: 2,
+                  ),
+                   DropdownMenuItem(
+                    child: Text(
+                      // _selectedGBAtIndex1[1]
+                      "5GB"
+                    ),
+                    value: 3,
+                  ),
+                   DropdownMenuItem(
+                    child: Text(
+                      // _selectedGBAtIndex1[1]
+                      "10GB"
+                    ),
+                    value: 4,
                   ),
                 ],
                 onChanged: (value) {
@@ -189,6 +212,46 @@ class _TopUpWidgetState extends State<TopUpWidget> {
   }
 
   Widget _showPrices() {
+    // For Asia
+    if(_value == 2) {
+      if (_selectedGB == 1) {
+        setState(() {
+          _setPrice = 5;
+        });
+      } else if (_selectedGB == 2) {
+        setState(() {
+          _setPrice = 15;
+        });
+      }else if (_selectedGB == 3) {
+        setState(() {
+          _setPrice = 25;
+        });
+      }else if (_selectedGB == 4) {
+        setState(() {
+          _setPrice = 50;
+        });
+      }
+    }
+    // For Global
+    else if (_value == 1) {
+      if (_selectedGB == 1) {
+        setState(() {
+          _setPrice = 8;
+        });
+      } else if (_selectedGB == 2) {
+        setState(() {
+          _setPrice = 24;
+        });
+      }else if (_selectedGB == 3) {
+        setState(() {
+          _setPrice = 40;
+        });
+      }else if (_selectedGB == 4) {
+        setState(() {
+          _setPrice = 80;
+        });
+      }
+    }
     return Container(
       width: MediaQuery.of(context).size.width,
       alignment: Alignment.center,
@@ -205,7 +268,7 @@ class _TopUpWidgetState extends State<TopUpWidget> {
             style: TextStyle(fontSize: 16, color: Hexcolor("#9D9D9C")),
           ),
           Text(
-            '\$20.0',
+            'US\$' + (_setPrice).toString(),
             style: TextStyle(fontSize: 18, color: Hexcolor("#C2D21D")),
           )
         ],
@@ -253,7 +316,7 @@ class _TopUpWidgetState extends State<TopUpWidget> {
     return InkWell(
       onTap: () {
         // Navigate to payment Widget
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Payment(selectedDevice: widget.selectedDevice,actualData : widget.actualData)));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => Payment(selectedDevice: widget.selectedDevice,actualData : widget.actualData,quantity: _selectedGB, price:_setPrice )));
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -279,10 +342,11 @@ class _TopUpWidgetState extends State<TopUpWidget> {
         appBar: AppBar(
           elevation: 0.0,
           leading: _backArrowWidget(),
+          centerTitle: true,
           title: Padding(
             padding: const EdgeInsets.only(top: 10),
             child: Text(
-              'Top-Up',
+              'Top Up',
               style: TextStyle(fontSize: 20, color: Colors.black),
               textAlign: TextAlign.center,
             ),

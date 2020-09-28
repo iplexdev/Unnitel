@@ -63,6 +63,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                        }
                        break;
                        case 'Sign Out': {
+                         bool color = true;
                          sharedPreferences = await SharedPreferences.getInstance();
                          sharedPreferences.remove('token');
                          // ignore: deprecated_member_use

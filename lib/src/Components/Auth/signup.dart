@@ -158,12 +158,12 @@ class _SignUpState extends State<SignUp> {
               hintText: '********',
             ),
             validator:(value){
-              Pattern pattern = r'^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$';
-              RegExp regExp = new RegExp(pattern);
+              // Pattern pattern = r'^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$';
+              // RegExp regExp = new RegExp(pattern);
               if(value.isEmpty){
                 return 'Please enter Password';
-              } else if(!regExp.hasMatch(value)) {
-                return 'Invalid Password';
+              } else if(_pass.text.length< 6){
+                return 'Invalid Password.Must have minimum of 6 character';
               }
               return null;
             },
@@ -406,8 +406,8 @@ Widget _socialLoginWidget() {
                   ),
                   _registeredWidget(),
                   SizedBox(height: 10,),
-                   _divider(),
-                    _socialLoginWidget(),
+                  //  _divider(),
+                  //   _socialLoginWidget(),
                   _loginLabelWidget(),
                 ]
               ),

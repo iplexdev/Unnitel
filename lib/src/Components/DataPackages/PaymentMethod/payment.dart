@@ -4,11 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:unniTel/src/Components/DataPackages/PaymentMethod/congratulation.dart';
+import 'package:unniTel/src/Components/utils/drawerItem.dart';
 
 class Payment extends StatefulWidget {
   final selectedDevice;
   final actualData;
-  const Payment({this.selectedDevice, this.actualData});
+  final quantity;
+  final price;
+  const Payment({this.selectedDevice, this.actualData, this.quantity, this.price});
   @override
   _PaymentState createState() => _PaymentState();
 }
@@ -89,7 +92,7 @@ class _PaymentState extends State<Payment> {
               ),
               Container(
                   child: Padding(
-                padding: const EdgeInsets.only(top: 20.0, left: 20, right: 20),
+                padding: const EdgeInsets.only(top: 25.0, left: 20, right: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -97,53 +100,63 @@ class _PaymentState extends State<Payment> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '10GB No Expiry',
+                          widget.selectedDevice == 0 ? widget.actualData['devices'][0]['dataPackages'][0]['goodsName']:
+                          widget.actualData['devices'][1]['dataPackages'][0]['goodsName'],
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.normal,
                               fontSize: 16.0),
                         ),
                         Text(
-                          'Remaining Balance 7.33GB',
+                          'Quality:' + "1",
                           style: TextStyle(
                               color: Hexcolor('#9D9D9C'), fontSize: 12.0),
                         ),
                         Text(
-                          'Purchase Date 2020.6.6',
+                          'Price: ' + "US\$" + (widget.price).toString(),
                           style: TextStyle(
                               color: Hexcolor('#9D9D9C'), fontSize: 12.0),
                         )
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 70),
-                      child: Flexible(
-                        child: FDottedLine(
-                          color: Hexcolor("#F0F1F6"),
-                          height: 60.0,
-                          dottedLength: 4,
-                          space: 2,
-                        ),
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 70),
+                    //   child: Flexible(
+                    //     child: FDottedLine(
+                    //       color: Hexcolor("#F0F1F6"),
+                    //       height: 60.0,
+                    //       dottedLength: 4,
+                    //       space: 2,
+                    //     ),
+                    //   ),
+                    // ),
                     // Padding(
                     //   padding: const EdgeInsets.only(right: 8.0),
                       Flexible(
                         child: Container(
                           alignment: Alignment.center,
-                          height: 25,
+                          height: 40,
                           width: 55,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                color: Colors.transparent,
-                                width: 1,
+                          // decoration: BoxDecoration(
+                          //     borderRadius: BorderRadius.circular(12),
+                          //     border: Border.all(
+                          //       color: Colors.transparent,
+                          //       width: 1,
+                          //     ),
+                          //     color: Hexcolor('#E5F7F1')),
+                          child: Column(
+                            children: [
+                              Text(
+                                'Total',
+                                style: TextStyle(
+                                    color: Hexcolor('#00B074'), fontSize: 14.0,fontWeight: FontWeight.bold),
                               ),
-                              color: Hexcolor('#E5F7F1')),
-                          child: Text(
-                            'Edit',
-                            style: TextStyle(
-                                color: Hexcolor('#00B074'), fontSize: 12.0),
+                              Text(
+                                'US\$' + (widget.price).toString(),
+                                style: TextStyle(
+                                    color: Hexcolor('#00B074'), fontSize: 14.0,fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -184,15 +197,16 @@ class _PaymentState extends State<Payment> {
       key: _formKey,
       child: Column(
         children: <Widget>[
+          _fullNameWidget('Cart Name'),
+          SizedBox(height: 30),
           _cardNumberField('Card Number'),
           SizedBox(height: 24),
-          _cardYearWidget('Month', 'Year'),
+          _cardYearWidget('Expiry Month', 'Expiry Year'),
           SizedBox(height: 24),
           _cardSecurityCodeWidget('Security Code'),
           SizedBox(height: 24),
-          _fullNameWidget('First Name', 'Last Name'),
-          SizedBox(height: 30),
-          _allowPermissionWidget('Save this card'),
+          
+          // _allowPermissionWidget('Save this card'),
         ],
       ),
     );
@@ -213,16 +227,18 @@ class _PaymentState extends State<Payment> {
             border: InputBorder.none,
             fillColor: Color(0xfff3f3f4),
             filled: true,
-            hintText: '111222233334444',
+            hintText: '1111222233334444',
           ),
           validator: (value) {
             RegExp regExp = new RegExp(r'^[0-9]*$');
             if (value.isEmpty) {
               return "Please Enter Number";
-            } else if (!regExp.hasMatch(value)) {
+            } 
+            else if (!regExp.hasMatch(value)) {
               return "Invalid Phone Number";
-            } else if (_cardNoCntrl.text.length <= 14) {
-              return "Invalid";
+            } 
+            else if (_cardNoCntrl.text.length <= 16) {
+              return "Invalid.Must be 16 digit";
             }
             return null;
           },
@@ -360,7 +376,7 @@ class _PaymentState extends State<Payment> {
               return "Invalid Phone Number";
             } else if (_secCntrl.text.length <= 5 ||
                 _secCntrl.text.length >= 7) {
-              return "Invalid";
+              return "Invalid.Must be 6 character";
             }
             return null;
           },
@@ -381,7 +397,7 @@ class _PaymentState extends State<Payment> {
   }
 
   // FULL NAME WIDGET
-  Widget _fullNameWidget(String fname, String lname) {
+  Widget _fullNameWidget(String fname,) {
     return Container(
       child: Row(
         children: [
@@ -397,16 +413,18 @@ class _PaymentState extends State<Payment> {
                   border: InputBorder.none,
                   fillColor: Color(0xfff3f3f4),
                   filled: true,
-                  hintText: 'First Name',
+                  hintText: 'Cart Name',
                 ),
                 validator: (value) {
-                  RegExp regExp = new RegExp(r'^[a-z]*$');
+                  // RegExp regExp = new RegExp(r'^[a-z]*$');
                   if (value.isEmpty) {
-                    return "Please Enter Name";
-                  } else if (!regExp.hasMatch(value)) {
-                    return "Invalid Name";
-                  } else if (_fnameCntrl.text.length <= 4) {
-                    return "Invalid Name";
+                    return "Please Enter Cart Name";
+                  } 
+                  // else if (!regExp.hasMatch(value)) {
+                  //   return "Invalid Name";
+                  // }
+                   else if (_fnameCntrl.text.length <= 4) {
+                    return "Invalid Name.Must have minimum of 5 character";
                   }
                   return null;
                 },
@@ -419,52 +437,52 @@ class _PaymentState extends State<Payment> {
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.text,
                 onFieldSubmitted: (_) {
-                  fieldFocusNode(context, _fnameFocus, _lnameFocus);
+                  fieldFocusNode(context, _fnameFocus, _cardNoFocus);
                 },
               ),
             ]),
           ),
-          Flexible(
-            child: Container(
-              padding: EdgeInsets.only(left: 10),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(lname,
-                        style: TextStyle(
-                            fontSize: 14, color: Hexcolor('#9D9D9C'))),
-                    SizedBox(height: 10),
-                    TextFormField(
-                      controller: _lnameCntrl,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        fillColor: Color(0xfff3f3f4),
-                        filled: true,
-                        hintText: 'Last Name',
-                      ),
-                      validator: (value) {
-                        RegExp regExp = new RegExp(r'^[a-zA-Z]*$');
-                        if (value.isEmpty) {
-                          return "Please Enter Name";
-                        } else if (!regExp.hasMatch(value)) {
-                          return "Invalid LastName";
-                        } else if (_lnameCntrl.text.length <= 4) {
-                          return "Invalid";
-                        }
-                        return null;
-                      },
-                      onSaved: (value) => _lname = value,
-                      inputFormatters: [
-                        // ignore: deprecated_member_use
-                        new WhitelistingTextInputFormatter(RegExp("[a-zA-Z]")),
-                      ],
-                      focusNode: _lnameFocus,
-                      textInputAction: TextInputAction.done,
-                      keyboardType: TextInputType.text,
-                    ),
-                  ]),
-            ),
-          ),
+          // Flexible(
+          //   child: Container(
+          //     padding: EdgeInsets.only(left: 10),
+          //     child: Column(
+          //         crossAxisAlignment: CrossAxisAlignment.start,
+          //         children: [
+          //           Text(lname,
+          //               style: TextStyle(
+          //                   fontSize: 14, color: Hexcolor('#9D9D9C'))),
+          //           SizedBox(height: 10),
+          //           TextFormField(
+          //             controller: _lnameCntrl,
+          //             decoration: InputDecoration(
+          //               border: InputBorder.none,
+          //               fillColor: Color(0xfff3f3f4),
+          //               filled: true,
+          //               hintText: 'Last Name',
+          //             ),
+          //             validator: (value) {
+          //               RegExp regExp = new RegExp(r'^[a-zA-Z]*$');
+          //               if (value.isEmpty) {
+          //                 return "Please Enter Name";
+          //               } else if (!regExp.hasMatch(value)) {
+          //                 return "Invalid LastName";
+          //               } else if (_lnameCntrl.text.length <= 4) {
+          //                 return "Invalid";
+          //               }
+          //               return null;
+          //             },
+          //             onSaved: (value) => _lname = value,
+          //             inputFormatters: [
+          //               // ignore: deprecated_member_use
+          //               new WhitelistingTextInputFormatter(RegExp("[a-zA-Z]")),
+          //             ],
+          //             focusNode: _lnameFocus,
+          //             textInputAction: TextInputAction.done,
+          //             keyboardType: TextInputType.text,
+          //           ),
+          //         ]),
+          //   ),
+          // ),
         ],
       ),
     );
@@ -505,7 +523,7 @@ class _PaymentState extends State<Payment> {
     return InkWell(
       onTap: () {
         if (_formKey.currentState.validate() && isSwitched) {
-          _formKey.currentState.save();
+           _formKey.currentState.save();
           toastMessage('Save Successfully', isSwitched);
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => Congratulation(actualData:widget.actualData)));
@@ -531,12 +549,24 @@ class _PaymentState extends State<Payment> {
 
   @override
   Widget build(BuildContext context) {
+  
+    final check = widget.selectedDevice == 0 ? widget.actualData['devices'][0]['dataPackages'][0]['goodsName']:
+      widget.actualData['devices'][1]['dataPackages'][0]['goodsName'];
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
           elevation: 0.0,
           leading: _backArrowWidget(),
+          centerTitle: true,
+          title: Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Text(
+              'Cart',
+              style: TextStyle(fontSize: 20, color: Colors.black),
+              textAlign: TextAlign.center,
+            ),
+          ),
           backgroundColor: Colors.white,
         ),
         body: SingleChildScrollView(

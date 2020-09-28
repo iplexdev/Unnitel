@@ -12,6 +12,7 @@ Future loginUser(String email, String password) async {
     );
     if (response.statusCode == 200) {
     var convertDataToJson = jsonDecode(response.body);
+    print('data-----$convertDataToJson');
     return convertDataToJson;
     } else {
       print("failed Response " + response.body);

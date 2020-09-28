@@ -7,6 +7,7 @@ import 'package:unniTel/Api/api.dart';
 import 'package:unniTel/src/Components/Auth/PasswordVerification/forgotPassword.dart';
 import 'package:unniTel/src/Components/Auth/signup.dart';
 import 'package:unniTel/src/Components/mainScreen.dart';
+
 class Data {
   final String email;
   final String password;
@@ -132,13 +133,11 @@ class _LoginScreenState extends State<LoginScreen> {
             controller: passwordController,
             onSaved: (pass) => _password = pass,
             validator: (pass) {
-              Pattern pattern = r'^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$';
-              RegExp regExp = new RegExp(pattern);
                if(pass.isEmpty){
                 return 'Please enter Field';
               }
-              else if(!regExp.hasMatch(pass)){
-                return 'Invalid Password';
+              else if(passwordController.text.length< 6){
+                return 'Invalid Password.Must have minimum of 6 character';
               }
               return null;
             },
@@ -321,7 +320,7 @@ Widget _registeredWidget() {
               width: 5
             ),
             Text(
-              'Sing Up',
+              'Sign-up',
               style:TextStyle(
                 color: Color(0xfff79c4f),
                 fontWeight: FontWeight.w600,
@@ -366,8 +365,11 @@ Widget _registeredWidget() {
                     ),
                     _loginWidget(),
                     _forgotPasswordWidget(),
-                    _divider(),
-                    _socialLoginWidget(),
+                    // _divider(),
+                    // _socialLoginWidget(),
+                    SizedBox(
+                      height:20
+                    ),
                     _registeredWidget(),
                   ]
                 )
