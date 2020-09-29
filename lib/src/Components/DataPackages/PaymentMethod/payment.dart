@@ -212,6 +212,99 @@ class _PaymentState extends State<Payment> {
     );
   }
 
+  // FULL NAME WIDGET
+  Widget _fullNameWidget(String fname,) {
+    return Container(
+      child: Row(
+        children: [
+          Flexible(
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(fname,
+                  style: TextStyle(fontSize: 14, color: Hexcolor('#9D9D9C'))),
+              SizedBox(height: 10),
+              TextFormField(
+                controller: _fnameCntrl,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  fillColor: Color(0xfff3f3f4),
+                  filled: true,
+                  hintText: 'Cart Name',
+                ),
+                validator: (value) {
+                  // RegExp regExp = new RegExp(r'^[a-z]*$');
+                  if (value.isEmpty) {
+                    return "Please Enter Cart Name";
+                  } 
+                  // else if (!regExp.hasMatch(value)) {
+                  //   return "Invalid Name";
+                  // }
+                   else if (_fnameCntrl.text.length <= 4) {
+                    return "Invalid Name.Must have minimum of 5 character";
+                  }
+                  return null;
+                },
+                onSaved: (value) => _fname = value,
+                inputFormatters: [
+                  // ignore: deprecated_member_use
+                  new WhitelistingTextInputFormatter(RegExp("[a-zA-Z]")),
+                ],
+                autofocus: true,
+                focusNode: _fnameFocus,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.text,
+                onFieldSubmitted: (_) {
+                  fieldFocusNode(context, _fnameFocus, _cardNoFocus);
+                },
+              ),
+            ]),
+          ),
+          // Flexible(
+          //   child: Container(
+          //     padding: EdgeInsets.only(left: 10),
+          //     child: Column(
+          //         crossAxisAlignment: CrossAxisAlignment.start,
+          //         children: [
+          //           Text(lname,
+          //               style: TextStyle(
+          //                   fontSize: 14, color: Hexcolor('#9D9D9C'))),
+          //           SizedBox(height: 10),
+          //           TextFormField(
+          //             controller: _lnameCntrl,
+          //             decoration: InputDecoration(
+          //               border: InputBorder.none,
+          //               fillColor: Color(0xfff3f3f4),
+          //               filled: true,
+          //               hintText: 'Last Name',
+          //             ),
+          //             validator: (value) {
+          //               RegExp regExp = new RegExp(r'^[a-zA-Z]*$');
+          //               if (value.isEmpty) {
+          //                 return "Please Enter Name";
+          //               } else if (!regExp.hasMatch(value)) {
+          //                 return "Invalid LastName";
+          //               } else if (_lnameCntrl.text.length <= 4) {
+          //                 return "Invalid";
+          //               }
+          //               return null;
+          //             },
+          //             onSaved: (value) => _lname = value,
+          //             inputFormatters: [
+          //               // ignore: deprecated_member_use
+          //               new WhitelistingTextInputFormatter(RegExp("[a-zA-Z]")),
+          //             ],
+          //             focusNode: _lnameFocus,
+          //             textInputAction: TextInputAction.done,
+          //             keyboardType: TextInputType.text,
+          //           ),
+          //         ]),
+          //   ),
+          // ),
+        ],
+      ),
+    );
+  }
+
 // Card Number Field
   Widget _cardNumberField(String title) {
     return Container(
@@ -243,7 +336,6 @@ class _PaymentState extends State<Payment> {
             return null;
           },
           onSaved: (value) => _cardNo = value,
-          autofocus: true,
           inputFormatters: [
             // ignore: deprecated_member_use
             WhitelistingTextInputFormatter.digitsOnly
@@ -386,105 +478,13 @@ class _PaymentState extends State<Payment> {
             WhitelistingTextInputFormatter.digitsOnly
           ],
           keyboardType: TextInputType.number,
-          textInputAction: TextInputAction.next,
+          textInputAction: TextInputAction.done,
           focusNode: _secFocus,
-          onFieldSubmitted: (_) {
-            fieldFocusNode(context, _secFocus, _fnameFocus);
-          },
+          // onFieldSubmitted: (_) {
+          //   fieldFocusNode(context, _secFocus, _fnameFocus);
+          // },
         ),
       ]),
-    );
-  }
-
-  // FULL NAME WIDGET
-  Widget _fullNameWidget(String fname,) {
-    return Container(
-      child: Row(
-        children: [
-          Flexible(
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(fname,
-                  style: TextStyle(fontSize: 14, color: Hexcolor('#9D9D9C'))),
-              SizedBox(height: 10),
-              TextFormField(
-                controller: _fnameCntrl,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  fillColor: Color(0xfff3f3f4),
-                  filled: true,
-                  hintText: 'Cart Name',
-                ),
-                validator: (value) {
-                  // RegExp regExp = new RegExp(r'^[a-z]*$');
-                  if (value.isEmpty) {
-                    return "Please Enter Cart Name";
-                  } 
-                  // else if (!regExp.hasMatch(value)) {
-                  //   return "Invalid Name";
-                  // }
-                   else if (_fnameCntrl.text.length <= 4) {
-                    return "Invalid Name.Must have minimum of 5 character";
-                  }
-                  return null;
-                },
-                onSaved: (value) => _fname = value,
-                inputFormatters: [
-                  // ignore: deprecated_member_use
-                  new WhitelistingTextInputFormatter(RegExp("[a-zA-Z]")),
-                ],
-                focusNode: _fnameFocus,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.text,
-                onFieldSubmitted: (_) {
-                  fieldFocusNode(context, _fnameFocus, _cardNoFocus);
-                },
-              ),
-            ]),
-          ),
-          // Flexible(
-          //   child: Container(
-          //     padding: EdgeInsets.only(left: 10),
-          //     child: Column(
-          //         crossAxisAlignment: CrossAxisAlignment.start,
-          //         children: [
-          //           Text(lname,
-          //               style: TextStyle(
-          //                   fontSize: 14, color: Hexcolor('#9D9D9C'))),
-          //           SizedBox(height: 10),
-          //           TextFormField(
-          //             controller: _lnameCntrl,
-          //             decoration: InputDecoration(
-          //               border: InputBorder.none,
-          //               fillColor: Color(0xfff3f3f4),
-          //               filled: true,
-          //               hintText: 'Last Name',
-          //             ),
-          //             validator: (value) {
-          //               RegExp regExp = new RegExp(r'^[a-zA-Z]*$');
-          //               if (value.isEmpty) {
-          //                 return "Please Enter Name";
-          //               } else if (!regExp.hasMatch(value)) {
-          //                 return "Invalid LastName";
-          //               } else if (_lnameCntrl.text.length <= 4) {
-          //                 return "Invalid";
-          //               }
-          //               return null;
-          //             },
-          //             onSaved: (value) => _lname = value,
-          //             inputFormatters: [
-          //               // ignore: deprecated_member_use
-          //               new WhitelistingTextInputFormatter(RegExp("[a-zA-Z]")),
-          //             ],
-          //             focusNode: _lnameFocus,
-          //             textInputAction: TextInputAction.done,
-          //             keyboardType: TextInputType.text,
-          //           ),
-          //         ]),
-          //   ),
-          // ),
-        ],
-      ),
     );
   }
 

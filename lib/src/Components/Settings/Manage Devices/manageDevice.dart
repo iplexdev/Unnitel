@@ -95,7 +95,7 @@ class _ManageDevicesState extends State<ManageDevices> {
                               'ADD NEW DEVICE',
                               style: TextStyle(
                                   fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.normal,
                                   color: Colors.black),
                               textAlign: TextAlign.center,
                             ),
@@ -122,7 +122,7 @@ class _ManageDevicesState extends State<ManageDevices> {
                             child: Text(
                               'SSID',
                               style: TextStyle(
-                                  color: Hexcolor("#9D9D9C"), fontSize: 14),
+                                  color: Hexcolor("#9D9D9C"), fontSize: 16),
                             ),
                           ),
                           SizedBox(height: 10),
@@ -149,7 +149,7 @@ class _ManageDevicesState extends State<ManageDevices> {
                             alignment: Alignment.centerLeft,
                             child: Text('Passcode',
                                 style: TextStyle(
-                                    color: Hexcolor("#9D9D9C"), fontSize: 14)),
+                                    color: Hexcolor("#9D9D9C"), fontSize: 16)),
                           ),
                           SizedBox(height: 10),
                           TextFormField(
@@ -221,10 +221,16 @@ class _ManageDevicesState extends State<ManageDevices> {
         children: <Widget>[
           ListTile(
             leading: Image.asset('assets/images/wifi_icon.png'),
-            title:Text( widget.accountData['devices'][0]['name']),
+            title:Text( widget.accountData['devices'][0]['name'],style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.normal
+            ),),
             subtitle: Row(
               children: [
-                Text('SSID:'),
+                Text('SSID:', style: TextStyle(
+                  fontSize: 14,
+                  color: Hexcolor("#9D9D9C")
+                ),),
                 Flexible(
                   child: Text(
                     widget.accountData['devices'][0]['ssid'],
@@ -264,10 +270,16 @@ class _ManageDevicesState extends State<ManageDevices> {
           ),
           ListTile(
             leading: Image.asset('assets/images/wifi_icon.png'),
-            title:Text( widget.accountData['devices'][1]['name']),
+            title:Text( widget.accountData['devices'][1]['name'],style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.normal
+            ),),
             subtitle: Row(
               children: [
-                Text('SSID:'),
+                Text('SSID:', style: TextStyle(
+                  fontSize: 14,
+                  color: Hexcolor("#9D9D9C")
+                ),),
                 Text(
                 widget.accountData['devices'][1]['ssid'],
                     style: TextStyle(
@@ -315,6 +327,7 @@ class _ManageDevicesState extends State<ManageDevices> {
         appBar: AppBar(
           elevation: 0.0,
           leading: _backArrowWidget(),
+          centerTitle: true,
           title: Padding(
             padding: const EdgeInsets.only(top: 10),
             child: Text(

@@ -36,7 +36,8 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   SizedBox(
                       height: 10,
                   ),
-                  Text('userName', style:TextStyle(fontSize:22,color:Colors.white,fontWeight: FontWeight.bold)),
+                  Text(widget.accountData['accountData']['name']
+                    , style:TextStyle(fontSize:22,color:Colors.white,fontWeight: FontWeight.bold)),
                   SizedBox(
                 height: 10,
               ),
@@ -45,7 +46,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   Navigator.push(context,
                   MaterialPageRoute(builder: (context) => Profile(data: 'home', accountData: widget.accountData,)));
                 },
-                child: Text('View Profile',style: TextStyle(fontSize: 14, color: Colors.white),),
+                child: Text('View Profile',style: TextStyle(fontSize: 14, color: Hexcolor("#888485")),),
               )
                 ],
               ),

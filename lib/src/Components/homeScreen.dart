@@ -75,8 +75,12 @@ class _HomeScreenState extends State<HomeScreen>
     final checkPercent = (20/100)*3;
     final fiftyPercent = (50/100)*3;
     return Container(
-        color: Hexcolor('#6E0F24'),
-        height: 320,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(bottomRight: Radius.circular(15), bottomLeft:Radius.circular(15)),
+          color: Hexcolor('#6E0F24'),
+          ),
+        
+         height: 246,
         child: SfRadialGauge(axes: <RadialAxis>[
           RadialAxis(
               minimum: 0,
@@ -95,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen>
              convertToDoublePerson > fiftyPercent ? Colors.green:null),
               ],
               pointers: <GaugePointer>[
-                NeedlePointer(value: _character ==0 ? convertToDouble : convertToDoublePerson)
+                // NeedlePointer(value: _character ==0 ? convertToDouble : convertToDoublePerson)
               ],
               annotations: <GaugeAnnotation>[
                 GaugeAnnotation(
@@ -113,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen>
                            _character == 0 ?(widget.actualData['devices'][0]['dataPackages'][1]['remainingDataMB']).toString() + "MB":
                               chekboxshowPerson + "GB" ,
                             style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 25,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white),
                           ),
@@ -126,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen>
                             style: TextStyle(fontSize: 12, color: Colors.white),
                           ),
                           SizedBox(
-                            height: 150,
+                            height: 50,
                           ),
                           _topUpWidget(),
                         ],
@@ -146,10 +150,11 @@ class _HomeScreenState extends State<HomeScreen>
         Navigator.push(context, MaterialPageRoute(builder: (context) => TopUpWidget(selectedDevice: _character,actualData : widget.actualData)));
       },
       child: Container(
-        width: 100,
-        margin: EdgeInsets.only(bottom: 10),
-        alignment: Alignment.center,
-        padding: EdgeInsets.symmetric(vertical: 10),
+         width: 95,
+        height: 32,
+        // margin: EdgeInsets.only(bottom: 10),
+        // alignment: Alignment.center,
+        // padding: EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(8)),
           border: Border.all(
@@ -158,12 +163,14 @@ class _HomeScreenState extends State<HomeScreen>
           ),
           color: Colors.white,
         ),
-        child: Text(
-          "Top Up".toUpperCase(),
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Hexcolor('#6E0F24'),
+        child: Center(
+          child: Text(
+            "Top Up".toUpperCase(),
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Hexcolor('#6E0F24'),
+            ),
           ),
         ),
       ),
@@ -176,8 +183,8 @@ class _HomeScreenState extends State<HomeScreen>
       child: Text(
         'Available Packages',
         style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.w600,
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );
@@ -233,12 +240,12 @@ class _HomeScreenState extends State<HomeScreen>
                           'Remaining Balance:' + (widget.actualData['devices'][0]['dataPackages'][1]['remainingDataMB']).toString() + 'MB' :
                           'Remaining Balance:' + (widget.actualData['devices'][1]['dataPackages'][1]['remainingDataMB']).toString() + 'MB',
                           style: TextStyle(
-                              color: Hexcolor('#9D9D9C'), fontSize: 12.0, fontWeight: FontWeight.bold,),
+                              color: Hexcolor('#9D9D9C'), fontSize: 13.0, fontWeight: FontWeight.bold,),
                         ),
                         Text(
                          "Purchase Date: " + purchaseDate0.toString(),
                           style: TextStyle(
-                              color: Hexcolor('#9D9D9C'), fontSize: 12.0),
+                              color: Hexcolor('#9D9D9C'), fontSize: 13.0),
                         )
                       ],
                     ),
@@ -410,7 +417,7 @@ class _HomeScreenState extends State<HomeScreen>
     return Container(
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Row(children: [
-          Image.asset('assets/images/battery_icon.png'),
+          Image.asset('assets/images/battery-icon.png'),
           SizedBox(
             width: 5,
           ),
@@ -433,8 +440,8 @@ class _HomeScreenState extends State<HomeScreen>
             ),
             Text(
               _character == 0 ? 'Connected' : 'Not Connected',
-              style: TextStyle(fontSize: 18, 
-               color: _character == 0 ? Colors.green : Colors.red),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400,
+               color: _character == 0 ? Hexcolor("#00B074") : Colors.red),
             ),
           ],
         ),
@@ -458,12 +465,10 @@ class _HomeScreenState extends State<HomeScreen>
     final chekboxshowPerson = (convertToGBPerson/1000).toStringAsFixed(1);
     final convertToDouble = double.parse(chekboxshow);
     final convertToDoublePerson = double.parse(chekboxshowPerson);
-    // final getPercentage = (( convertToDouble/aciveDial)*100);
-    // final getPercentagePerson = (( convertToDoublePerson/aciveDialPerson)*100);
     final checkPercent = (20/100)*3;
     final fiftyPercent = (50/100)*3;
     return Container(
-        height: 320,
+        height: 246,
         // width: width,
         child: SfRadialGauge(axes: <RadialAxis>[
           RadialAxis(minimum: 0, maximum:_character == 0 ? aciveDial : aciveDialPerson, ranges: <GaugeRange>[
@@ -475,10 +480,11 @@ class _HomeScreenState extends State<HomeScreen>
              convertToDoublePerson < checkPercent ?Colors.red : convertToDoublePerson > checkPercent && convertToDoublePerson < fiftyPercent ?Colors.orange:
              convertToDoublePerson > fiftyPercent ? Colors.green:null ),
           ], pointers: <GaugePointer>[
-            NeedlePointer(value: _character ==0 ? convertToDouble :convertToDoublePerson)
+            // NeedlePointer(value: _character ==0 ? convertToDouble :convertToDoublePerson)
           ], annotations: <GaugeAnnotation>[
             GaugeAnnotation(
                 widget: Container(
+                  margin: EdgeInsets.only(top:30),
                   child: Column(
                     children: [
                       Text(
@@ -490,7 +496,7 @@ class _HomeScreenState extends State<HomeScreen>
                         _character == 0 ?(widget.actualData['devices'][0]['dataPackages'][1]['remainingDataMB']).toString() + "MB":
                          chekboxshowPerson + "GB" ,
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                            fontSize: 25, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         _character == 0 ? widget.actualData['devices'][0]['dataPackages'][1]['goodsName']:
@@ -499,7 +505,7 @@ class _HomeScreenState extends State<HomeScreen>
                             TextStyle(fontSize: 12, color: Hexcolor("#9D9D9C")),
                       ),
                       SizedBox(
-                        height: 150,
+                        height: 50,
                       ),
                       _packageWidget(),
                     ],
@@ -558,26 +564,28 @@ class _HomeScreenState extends State<HomeScreen>
         _dataPackagesWidget();
       },
       child: Container(
-        // width: 120,
-        height: 50,
-        margin: EdgeInsets.only(bottom: 10),
-        alignment: Alignment.center,
+        width: 95,
+        height: 32,
+        // margin: EdgeInsets.only(bottom: 10),
         // padding: EdgeInsets.symmetric(vertical: 15),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(12)),
+            borderRadius: BorderRadius.all(Radius.circular(8)),
             color: Hexcolor("#6E0F24")),
         child: ButtonBar(
           children: <Widget>[
             FlatButton(
               child: Center(
-                child: Text(
-                  "Package Details",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                  ),
+                // child: Padding(
+                //   padding: const EdgeInsets.only(right:8.0),
+                    child: Text(
+                      "Packages Details",
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.white,
+                      ),
+                    ),
                 ),
-              ),
+              // ),
               onPressed: _toggleTab,
             ),
           ],
@@ -599,7 +607,7 @@ class _HomeScreenState extends State<HomeScreen>
             _character ==0 ?
             widget.actualData['devices'][0]['connectionStatus']['signalQuality']:
             'Not Connected',
-            style: TextStyle(color: _character !=0 ? Colors.red :Colors.green ),
+            style: TextStyle(fontSize: 14, color: _character !=0 ? Colors.black :Colors.black ),
             )
         ],
       ),
@@ -620,7 +628,7 @@ class _HomeScreenState extends State<HomeScreen>
         children: [
           Row(children: [
             SizedBox(
-              width: 20,
+              width: 10,
             ),
             CircleAvatar(
             radius: 15,
@@ -635,19 +643,19 @@ class _HomeScreenState extends State<HomeScreen>
             // _character==0 ? Image.asset('assets/images/sg-flag-icon.png',):
             //  Image.asset('assets/images/usa_icon.png'),
             SizedBox(
-              width: 20,
+              width: 10,
             ),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text('Country',
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 11,
                     color: Hexcolor('#9D9D9C'),
                   )),
               Text(
                 _character == 0 ? widget.actualData['devices'][0]['connectionStatus']['country']:
                 '--', 
                   style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 15,
                       fontWeight: FontWeight.w500,
                       color: Colors.black)),
             ])
@@ -707,15 +715,9 @@ class _HomeScreenState extends State<HomeScreen>
                   Text(
                  _character ==0 ? dataConsumed + "MB"
                  : dataConsumedPerson + 'MB',
-                  style: TextStyle(fontSize: 16, color: Colors.black),
+                  style: TextStyle(fontSize: 18, color: Colors.black,fontWeight: FontWeight.normal),
                 )
-                // :
-                // Text(
-                //  _character ==0 ? dataConsumed + "MB"
-                //  : dataConsumedPerson + 'MB',
-                //   style: TextStyle(fontSize: 16, color: Colors.black),
-                // )
-                
+
               ],
             )
           ]),
@@ -739,7 +741,7 @@ class _HomeScreenState extends State<HomeScreen>
                     Text(
                       _character == 0 ? (widget.actualData['devices'][0]['connectionStatus']['connectedDevices']).toString(): 
                        '0',
-                      style: TextStyle(fontSize: 16, color: Colors.black),
+                      style: TextStyle(fontSize: 18, color: Colors.black,fontWeight: FontWeight.normal),
                     )
                   ],
                 ),
@@ -769,14 +771,17 @@ class _HomeScreenState extends State<HomeScreen>
                   child: Text(
                     _character == 0 ? formating:
                      'N/A',
-                    style: TextStyle(fontSize: 16, color: Colors.black),
+                    style: TextStyle(fontSize: 18, color: Colors.black,fontWeight: FontWeight.normal),
                   ),
                 )
               ],
             )
           ]),
           Flexible(
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+              _character == 0 ?
+                SizedBox(width:24):
+                SizedBox(width:75),
               Image.asset('assets/images/blue_icon.png'),
               SizedBox(width: 10),
               Flexible(
@@ -791,7 +796,7 @@ class _HomeScreenState extends State<HomeScreen>
                     SizedBox(height: 3),
                     Text(
                       '0',
-                      style: TextStyle(fontSize: 16, color: Colors.black),
+                      style: TextStyle(fontSize: 18, color: Colors.black,fontWeight: FontWeight.normal),
                     )
                   ],
                 ),
@@ -805,37 +810,41 @@ class _HomeScreenState extends State<HomeScreen>
 // _connection Widget
 
   Widget _connectionWidget() {
-    return SingleChildScrollView(
-        child: Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
-      child: Column(children: <Widget>[
-        SizedBox(
-          height: 20,
-        ),
-        _dropUpWidget(),
-        SizedBox(
-          height: 20,
-        ),
-        _infoDataWidget(),
-        SizedBox(
-          height: 10,
-        ),
-        _dividerWidget(),
-        _speedoMeterWidget(),
-        _dividerWidget(),
-        SizedBox(height: 5),
-        _connectionTitleWidget(),
-        SizedBox(height: 10),
-        _countryInfoWidget(),
-        _contectionDetatilsWidget()
-      ]),
-    ));
+    return SafeArea(
+      minimum: const EdgeInsets.only(bottom: 20.0),
+      child: SingleChildScrollView(
+          child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        child: Column(children: <Widget>[
+          SizedBox(
+            height: 20,
+          ),
+          _dropUpWidget(),
+          SizedBox(
+            height: 20,
+          ),
+          _infoDataWidget(),
+          SizedBox(
+            height: 10,
+          ),
+          _dividerWidget(),
+          _speedoMeterWidget(),
+          _dividerWidget(),
+          SizedBox(height: 5),
+          _connectionTitleWidget(),
+          SizedBox(height: 10),
+          _countryInfoWidget(),
+          _contectionDetatilsWidget()
+        ]),
+      )),
+    );
   }
 
   Widget _dataPackagesWidget() {
     return SingleChildScrollView(
         child: Container(
-      color: Hexcolor("#F0F1F6"),
+          height: MediaQuery.of(context).size.height,
+          color: Hexcolor('#F0F1F6'),
       // padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(children: <Widget>[
         SizedBox(
@@ -893,7 +902,7 @@ class _HomeScreenState extends State<HomeScreen>
                           'Devices',
                           style: TextStyle(
                               fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w400,
                               color: Colors.black),
                           textAlign: TextAlign.end,
                         ),
@@ -987,8 +996,8 @@ class _HomeScreenState extends State<HomeScreen>
                      _character ==0 ? widget.actualData['devices'][0]['name']:
                      widget.actualData['devices'][1]['name'],
                       style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
                           color: Colors.black)),
                 ]),
             Positioned(
@@ -1045,11 +1054,11 @@ class _HomeScreenState extends State<HomeScreen>
                       tabs: [
                         Container(
                           padding: EdgeInsets.symmetric(vertical: 5),
-                          child: Text('Connection',style: TextStyle(fontSize: 12,fontWeight: FontWeight.w600),),
+                          child: Text('Connection',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w400),),
                         ),
                         Container(
                           padding: EdgeInsets.symmetric(vertical: 5),
-                          child: Text('Data packages',style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),),
+                          child: Text('Data packages',style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),),
                         ),
                       ],
                     ),

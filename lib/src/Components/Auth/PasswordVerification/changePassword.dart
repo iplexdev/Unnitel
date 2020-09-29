@@ -43,7 +43,7 @@ class _ChangePasswordState extends State<ChangePassword> {
           children: <Widget>[
             Text(
               title,
-              style: TextStyle(fontSize: 13, color: Colors.black45),
+              style: TextStyle(fontSize: 16, color: Colors.black45),
             ),
             SizedBox(
               height: 8,
@@ -90,7 +90,7 @@ class _ChangePasswordState extends State<ChangePassword> {
           children: <Widget>[
             Text(
               title,
-              style: TextStyle(fontSize: 13, color: Colors.black45),
+              style: TextStyle(fontSize: 16, color: Colors.black45),
             ),
             SizedBox(
               height: 8,
@@ -137,7 +137,7 @@ class _ChangePasswordState extends State<ChangePassword> {
           children: <Widget>[
             Text(
               title,
-              style: TextStyle(fontSize: 13, color: Colors.black45),
+              style: TextStyle(fontSize: 16, color: Colors.black45),
             ),
             SizedBox(
               height: 8,
@@ -230,6 +230,7 @@ class _ChangePasswordState extends State<ChangePassword> {
         appBar: AppBar(
           elevation: 0.0,
           leading: _backArrowWidget(),
+          centerTitle: true,
           title: Padding(
             padding: const EdgeInsets.only(top: 10),
             child: Text(

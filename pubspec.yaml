@@ -101,6 +101,7 @@ flutter:
      - assets/images/wifi_connected.png
      - assets/images/wifi_notConnected.png
      - assets/images/default-flag-icon.png
+     - assets/images/battery-icon.png
 
 
 

@@ -47,6 +47,7 @@ class _PackagesListState extends State<PackagesList> {
           appBar: AppBar(
             elevation: 0.0,
             leading: _backArrowWidget(),
+            centerTitle: true,
             title: Text(
               'Packages',
               style: TextStyle(fontSize: 20, color: Colors.black),

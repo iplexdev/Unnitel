@@ -63,7 +63,7 @@ class _ProfileState extends State<Profile> {
         margin: EdgeInsets.symmetric(horizontal: 100),
         child: Text(
           'Delete Account',
-          style: TextStyle(fontSize: 20, color: Colors.black),
+          style: TextStyle(fontSize: 20, color: Hexcolor("#7F7F7F")),
         ),
       ),
     );
@@ -77,6 +77,7 @@ class _ProfileState extends State<Profile> {
           appBar: AppBar(
             elevation: 0.0,
             leading: _backArrowWidget(),
+            centerTitle: true,
             title: Padding(
               padding: const EdgeInsets.only(left: 0, top: 10),
               child: Center(
@@ -115,8 +116,10 @@ class _ProfileState extends State<Profile> {
               children: [
                 Column(
                   children: [
+                    
                     new Divider(
-                      color: Hexcolor('#5D6561'),
+                      
+                      color: Hexcolor('#E0E1E1'),
                     ),
                     Column(
                       children: [
@@ -137,18 +140,18 @@ class _ProfileState extends State<Profile> {
                         ),
                         SizedBox(height: 15),
                         Text(
-                          'User Name',
+                         widget.accountData['accountData']['name'],
                           style: TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.normal),
+                              fontSize: 26, fontWeight: FontWeight.normal),
                         ),
                         SizedBox(
                           height: 20,
                         ),
-                        // Divider(
-                        //   indent: 25,
-                        //   endIndent: 25,
-                        //   color: Hexcolor('#5D6561'),
-                        // )
+                        Divider(
+                          indent: 25,
+                          endIndent: 25,
+                          color: Hexcolor('#E0E1E1'),
+                        )
                       ],
                     ),
                     // Column()
@@ -166,17 +169,18 @@ class _ProfileState extends State<Profile> {
                                     Text(
                                       'Name',
                                       style: TextStyle(
-                                          fontSize: 16,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.normal,
-                                          color: Colors.black),
+                                          color: Hexcolor("#3F4046")),
                                     ),
                                     Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        Text(widget.accountData['accountData']['name'],
+                                        Text(
+                                          widget.accountData['accountData']['name'],
                                             style: TextStyle(
-                                                fontSize: 14,
+                                                fontSize: 16,
                                                 color: Hexcolor('#9D9D9C'))),
                                       ],
                                     ),
@@ -203,9 +207,9 @@ class _ProfileState extends State<Profile> {
                                     Text(
                                       'Country',
                                       style: TextStyle(
-                                          fontSize: 16,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.normal,
-                                          color: Colors.black),
+                                          color: Hexcolor("#3F4046")),
                                     ),
                                     Column(
                                       mainAxisAlignment:
@@ -213,7 +217,7 @@ class _ProfileState extends State<Profile> {
                                       children: [
                                         Text(widget.accountData['accountData']['country'],
                                             style: TextStyle(
-                                                fontSize: 14,
+                                                fontSize: 16,
                                                 color: Hexcolor('#9D9D9C'))),
                                       ],
                                     ),
@@ -241,9 +245,9 @@ class _ProfileState extends State<Profile> {
                                     Text(
                                       'Email',
                                       style: TextStyle(
-                                          fontSize: 16,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.normal,
-                                          color: Colors.black),
+                                          color: Hexcolor("#3F4046")),
                                     ),
                                     Column(
                                       mainAxisAlignment:
@@ -251,7 +255,7 @@ class _ProfileState extends State<Profile> {
                                       children: [
                                         Text(widget.accountData['accountData']['email'],
                                             style: TextStyle(
-                                                fontSize: 14,
+                                                fontSize: 16,
                                                 color: Hexcolor('#9D9D9C'))),
                                       ],
                                     ),
@@ -279,9 +283,9 @@ class _ProfileState extends State<Profile> {
                                     Text(
                                       'Mobile',
                                       style: TextStyle(
-                                          fontSize: 16,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.normal,
-                                          color: Colors.black),
+                                           color: Hexcolor("#3F4046")),
                                     ),
                                     Column(
                                       mainAxisAlignment:
@@ -289,7 +293,7 @@ class _ProfileState extends State<Profile> {
                                       children: [
                                         Text(widget.accountData['accountData']['mobile'],
                                             style: TextStyle(
-                                                fontSize: 14,
+                                                fontSize: 16,
                                                 color: Hexcolor('#9D9D9C'))),
                                       ],
                                     ),

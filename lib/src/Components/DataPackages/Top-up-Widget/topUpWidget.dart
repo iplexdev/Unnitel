@@ -102,7 +102,7 @@ class _TopUpWidgetState extends State<TopUpWidget> {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
           title,
-          style: TextStyle(color: Hexcolor('#9D9D9C'), fontSize: 16),
+          style: TextStyle(color: Hexcolor('#9D9D9C'), fontSize: 16,fontWeight: FontWeight.normal),
         ),
         SizedBox(height: 10),
         Container(
@@ -157,7 +157,7 @@ class _TopUpWidgetState extends State<TopUpWidget> {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
           title,
-          style: TextStyle(color: Hexcolor('#9D9D9C'), fontSize: 16),
+          style: TextStyle(color: Hexcolor('#9D9D9C'), fontSize: 16, fontWeight: FontWeight.normal),
         ),
         SizedBox(height: 10),
         Container(
@@ -265,7 +265,7 @@ class _TopUpWidgetState extends State<TopUpWidget> {
         children: [
           Text(
             'Price',
-            style: TextStyle(fontSize: 16, color: Hexcolor("#9D9D9C")),
+            style: TextStyle(fontSize: 16, color: Hexcolor("#9D9D9C"), fontWeight: FontWeight.normal),
           ),
           Text(
             'US\$' + (_setPrice).toString(),
@@ -283,7 +283,7 @@ class _TopUpWidgetState extends State<TopUpWidget> {
         children:[
         Text(
           title,
-          style: TextStyle(color: Hexcolor('#9D9D9C'), fontSize: 16),
+          style: TextStyle(color: Hexcolor('#9D9D9C'), fontSize: 16, fontWeight: FontWeight.normal),
         ),
         SizedBox(height: 10),
           Container(

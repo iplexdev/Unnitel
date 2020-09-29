@@ -9,7 +9,7 @@ class NotificationScreen extends StatefulWidget {
 }
 
 class _NotificationScreenState extends State<NotificationScreen> {
-  bool isSwitched = false;
+  bool isSwitched = true;
   // Back Widget
   Widget _backArrowWidget() {
     return Container(
@@ -46,6 +46,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
         appBar: AppBar(
           elevation: 0.0,
           leading: _backArrowWidget(),
+          centerTitle: true,
           title: Padding(
             padding: const EdgeInsets.only(top: 10),
             child: Text(
@@ -70,7 +71,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       children: <Widget>[
                         ListTile(
                           leading: Image.asset('assets/images/atrate_icon.png'),
-                          title: Text('Email Data usage'),
+                          title: Text('Email Data usage', style: TextStyle(
+                              fontSize: 18,fontWeight: FontWeight.w400
+                            ),),
                           trailing: Switch(
                             value: isSwitched,
                             onChanged: (value) {
@@ -91,7 +94,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         ListTile(
                           leading: Image.asset(
                               'assets/images/data_remianing_icon.png'),
-                          title: Text('Data Remaining'),
+                          title: Text('Data Remaining', style: TextStyle(
+                              fontSize: 18,fontWeight: FontWeight.w400
+                            ),),
                           trailing: Switch(
                             value: false,
                             onChanged: (value) {
@@ -112,7 +117,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         ListTile(
                           leading:
                               Image.asset('assets/images/battery_icon.png'),
-                          title: Text('Battery Alarm'),
+                          title: Text('Battery Alarm', style: TextStyle(
+                              fontSize: 18,fontWeight: FontWeight.w400
+                            ),),
                           trailing: Switch(
                             value: false,
                             onChanged: (value) {

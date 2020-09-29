@@ -55,6 +55,7 @@ class _SettingsState extends State<Settings> {
         appBar: AppBar(
           elevation: 0.0,
           leading: _backArrowWidget(),
+          centerTitle: true,
           title: Padding(
             padding: const EdgeInsets.only(top: 10),
             child: Text(
@@ -80,7 +81,9 @@ class _SettingsState extends State<Settings> {
                         ListTile(
                             leading: Image.asset(
                                 'assets/images/notification_icon.png'),
-                            title: Text('Notification Settings'),
+                            title: Text('Notification Settings', style: TextStyle(
+                              fontSize: 18,fontWeight: FontWeight.w400
+                            ),),
                             trailing: IconButton(
                                 icon: Icon(
                                   Icons.arrow_right_alt_outlined,
@@ -104,7 +107,9 @@ class _SettingsState extends State<Settings> {
                         ListTile(
                             leading: Image.asset(
                                 'assets/images/data_remianing_icon.png'),
-                            title: Text('Change password'),
+                            title: Text('Change password', style: TextStyle(
+                              fontSize: 18,fontWeight: FontWeight.w400
+                            ),),
                             trailing: IconButton(
                                 icon: Icon(
                                   Icons.arrow_right_alt_outlined,
@@ -128,7 +133,9 @@ class _SettingsState extends State<Settings> {
                         ListTile(
                             leading: Image.asset(
                                 'assets/images/change_part_icon.png'),
-                            title: Text('Change Particulars'),
+                            title: Text('Change Particulars', style: TextStyle(
+                              fontSize: 18,fontWeight: FontWeight.w400
+                            ),),
                             trailing: IconButton(
                                 icon: Icon(
                                   Icons.arrow_right_alt_outlined,
@@ -168,7 +175,9 @@ class _SettingsState extends State<Settings> {
                         ListTile(
                             leading:
                                 Image.asset('assets/images/manage_device.png'),
-                            title: Text('Manage Devices'),
+                            title: Text('Manage Devices', style: TextStyle(
+                              fontSize: 18,fontWeight: FontWeight.w400
+                            ),),
                             trailing: IconButton(
                                 icon: Icon(
                                   Icons.arrow_right_alt_outlined,
@@ -192,7 +201,9 @@ class _SettingsState extends State<Settings> {
                         ListTile(
                             leading:
                                 Image.asset('assets/images/logouts_icon.png'),
-                            title: Text('Sign Out'),
+                            title: Text('Sign Out', style: TextStyle(
+                              fontSize: 18,fontWeight: FontWeight.w400
+                            ),),
                             trailing: IconButton(
                                 icon: Icon(
                                   Icons.arrow_right_alt_outlined,

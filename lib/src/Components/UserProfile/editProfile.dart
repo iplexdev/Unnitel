@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:unniTel/src/Components/mainScreen.dart';
 import 'package:flutter/services.dart';
 import 'package:country_code_picker/country_code_picker.dart';
@@ -130,7 +131,7 @@ class _EditProfileState extends State<EditProfile> {
             title,
             style: TextStyle(
               fontSize: 16,
-              color: Colors.black45,
+              color: Hexcolor("#9D9D9C"),
             ),
           ),
           SizedBox(
@@ -183,7 +184,7 @@ class _EditProfileState extends State<EditProfile> {
               title,
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.black45,
+                 color: Hexcolor("#9D9D9C"),
               ),
             ),
             SizedBox(height: 10),
@@ -227,7 +228,7 @@ class _EditProfileState extends State<EditProfile> {
               title,
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.black45,
+                 color: Hexcolor("#9D9D9C"),
               ),
             ),
             SizedBox(height: 10),
@@ -396,6 +397,19 @@ class _EditProfileState extends State<EditProfile> {
     final height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
+         backgroundColor: Colors.white,
+          appBar: AppBar(
+            elevation: 0.0,
+            leading: _backArrowWidget(),
+            centerTitle: true,
+            title: Padding(
+              padding: const EdgeInsets.only(left: 0, top: 10,right: 30),
+              child: Center(
+                  child: Text('Edit Profile',
+                      style: TextStyle(fontSize: 18, color: Colors.black))),
+            ),
+            backgroundColor: Colors.white,
+          ),
         body: Container(
             height: height,
             child: Stack(
@@ -410,7 +424,7 @@ class _EditProfileState extends State<EditProfile> {
                           SizedBox(
                             height: height * .1,
                           ),
-                          _profileImageWidget(),
+                          // _profileImageWidget(),
                           SizedBox(height: 20),
                           // _titleWidget(),
                           SizedBox(
@@ -424,11 +438,11 @@ class _EditProfileState extends State<EditProfile> {
                         ]),
                   ),
                 ),
-             Positioned(
-                  top: 20,
-                  left: 0,
-                  child: _backArrowWidget(),
-                ),
+            //  Positioned(
+            //       top: 20,
+            //       left: 0,
+            //       child: _backArrowWidget(),
+            //     ),
               ],
             )),
       ),
