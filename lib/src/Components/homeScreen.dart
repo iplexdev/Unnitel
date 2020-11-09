@@ -893,12 +893,6 @@ class _HomeScreenState extends State<HomeScreen>
             height: 16,
           ),
           _dividerWidget(),
-          // Container(
-          //    padding: EdgeInsets.symmetric(horizontal: 20),
-          //   decoration: BoxDecoration(
-          // border: Border.all(width: 0.5, color: Hexcolor("#DEDEDE")),
-          // ),
-          // ),
           SizedBox(
             height: 15,
           ),
