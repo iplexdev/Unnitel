@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:developer';
-import 'dart:typed_data';
 import 'package:jiffy/jiffy.dart';   
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -893,12 +890,6 @@ class _HomeScreenState extends State<HomeScreen>
             height: 16,
           ),
           _dividerWidget(),
-          // Container(
-          //    padding: EdgeInsets.symmetric(horizontal: 20),
-          //   decoration: BoxDecoration(
-          // border: Border.all(width: 0.5, color: Hexcolor("#DEDEDE")),
-          // ),
-          // ),
           SizedBox(
             height: 15,
           ),
