@@ -17,8 +17,6 @@ jobs:
       - run: flutter pub get
       - run: flutter analyze
       # - run: flutter test
-<<<<<<< HEAD
-=======
 
 
   build_ios:
@@ -49,4 +47,3 @@ jobs:
       - run: flutter clean
       - run: flutter build appbundle
   
->>>>>>> 00cb9a60abd6e339f0197e0935e85dc068de9391
