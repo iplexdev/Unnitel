@@ -360,11 +360,6 @@ Widget _registeredWidget() {
                 )
               ),
             ),
-            // Positioned(
-            //   top: 75,
-            //   left: 8,
-            //   child: _logo()
-            //   ),
           ]
         ),
       ),

@@ -397,11 +397,6 @@ Widget _socialLoginWidget() {
               ),
               ),
             ),
-            // Positioned(
-            //   top: 30,
-            //   left: 0,
-            //   child: _backButtonWidget(),
-            // )
           ]
         ),
       ),
