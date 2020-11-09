@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:unniTel/src/Components/DataPackages/PaymentMethod/congratulation.dart';
-import 'package:unniTel/src/Components/utils/drawerItem.dart';
 
 class Payment extends StatefulWidget {
   final selectedDevice;
@@ -18,19 +17,19 @@ class Payment extends StatefulWidget {
 
 class _PaymentState extends State<Payment> {
   bool isSwitched = false;
-  String _cardNo, _month, _year, _secCode, _fname, _lname = '';
-  final TextEditingController _codeNoCntrl = TextEditingController();
+  // ignore: unused_field
+  String _cardNo, _month, _year, _secCode, _fname= '';
   final TextEditingController _monthCntrl = TextEditingController();
   final TextEditingController _yearCntrl = TextEditingController();
   final TextEditingController _secCntrl = TextEditingController();
   final TextEditingController _fnameCntrl = TextEditingController();
-  final TextEditingController _lnameCntrl = TextEditingController();
+  // final TextEditingController _lnameCntrl = TextEditingController();
   FocusNode _cardNoFocus = FocusNode();
   FocusNode _monthFocus = FocusNode();
   FocusNode _yearFocus = FocusNode();
   FocusNode _secFocus = FocusNode();
   FocusNode _fnameFocus = FocusNode();
-  FocusNode _lnameFocus = FocusNode();
+  // FocusNode _lnameFocus = FocusNode();
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _cardNoCntrl = TextEditingController();
   // Back arraow widget
@@ -139,13 +138,6 @@ class _PaymentState extends State<Payment> {
                           alignment: Alignment.center,
                           height: 40,
                           width: 55,
-                          // decoration: BoxDecoration(
-                          //     borderRadius: BorderRadius.circular(12),
-                          //     border: Border.all(
-                          //       color: Colors.transparent,
-                          //       width: 1,
-                          //     ),
-                          //     color: Hexcolor('#E5F7F1')),
                           child: Padding(
                             padding: EdgeInsets.only(top:5),
                             child: Column(
@@ -506,6 +498,8 @@ class _PaymentState extends State<Payment> {
   }
 
   // ALLOW PERMISSION WIDGET
+  // Not Used
+  // ignore: unused_element
   Widget _allowPermissionWidget(String text) {
     return Container(
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -566,9 +560,6 @@ class _PaymentState extends State<Payment> {
 
   @override
   Widget build(BuildContext context) {
-  
-    final check = widget.selectedDevice == 0 ? widget.actualData['devices'][0]['dataPackages'][0]['goodsName']:
-      widget.actualData['devices'][1]['dataPackages'][0]['goodsName'];
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,

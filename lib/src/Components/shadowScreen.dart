@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
+// ignore: must_be_immutable
 class ShadowScreen extends StatelessWidget {
   double xOffset = 290;
   double yOffset = 160;

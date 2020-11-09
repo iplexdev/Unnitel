@@ -7,6 +7,7 @@ class VerifyPassword extends StatefulWidget {
 }
 
 class _VerifyPasswordState extends State<VerifyPassword> {
+    // ignore: unused_field
     String _code;
     bool _onEditing = true;
   // BACK WIDGET

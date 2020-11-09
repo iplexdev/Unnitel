@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:developer';
-import 'dart:typed_data';
 import 'package:jiffy/jiffy.dart';   
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -71,6 +68,7 @@ class _HomeScreenState extends State<HomeScreen>
   }
   @override
 // ********************* DATA PACKAGES WIDGETS ************
+  // ignore: override_on_non_overriding_member
   Widget _speedoMeterWidgetDP() {
     final getActiveDataDP = widget.actualData['devices'][0]['dataPackages'][1]['goodsName'].split(' ');
     final getActiveDataDPPerson = widget.actualData['devices'][1]['dataPackages'][1]['goodsName'].split(' ');
@@ -245,7 +243,6 @@ class _HomeScreenState extends State<HomeScreen>
     final getPuchaseDateIndex1 = 
     _character == 0? widget.actualData['devices'][0]['dataPackages'][0]['purchaseDate']: 
      widget.actualData['devices'][1]['dataPackages'][0]['purchaseDate'];
-     final DateFormat formatter1 = DateFormat('yyyy-MM-dd');
     var date1 = new DateTime.fromMicrosecondsSinceEpoch(getPuchaseDateIndex1 * 1000);
     var purchaseDate1 = formatter.format(date1);
     return Container(
@@ -732,21 +729,21 @@ class _HomeScreenState extends State<HomeScreen>
     var a = Jiffy(dateTime).jm + ' ' + Jiffy(dateTime).MMMd ;
     final String formating = a;
     final dataConsmd = widget.actualData['devices'][0]['dataPackages'][1]['goodsName'].split(' ');
-    final dataConsmdPerson = widget.actualData['devices'][1]['dataPackages'][1]['goodsName'].split(' ');
+    // final dataConsmdPerson = widget.actualData['devices'][1]['dataPackages'][1]['goodsName'].split(' ');
     final  _dataConsumed= dataConsmd[1];
-    final  _dataConsumedPerson= dataConsmdPerson[1];
+    // final  _dataConsumedPerson= dataConsmdPerson[1];
     final _totalDataInGB = int.parse(_dataConsumed.replaceAll(new RegExp(r'[^0-9]'),''));
-    final _totalDataInGBPerson = int.parse(_dataConsumedPerson.replaceAll(new RegExp(r'[^0-9]'),''));
+    // final _totalDataInGBPerson = int.parse(_dataConsumedPerson.replaceAll(new RegExp(r'[^0-9]'),''));
     final _convertIntoMb = (_totalDataInGB * 1024);
-    final _convertIntoMbPerson = (_totalDataInGBPerson * 1024);
+    // final _convertIntoMbPerson = (_totalDataInGBPerson * 1024);
     final remainingData = widget.actualData['devices'][0]['dataPackages'][1]['remainingDataMB'];
-    final remainingDataPerson = widget.actualData['devices'][1]['dataPackages'][1]['remainingDataMB'];
+    // final remainingDataPerson = widget.actualData['devices'][1]['dataPackages'][1]['remainingDataMB'];
     final usedData = _convertIntoMb - remainingData;
-    final usedDataPerson =  _convertIntoMbPerson-remainingDataPerson;
+    // final usedDataPerson =  _convertIntoMbPerson-remainingDataPerson;
     final dataConsumed = (usedData).toStringAsFixed(0);
-    final dataConsumedPerson = (usedDataPerson).toStringAsFixed(0);
-    final dataSet = int.parse(dataConsumed);
-    final dataSetPerson = int.parse(dataConsumedPerson);
+    // final dataConsumedPerson = (usedDataPerson).toStringAsFixed(0);
+    // final dataSet = int.parse(dataConsumed);
+    // final dataSetPerson = int.parse(dataConsumedPerson);
     return Column(children: [
       Row(
         // mainAxisAlignment: MainAxisAlignment.start,

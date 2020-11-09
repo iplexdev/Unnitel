@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:unniTel/src/Components/Auth/login.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
-import 'package:unniTel/src/Components/mainScreen.dart';
 import 'package:flutter/services.dart';
 // void main() => runApp(MyApp());
  Future<void> main() async {
@@ -12,8 +11,8 @@ import 'package:flutter/services.dart';
       SystemChrome.setPreferredOrientations([
         DeviceOrientation.portraitUp,
       ]);
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      var token = prefs.getString('token');
+      // SharedPreferences prefs = await SharedPreferences.getInstance();
+      // var token = prefs.getString('token');
       runApp(
         
         MaterialApp(

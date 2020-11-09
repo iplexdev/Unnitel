@@ -20,7 +20,6 @@ class ListItem {
 class _TopUpWidgetState extends State<TopUpWidget> {
   int _value = 1;
   int _selectedGB = 1;
-  int _deviceIndex = 1;
   int _setPrice = 8;
   List<ListItem> _dropdownItems = [
     ListItem(1, "5GB"),
@@ -29,6 +28,7 @@ class _TopUpWidgetState extends State<TopUpWidget> {
     ListItem(4, "20GB")
   ];
   List<DropdownMenuItem<ListItem>> _dropdownMenuItems;
+  // ignore: unused_field
   ListItem _selectedItem;
 
   void initState() {
@@ -145,14 +145,6 @@ class _TopUpWidgetState extends State<TopUpWidget> {
   }
 
   Widget _selectPackagesData(String title) {
-    final index0 = widget.selectedDevice == 0 ?
-     widget.actualData['devices'][0]['dataPackages'][0]['goodsName']:
-      widget.actualData['devices'][1]['dataPackages'][0]['goodsName'];
-     final  _selectedGBAtIndex0= index0.split(' ');
-     final _index1 = widget.selectedDevice == 0 ?
-     widget.actualData['devices'][0]['dataPackages'][1]['goodsName']:
-      widget.actualData['devices'][1]['dataPackages'][1]['goodsName'];
-    final  _selectedGBAtIndex1= _index1.split(' ');
     return Container(
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
