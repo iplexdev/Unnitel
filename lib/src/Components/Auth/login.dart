@@ -27,6 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  // ignore: unused_field
   String _email, _password ='';
   bool _isLoading = false;
   // BackButton Start Widget
@@ -167,7 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
           var email = emailController.text;
           var password = passwordController.text;
           var res = await loginUser(email, password);
-          SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+          // SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
           if(res.containsKey('status')) {
             toastMessage(res['status']);
             if(res['status'] == 'Login Successful') {
@@ -228,37 +229,10 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-  // Divider Widget
-  Widget _divider() {
-    return Container(
-      child: Row(
-        children: <Widget>[
-          SizedBox(
-            width:20
-          ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal:10),
-              child: Divider(thickness: 1,)
-            ),
-          ),
-          Text('or'),
-          Expanded(
-            child:Padding(
-              padding: EdgeInsets.symmetric(horizontal:10),
-              child: Divider(
-                thickness: 1,
-              )
-            )
-          ),
-          SizedBox(
-            width:20
-          ),
-        ]
-      ),
-    );
-  }
-// Facebook Login Widget
+  
+// Facebook and Google Logo Widget
+// not use now 
+// ignore: unused_element
 Widget _socialLoginWidget() {
   return Container(
     height: 50,

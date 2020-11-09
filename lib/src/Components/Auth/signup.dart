@@ -271,37 +271,10 @@ class _SignUpState extends State<SignUp> {
       ),
     );
   }
-  // Divider Widget
-  Widget _divider() {
-    return Container(
-      child: Row(
-        children: <Widget>[
-          SizedBox(
-            width:20
-          ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal:10),
-              child: Divider(thickness: 1,)
-            ),
-          ),
-          Text('or'),
-          Expanded(
-            child:Padding(
-              padding: EdgeInsets.symmetric(horizontal:10),
-              child: Divider(
-                thickness: 1,
-              )
-            )
-          ),
-          SizedBox(
-            width:20
-          ),
-        ]
-      ),
-    );
-  }
-// Facebook Login Widget
+
+// Facebook and Google Auth Widget
+// Not used
+// ignore: unused_element
 Widget _socialLoginWidget() {
   return Container(
     height: 50,
@@ -418,7 +391,6 @@ Widget _socialLoginWidget() {
                   ),
                   _registeredWidget(),
                   SizedBox(height: 10,),
-                  //  _divider(),
                   //   _socialLoginWidget(),
                   _loginLabelWidget(),
                 ]

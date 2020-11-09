@@ -11,6 +11,7 @@ class ChangePassword extends StatefulWidget {
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
+  // ignore: unused_field
   String _oldPass, _newPass, _confirmPass = '';
   final TextEditingController _oldPassCntrl = TextEditingController();
   final TextEditingController _newPassCntrl = TextEditingController();

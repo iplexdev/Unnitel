@@ -7,6 +7,7 @@ class NewPassword extends StatefulWidget {
 }
 
 class _NewPasswordState extends State<NewPassword> {
+  // ignore: unused_field
   String _newPass, _confirmPass = '';
   final TextEditingController _newPassCntrl = TextEditingController();
   final TextEditingController _newConfrimedPassCntrl = TextEditingController();

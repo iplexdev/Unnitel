@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:unniTel/src/Components/Auth/login.dart';
-import 'package:unniTel/src/Components/Packages/packagesList.dart';
 import 'package:unniTel/src/Components/Settings/Manage%20Devices/manageDevice.dart';
 import 'package:unniTel/src/Components/Settings/setting.dart';
 import 'package:unniTel/src/Components/UserProfile/profile.dart';
@@ -84,6 +83,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                        }
                        break;
                        case 'Sign Out': {
+                         // ignore: unused_local_variable
                          bool color = true;
                          sharedPreferences = await SharedPreferences.getInstance();
                          sharedPreferences.remove('token');
