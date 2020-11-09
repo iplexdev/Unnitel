@@ -14,13 +14,14 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
+  // ignore: unused_field
   String _userName, _country, _phoneNo, _address = '';
-  final TextEditingController _userNameCntrl = TextEditingController();
-  final TextEditingController _phoneNoCntrl = TextEditingController();
+  // final TextEditingController _userNameCntrl = TextEditingController();
+  // final TextEditingController _phoneNoCntrl = TextEditingController();
   FocusNode _userNameFocus = FocusNode();
-  FocusNode _countryFocus = FocusNode();
+  // FocusNode _countryFocus = FocusNode();
   FocusNode _phoneFocus = FocusNode();
-  FocusNode _addressFocus = FocusNode();
+  // FocusNode _addressFocus = FocusNode();
 
   final _formKey = GlobalKey<FormState>();
   // BACK WIDGET
