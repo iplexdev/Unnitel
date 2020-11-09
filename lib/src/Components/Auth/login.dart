@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:unniTel/Api/api.dart';
 import 'package:unniTel/src/Components/Auth/PasswordVerification/forgotPassword.dart';
 import 'package:unniTel/src/Components/Auth/signup.dart';
