@@ -17,6 +17,7 @@ class DrawerScreen extends StatefulWidget {
 }
 
 class _DrawerScreenState extends State<DrawerScreen> {
+  Color color = Colors.white;
   SharedPreferences sharedPreferences;
   @override
   Widget build(BuildContext context) {
@@ -29,27 +30,45 @@ class _DrawerScreenState extends State<DrawerScreen> {
         children:[
           Row(
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children:[
-                  CircleAvatar(),
-                  SizedBox(
-                      height: 10,
-                  ),
-                  Text(widget.accountData['accountData']['name']
-                    , style:TextStyle(fontSize:22,color:Colors.white,fontWeight: FontWeight.bold)),
-                  SizedBox(
-                height: 10,
-              ),
               GestureDetector(
                 onTap: () {
                   Navigator.push(context,
                   MaterialPageRoute(builder: (context) => Profile(data: 'home', accountData: widget.accountData,)));
                 },
-                child: Text('View Profile',style: TextStyle(fontSize: 14, color: Hexcolor("#888485")),),
-              )
+                child:Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children:[
+                  Container(
+                    decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: Colors.grey,
+                  width: 1,
+                ),
+              ),
+                  child:CircleAvatar(
+                    backgroundColor: Colors.transparent,
+                    backgroundImage: AssetImage('assets/images/user-profile-icon.png'),
+                  ),
+                  ),
+                  SizedBox(
+                      height: 10,
+                  ),
+                  Text(widget.accountData['accountData']['name']
+                    , style:TextStyle(fontSize:22,color:Colors.white,fontFamily: 'CircularStd-Medium')),
+                  SizedBox(
+                height: 10,
+              ),
+              // GestureDetector(
+              //   onTap: () {
+              //     Navigator.push(context,
+              //     MaterialPageRoute(builder: (context) => Profile(data: 'home', accountData: widget.accountData,)));
+              //   },
+              // )
+                Text('View Profile',style: TextStyle(fontSize: 14,fontFamily: 'CircularStd-Book', color: Hexcolor("#888485")),),
                 ],
               ),
+              )
             ],
           ),
           Column(
@@ -59,6 +78,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
               child: GestureDetector(
                 onTap: () async {
                      switch(e['title']) {
+                       
                        case 'Home': {
                          Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen(res: widget.accountData,)));
                        }
@@ -78,7 +98,8 @@ class _DrawerScreenState extends State<DrawerScreen> {
                        }
                        break;
                        case 'Packages' :{
-                         Navigator.push(context, MaterialPageRoute(builder: (context) => PackagesList( accountData: widget.accountData)));
+                        //  Navigator.push(context, MaterialPageRoute(builder: (context) => PackagesList( accountData: widget.accountData)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen(res: widget.accountData,fromPackage:'package')));
                        }
                        break;
                        case 'Settings' : {
@@ -86,18 +107,21 @@ class _DrawerScreenState extends State<DrawerScreen> {
                        }
                        break;
                        case 'Devices': {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ManageDevices(accountData: widget.accountData,)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ManageDevices(data:'manage', accountData: widget.accountData,)));
                        }
                        break;
                      }
                 },
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                   Icon(e['icon'], color: Colors.white,), 
+                   Image.asset(e['icon'], color: e['title'] == 'Home' ? Colors.white : Colors.grey,width: 22,), 
                   SizedBox(
-                    width: 15,
+                    width: 18,
                   ),
-                  Text(e['title'],style: TextStyle(color: Colors.white, fontSize: 18)),
+                  Container(
+                    transform: Matrix4.translationValues(0.0, 3.0, 0.0),
+                    child: Text(e['title'],style: TextStyle(color: e['title'] == 'Home' ? Colors.white : Colors.grey,fontFamily: 'CircularStd-Book', fontSize: 18))),
                 ],
               ),
               )

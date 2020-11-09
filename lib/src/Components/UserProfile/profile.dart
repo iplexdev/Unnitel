@@ -22,7 +22,7 @@ class _ProfileState extends State<Profile> {
     return Container(
       child: Row(
         children: [
-          InkWell(
+          GestureDetector(
             onTap: () {
               if(widget.data == 'home' || widget.data == 'myAccount') {
                 Navigator.push(context,
@@ -32,14 +32,15 @@ class _ProfileState extends State<Profile> {
               }
             },
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: EdgeInsets.symmetric(horizontal: 13),
               child: Row(children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(left: 0, top: 20, bottom: 10),
-                  child: Icon(
-                    Icons.keyboard_arrow_left,
-                    color: Colors.black,
-                  ),
+                  padding: EdgeInsets.only(left: 0, top: 12, bottom: 10),
+                  // child: Icon(
+                  //   Icons.arrow_back,
+                  //   color: Colors.black,
+                  // ),
+                    child:Image(image: AssetImage('assets/images/back-arrow-icon.png'),width: 20, fit: BoxFit.fill,)
                 ),
               ]),
             ),
@@ -63,7 +64,7 @@ class _ProfileState extends State<Profile> {
         margin: EdgeInsets.symmetric(horizontal: 100),
         child: Text(
           'Delete Account',
-          style: TextStyle(fontSize: 20, color: Hexcolor("#7F7F7F")),
+          style: TextStyle(fontSize: 20, color: Hexcolor("#7F7F7F"),fontFamily: 'CircularStd-Book'),
         ),
       ),
     );
@@ -78,12 +79,9 @@ class _ProfileState extends State<Profile> {
             elevation: 0.0,
             leading: _backArrowWidget(),
             centerTitle: true,
-            title: Padding(
-              padding: const EdgeInsets.only(left: 0, top: 10),
-              child: Center(
-                  child: Text('Profile',
-                      style: TextStyle(fontSize: 18, color: Colors.black))),
-            ),
+            title: Text('Particulars',
+                      style: TextStyle(fontSize: 20, color: Colors.black,fontFamily: 'CircularStd-Bold')
+                      ),
             backgroundColor: Colors.white,
             actions: <Widget>[
               GestureDetector(
@@ -93,235 +91,238 @@ class _ProfileState extends State<Profile> {
                   },
                   child: Row(children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 10, top: 10),
+                      padding: const EdgeInsets.only(left: 10, top: 0),
                       child: Image.asset('assets/images/edit_icon.png'),
                     ),
                     SizedBox(
                       width: 8,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 12, top: 10),
+                      padding: const EdgeInsets.only(right: 12, top: 0),
                       child: Center(
                           child: Text(
                         'Edit',
                         style:
-                            TextStyle(fontSize: 18, color: Hexcolor("#C2D21D")),
+                            TextStyle(fontSize: 18,fontFamily: 'CircularStd-Medium', color: Hexcolor("#C2D21D")),
                       )),
                     )
                   ])),
             ],
           ),
-          body: Container(
-            child: Stack(
-              children: [
-                Column(
-                  children: [
-                    
-                    new Divider(
+          body: SingleChildScrollView(
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              child: Stack(
+                children: [
+                  Column(
+                    children: [
                       
-                      color: Hexcolor('#E0E1E1'),
-                    ),
-                    Column(
-                      children: [
-                        SizedBox(height: 20),
-                        Container(
-                          width: 70,
-                          height: 70,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: Colors.grey,
-                              width: 1,
+                      new Divider(
+                        height: 0,
+                        color: Hexcolor('#E0E1E1'),
+                      ),
+                      Column(
+                        children: [
+                          SizedBox(height: 20),
+                          Container(
+                            width: 70,
+                            height: 70,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: Colors.grey,
+                                width: 1,
+                              ),
+                            ),
+                            child: CircleAvatar(
+                              backgroundColor: Colors.white,
                             ),
                           ),
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white,
+                          SizedBox(height: 15),
+                          Text(
+                           widget.accountData['accountData']['name'],
+                            style: TextStyle(
+                                fontSize: 26, fontFamily: 'CircularStd-Bold'),
                           ),
-                        ),
-                        SizedBox(height: 15),
-                        Text(
-                         widget.accountData['accountData']['name'],
-                          style: TextStyle(
-                              fontSize: 26, fontWeight: FontWeight.normal),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Divider(
-                          indent: 25,
-                          endIndent: 25,
-                          color: Hexcolor('#E0E1E1'),
-                        )
-                      ],
-                    ),
-                    // Column()
-                    Column(
-                      children:[ 
-                        Container(
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 25, bottom: 20),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      'Name',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.normal,
-                                          color: Hexcolor("#3F4046")),
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          widget.accountData['accountData']['name'],
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                color: Hexcolor('#9D9D9C'))),
-                                      ],
-                                    ),
-                                  ],
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Divider(
+                            indent: 25,
+                            endIndent: 25,
+                            color: Hexcolor('#E0E1E1'),
+                          )
+                        ],
+                      ),
+                      // Column()
+                      Column(
+                        children:[ 
+                          Container(
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 25, bottom: 20),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        'Name',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontFamily: 'CircularStd-Medium',
+                                            color: Hexcolor("#3F4046")),
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            widget.accountData['accountData']['name'],
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Hexcolor('#9D9D9C'),fontFamily: 'CircularStd-Book')),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
+                                margin:
+                                    const EdgeInsets.only(left: 15.0, right: 15),
+                                decoration: BoxDecoration(
+                                    border: Border(
+                                  bottom: BorderSide(
+                                      width: 0, color: Hexcolor('#5D6561')),
+                                )),
                               ),
-                              margin:
-                                  const EdgeInsets.only(left: 15.0, right: 15),
-                              decoration: BoxDecoration(
-                                  border: Border(
-                                bottom: BorderSide(
-                                    width: 0, color: Hexcolor('#5D6561')),
-                              )),
-                            ),
-                            Container(
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 25, bottom: 20),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      'Country',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.normal,
-                                          color: Hexcolor("#3F4046")),
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Text(widget.accountData['accountData']['country'],
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                color: Hexcolor('#9D9D9C'))),
-                                      ],
-                                    ),
-                                    
-                                  ],
+                              Container(
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 25, bottom: 20),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        'Country',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                             fontFamily: 'CircularStd-Medium',
+                                            color: Hexcolor("#3F4046")),
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Text(widget.accountData['accountData']['country'],
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Hexcolor('#9D9D9C'),fontFamily: 'CircularStd-Book')),
+                                        ],
+                                      ),
+                                      
+                                    ],
+                                  ),
                                 ),
+                                margin:
+                                    const EdgeInsets.only(left: 15.0, right: 15),
+                                decoration: BoxDecoration(
+                                    border: Border(
+                                  bottom: BorderSide(
+                                      width: 0, color: Hexcolor('#5D6561')),
+                                )),
                               ),
-                              margin:
-                                  const EdgeInsets.only(left: 15.0, right: 15),
-                              decoration: BoxDecoration(
-                                  border: Border(
-                                bottom: BorderSide(
-                                    width: 0, color: Hexcolor('#5D6561')),
-                              )),
-                            ),
-                            Container(
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 25, bottom: 20),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      'Email',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.normal,
-                                          color: Hexcolor("#3F4046")),
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Text(widget.accountData['accountData']['email'],
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                color: Hexcolor('#9D9D9C'))),
-                                      ],
-                                    ),
-                                    
-                                  ],
+                              Container(
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 25, bottom: 20),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        'Email',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                             fontFamily: 'CircularStd-Medium',
+                                            color: Hexcolor("#3F4046")),
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Text(widget.accountData['accountData']['email'],
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Hexcolor('#9D9D9C'),fontFamily: 'CircularStd-Book')),
+                                        ],
+                                      ),
+                                      
+                                    ],
+                                  ),
                                 ),
+                                margin:
+                                    const EdgeInsets.only(left: 15.0, right: 15),
+                                decoration: BoxDecoration(
+                                    border: Border(
+                                  bottom: BorderSide(
+                                      width: 0, color: Hexcolor('#5D6561')),
+                                )),
                               ),
-                              margin:
-                                  const EdgeInsets.only(left: 15.0, right: 15),
-                              decoration: BoxDecoration(
-                                  border: Border(
-                                bottom: BorderSide(
-                                    width: 0, color: Hexcolor('#5D6561')),
-                              )),
-                            ),
-                            Container(
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 25, bottom: 20),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      'Mobile',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.normal,
-                                           color: Hexcolor("#3F4046")),
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Text(widget.accountData['accountData']['mobile'],
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                color: Hexcolor('#9D9D9C'))),
-                                      ],
-                                    ),
-                                    
-                                  ],
+                              Container(
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 25, bottom: 20),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        'Mobile Phone',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                             fontFamily: 'CircularStd-Medium',
+                                             color: Hexcolor("#3F4046")),
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Text(widget.accountData['accountData']['mobile'],
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Hexcolor('#9D9D9C'),fontFamily: 'CircularStd-Book')),
+                                        ],
+                                      ),
+                                      
+                                    ],
+                                  ),
                                 ),
+                                margin:
+                                    const EdgeInsets.only(left: 15.0, right: 15),
+                                decoration: BoxDecoration(
+                                    border: Border(
+                                  bottom: BorderSide(
+                                      width: 0, color: Hexcolor('#5D6561')),
+                                )),
                               ),
-                              margin:
-                                  const EdgeInsets.only(left: 15.0, right: 15),
-                              decoration: BoxDecoration(
-                                  border: Border(
-                                bottom: BorderSide(
-                                    width: 0, color: Hexcolor('#5D6561')),
-                              )),
-                            ),
-                            
-                      ],
-                    ),
-                    SizedBox(height:100),
-                    _deleteUserWidget()
-                  ],
-                ),
-                // Positioned(
-                //   child: _deleteUserWidget(),
-                //   bottom: 20,
-                //   left: 40,
-                // )
-              ],
+                              
+                        ],
+                      ),
+                      SizedBox(height:100),
+                      _deleteUserWidget()
+                    ],
+                  ),
+                  // Positioned(
+                  //   child: _deleteUserWidget(),
+                  //   bottom: 20,
+                  //   left: 40,
+                  // )
+                ],
+              ),
             ),
           )),
     );

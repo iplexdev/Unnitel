@@ -19,7 +19,8 @@ import 'package:flutter/services.dart';
         MaterialApp(
           title: 'Unnitel',
           debugShowCheckedModeBanner: false,
-          home: token == null ? LoginScreen() : LoginScreen()
+          // home: token == null ? LoginScreen() : LoginScreen()
+          home:LoginScreen()
         )
         );
     }

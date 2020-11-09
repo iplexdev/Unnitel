@@ -17,20 +17,21 @@ class _PackagesListState extends State<PackagesList> {
     return Container(
       child: Row(
         children: [
-          InkWell(
+          GestureDetector(
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => MainScreen(res: widget.accountData,)));
             },
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: EdgeInsets.symmetric(horizontal: 15),
               child: Row(children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(left: 0, top: 10, bottom: 10),
-                  child: Icon(
-                    Icons.keyboard_arrow_left,
-                    color: Colors.black,
-                  ),
+                  padding: EdgeInsets.only(left: 0, top: 8, bottom: 10),
+                  // child: Icon(
+                  //   Icons.keyboard_arrow_left,
+                  //   color: Colors.black,
+                  // ),
+                  child:Image(image: AssetImage('assets/images/back-arrow-icon.png'),width: 20, fit: BoxFit.fill,)
                 ),
               ]),
             ),
@@ -42,15 +43,28 @@ class _PackagesListState extends State<PackagesList> {
 
   @override
   Widget build(BuildContext context) {
+    
+    final index0 =widget.accountData['devices'][0]['dataPackages'][0]['goodsName'];
+    final index1 = widget.accountData['devices'][1]['dataPackages'][0]['goodsName'];
+    final  _selectedGBAtIndex0= index0.split(' ');
+    final  _selectedGBAtIndex1= index1.split(' ');
+    final _index2 = widget.accountData['devices'][0]['dataPackages'][1]['goodsName'];
+    final _index3 = widget.accountData['devices'][1]['dataPackages'][1]['goodsName'];
+    final  _selectedGBAtIndex2= _index2.split(' ');
+    final  _selectedGBAtIndex3= _index3.split(' ');
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Hexcolor('#FFFFFF'),
           appBar: AppBar(
             elevation: 0.0,
             leading: _backArrowWidget(),
             centerTitle: true,
             title: Text(
               'Packages',
-              style: TextStyle(fontSize: 20, color: Colors.black),
+              style: TextStyle(fontSize: 20,
+              fontFamily: 'CircularStd-Bold',
+              // fontWeight: FontWeight.bold,
+               color: Colors.black),
               textAlign: TextAlign.center,
             ),
             backgroundColor: Colors.white,
@@ -65,11 +79,10 @@ class _PackagesListState extends State<PackagesList> {
                             decoration: BoxDecoration(
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.grey.withOpacity(0.2),
-                                  spreadRadius: 0,
-                                  blurRadius: 10,
-                                  offset: Offset(
-                                      0, 0), // changes position of shadow
+                                  color: Colors.grey.withOpacity(0.19),
+                                  // spreadRadius: 5,
+                                  blurRadius: 8,
+                                  // offset: Offset(0, 3), // changes position of shadow
                                 ),
                               ],
                             ),
@@ -89,29 +102,33 @@ class _PackagesListState extends State<PackagesList> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                       widget.accountData['devices'][0]['dataPackages'][0]['goodsName'] 
+                                      //  widget.accountData['devices'][0]['dataPackages'][0]['goodsName'] 
+                                      _selectedGBAtIndex0[0]
                                        ,
                                       style: TextStyle(
                                           color: Colors.black,
-                                          fontWeight: FontWeight.normal,
+                                          // fontWeight: FontWeight.normal,
+                                          fontFamily: 'CircularStd-Bold',
                                           fontSize: 16.0),
                                     ),
                                     Text(
-                                      'Price:',
+                                      'Price: US\$25',
                                       style: TextStyle(
                                           color: Hexcolor('#9D9D9C'),
+                                          fontFamily: 'CircularStd-Book',
                                           fontSize: 12.0),
                                     ),
                                     Text(
-                                      'Package Data:',
+                                      'Package Data: ' +  _selectedGBAtIndex0[1],
                                       style: TextStyle(
                                           color: Hexcolor('#9D9D9C'),
+                                          fontFamily: 'CircularStd-Book',
                                           fontSize: 12.0),
                                     )
                                   ],
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 100.0),
+                                  padding: const EdgeInsets.only(left: 95.0),
                                   child: FDottedLine(
                                     color: Hexcolor("#F0F1F6"),
                                     height: 60.0,
@@ -123,7 +140,7 @@ class _PackagesListState extends State<PackagesList> {
                                   child: Container(
                                     alignment: Alignment.center,
                                     height: 25,
-                                    width: 80,
+                                    width: 50,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(12),
                                         border: Border.all(
@@ -134,9 +151,10 @@ class _PackagesListState extends State<PackagesList> {
                                     child: Align(
                                       alignment: Alignment.center,
                                       child: Text(
-                                       widget.accountData['devices'][0]['dataPackages'][0]['status'],
+                                       widget.accountData['devices'][0]['dataPackages'][0]['status'] == 'NOT_ACTIVATED' ? "AVAILABLE":"",
                                         style: TextStyle(
                                             color: Hexcolor('#C2D21D'),
+                                            fontFamily: 'CircularStd-Book',
                                             fontSize: 8.0),
                                       ),
                                     ),
@@ -154,14 +172,13 @@ class _PackagesListState extends State<PackagesList> {
                           Container(
                             decoration: BoxDecoration(
                               boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.2),
-                                  spreadRadius: 0,
-                                  blurRadius: 10,
-                                  offset: Offset(
-                                      0, 0), // changes position of shadow
-                                ),
-                              ],
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.15),
+                                    // spreadRadius: 5,
+                                    blurRadius: 7,
+                                    // offset: Offset(0, 3), // changes position of shadow
+                                  ),
+                                ],
                             ),
                             child: Image.asset(
                               'assets/images/mask_icon.png',
@@ -179,29 +196,33 @@ class _PackagesListState extends State<PackagesList> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                       widget.accountData['devices'][0]['dataPackages'][1]['goodsName'] 
+                                      //  widget.accountData['devices'][0]['dataPackages'][1]['goodsName'] 
+                                       _selectedGBAtIndex2[0]
                                        ,
                                       style: TextStyle(
                                           color: Colors.black,
-                                          fontWeight: FontWeight.normal,
+                                          // fontWeight: FontWeight.normal,
+                                          fontFamily: 'CircularStd-Bold',
                                           fontSize: 16.0),
                                     ),
                                     Text(
-                                      'Price:',
+                                      'Price: US\$15',
                                       style: TextStyle(
                                           color: Hexcolor('#9D9D9C'),
+                                          fontFamily: 'CircularStd-Book',
                                           fontSize: 12.0),
                                     ),
                                     Text(
-                                      'Package Data:',
+                                      'Package Data: ' + _selectedGBAtIndex2[1],
                                       style: TextStyle(
                                           color: Hexcolor('#9D9D9C'),
+                                          fontFamily: 'CircularStd-Book',
                                           fontSize: 12.0),
                                     )
                                   ],
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 100.0),
+                                  padding: const EdgeInsets.only(left: 95.0),
                                   child: FDottedLine(
                                     color: Hexcolor("#F0F1F6"),
                                     height: 60.0,
@@ -213,7 +234,7 @@ class _PackagesListState extends State<PackagesList> {
                                   child: Container(
                                     alignment: Alignment.center,
                                     height: 25,
-                                    width: 80,
+                                    width: 50,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(12),
                                         border: Border.all(
@@ -224,9 +245,10 @@ class _PackagesListState extends State<PackagesList> {
                                     child: Align(
                                       alignment: Alignment.center,
                                       child: Text(
-                                       widget.accountData['devices'][0]['dataPackages'][1]['status'],
+                                       widget.accountData['devices'][0]['dataPackages'][1]['status'] == 'IN_USING' ? "ACTIVE" :"",
                                         style: TextStyle(
                                             color: Hexcolor('#C2D21D'),
+                                            fontFamily: 'CircularStd-Book',
                                             fontSize: 8.0),
                                       ),
                                     ),
@@ -243,15 +265,14 @@ class _PackagesListState extends State<PackagesList> {
                         children: <Widget>[
                           Container(
                             decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.2),
-                                  spreadRadius: 0,
-                                  blurRadius: 10,
-                                  offset: Offset(
-                                      0, 0), // changes position of shadow
-                                ),
-                              ],
+                             boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.15),
+                                      // spreadRadius: 5,
+                                      blurRadius: 7,
+                                      // offset: Offset(0, 3), // changes position of shadow
+                                    ),
+                                  ],
                             ),
                             child: Image.asset(
                               'assets/images/mask_icon.png',
@@ -269,29 +290,33 @@ class _PackagesListState extends State<PackagesList> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                       widget.accountData['devices'][1]['dataPackages'][0]['goodsName'] 
+                                      //  widget.accountData['devices'][1]['dataPackages'][0]['goodsName'] 
+                                      _selectedGBAtIndex1[0]
                                        ,
                                       style: TextStyle(
                                           color: Colors.black,
-                                          fontWeight: FontWeight.normal,
+                                          // fontWeight: FontWeight.normal,
+                                          fontFamily: 'CircularStd-Bold',
                                           fontSize: 16.0),
                                     ),
                                     Text(
-                                      'Price:',
+                                      'Price: US\$80',
                                       style: TextStyle(
                                           color: Hexcolor('#9D9D9C'),
+                                          fontFamily: 'CircularStd-Book',
                                           fontSize: 12.0),
                                     ),
                                     Text(
-                                      'Package Data:',
+                                      'Package Data: ' + _selectedGBAtIndex1[1],
                                       style: TextStyle(
                                           color: Hexcolor('#9D9D9C'),
+                                          fontFamily: 'CircularStd-Book',
                                           fontSize: 12.0),
                                     )
                                   ],
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 100.0),
+                                  padding: const EdgeInsets.only(left: 95.0),
                                   child: FDottedLine(
                                     color: Hexcolor("#F0F1F6"),
                                     height: 60.0,
@@ -303,7 +328,7 @@ class _PackagesListState extends State<PackagesList> {
                                   child: Container(
                                     alignment: Alignment.center,
                                     height: 25,
-                                    width: 80,
+                                    width: 50,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(12),
                                         border: Border.all(
@@ -314,9 +339,10 @@ class _PackagesListState extends State<PackagesList> {
                                     child: Align(
                                       alignment: Alignment.center,
                                       child: Text(
-                                       widget.accountData['devices'][1]['dataPackages'][0]['status'],
+                                       widget.accountData['devices'][0]['dataPackages'][0]['status'] == 'NOT_ACTIVATED' ? "AVAILABLE":"",
                                         style: TextStyle(
                                             color: Hexcolor('#C2D21D'),
+                                            fontFamily: 'CircularStd-Book',
                                             fontSize: 8.0),
                                       ),
                                     ),
@@ -333,15 +359,14 @@ class _PackagesListState extends State<PackagesList> {
                         children: <Widget>[
                           Container(
                             decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.2),
-                                  spreadRadius: 0,
-                                  blurRadius: 10,
-                                  offset: Offset(
-                                      0, 0), // changes position of shadow
-                                ),
-                              ],
+                             boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.grey.withOpacity(0.15),
+                                      // spreadRadius: 5,
+                                      blurRadius: 7,
+                                      // offset: Offset(0, 3), // changes position of shadow
+                                    ),
+                                  ],
                             ),
                             child: Image.asset(
                               'assets/images/mask_icon.png',
@@ -359,29 +384,33 @@ class _PackagesListState extends State<PackagesList> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                       widget.accountData['devices'][1]['dataPackages'][1]['goodsName'] 
+                                      //  widget.accountData['devices'][1]['dataPackages'][1]['goodsName'] 
+                                      _selectedGBAtIndex3[0]
                                        ,
                                       style: TextStyle(
                                           color: Colors.black,
-                                          fontWeight: FontWeight.normal,
+                                          // fontWeight: FontWeight.normal,
+                                          fontFamily: 'CircularStd-Bold',
                                           fontSize: 16.0),
                                     ),
                                     Text(
-                                      'Price:',
+                                      'Price: US\$24',
                                       style: TextStyle(
                                           color: Hexcolor('#9D9D9C'),
+                                          fontFamily: 'CircularStd-Book',
                                           fontSize: 12.0),
                                     ),
                                     Text(
-                                      'Package Data:',
+                                      'Package Data: ' + _selectedGBAtIndex3[1],
                                       style: TextStyle(
                                           color: Hexcolor('#9D9D9C'),
+                                          fontFamily: 'CircularStd-Book',
                                           fontSize: 12.0),
                                     )
                                   ],
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 100.0),
+                                  padding: const EdgeInsets.only(left: 95.0),
                                   child: FDottedLine(
                                     color: Hexcolor("#F0F1F6"),
                                     height: 60.0,
@@ -393,7 +422,7 @@ class _PackagesListState extends State<PackagesList> {
                                   child: Container(
                                     alignment: Alignment.center,
                                     height: 25,
-                                    width: 80,
+                                    width: 50,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(12),
                                         border: Border.all(
@@ -404,9 +433,10 @@ class _PackagesListState extends State<PackagesList> {
                                     child: Align(
                                       alignment: Alignment.center,
                                       child: Text(
-                                       widget.accountData['devices'][1]['dataPackages'][1]['status'],
+                                       widget.accountData['devices'][0]['dataPackages'][1]['status'] == 'IN_USING' ? "ACTIVE" :"",
                                         style: TextStyle(
                                             color: Hexcolor('#C2D21D'),
+                                            fontFamily: 'CircularStd-Book',
                                             fontSize: 8.0),
                                       ),
                                     ),

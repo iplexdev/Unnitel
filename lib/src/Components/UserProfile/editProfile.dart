@@ -25,20 +25,21 @@ class _EditProfileState extends State<EditProfile> {
   final _formKey = GlobalKey<FormState>();
   // BACK WIDGET
    Widget _backArrowWidget() {
-    return InkWell(
+    return GestureDetector(
       onTap:() {
         Navigator.pop(context);
       },
        child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: 15),
         child: Row(
           children:<Widget>[
             Container(
               padding: EdgeInsets.only(left:0,top:10,bottom:10),
-              child: Icon(
-                Icons.keyboard_arrow_left,
-                color: Colors.black,
-                ),
+              // child: Icon(
+              //   Icons.keyboard_arrow_left,
+              //   color: Colors.black,
+              //   ),
+              child:Image(image: AssetImage('assets/images/back-arrow-icon.png'),width: 20, fit: BoxFit.fill,)
             ),
           ]
         ),
@@ -49,13 +50,6 @@ class _EditProfileState extends State<EditProfile> {
   // Show Image
   Widget showImage() {
     return Container( 
-       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: Colors.grey,
-            width: 2,
-          ),
-        ),
     child:FutureBuilder<File>(
       future: imageFile,
       builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
@@ -93,15 +87,32 @@ class _EditProfileState extends State<EditProfile> {
   // Profile Image WIDGET
   Widget _profileImageWidget() {
     return Container(
-
+      width: 100,
+      decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: Colors.grey,
+                  width: 1,
+                ),
+              ),
+      margin: EdgeInsets.only(top:20),
+      // height: 110,
         child: Column(children: <Widget>[
-          showImage(),
-          
-          IconButton(
-              icon: Icon(Icons.camera_alt_outlined,),
-              onPressed: () {
-                pickImageFromGallery(ImageSource.gallery);
-              })
+          Container(        
+          child:showImage(),
+          ),
+          Container(
+             transform: Matrix4.translationValues(0.0, 20.0, 0.0),
+            child:GestureDetector(
+              onTap: () {
+                 pickImageFromGallery(ImageSource.gallery);
+              },
+              child: Container(
+                padding: EdgeInsets.only(left:5),
+                child: Image.asset('assets/images/upload-image-icon.png',width:40),
+              ),
+            )
+          ),
         ]
         )
         );
@@ -131,6 +142,7 @@ class _EditProfileState extends State<EditProfile> {
             title,
             style: TextStyle(
               fontSize: 16,
+              fontFamily: 'CircularStd-Book',
               color: Hexcolor("#9D9D9C"),
             ),
           ),
@@ -145,7 +157,9 @@ class _EditProfileState extends State<EditProfile> {
               fillColor: Color(0xfff3f3f4),
               filled: true,
               hintText: 'Name',
+              hintStyle: TextStyle(fontFamily:'CircularStd-Medium')
             ),
+            style: TextStyle(fontFamily: 'CircularStd-Medium'),
             validator: (value) {
               // Pattern pattern = r'[a-zA-Z][a-zA-Z ]+[a-zA-Z]$';
               RegExp regExp = new RegExp(r'^[a-zA-Z ]+$');
@@ -184,6 +198,7 @@ class _EditProfileState extends State<EditProfile> {
               title,
               style: TextStyle(
                 fontSize: 16,
+                fontFamily: 'CircularStd-Book',
                  color: Hexcolor("#9D9D9C"),
               ),
             ),
@@ -205,7 +220,7 @@ class _EditProfileState extends State<EditProfile> {
                         showFlag: false,
                         alignLeft: true,
                         padding: EdgeInsets.only(left: 10),
-                        textStyle: TextStyle(fontSize: 16),
+                        textStyle: TextStyle(fontSize: 16,fontFamily: 'CircularStd-Medium'),
                       ),
                     ),
                     Container(
@@ -228,6 +243,7 @@ class _EditProfileState extends State<EditProfile> {
               title,
               style: TextStyle(
                 fontSize: 16,
+                fontFamily: 'CircularStd-Book',
                  color: Hexcolor("#9D9D9C"),
               ),
             ),
@@ -241,6 +257,7 @@ class _EditProfileState extends State<EditProfile> {
                         filled: true,
                         hintText: 'Phone No',
                       ),
+                      style: TextStyle(fontFamily: 'CircularStd-Medium'),
                       validator: (value) {
                         // RegExp regExp = new RegExp(r'^[0-9]*$');
                         if (value.isEmpty) {
@@ -347,7 +364,7 @@ class _EditProfileState extends State<EditProfile> {
         ),
         child: Text(
           'Save',
-          style: TextStyle(fontSize: 20, color: Colors.white),
+          style: TextStyle(fontSize: 20,fontFamily: 'CircularStd-Medium', color: Colors.white),
         ),
       ),
     );
@@ -402,12 +419,9 @@ class _EditProfileState extends State<EditProfile> {
             elevation: 0.0,
             leading: _backArrowWidget(),
             centerTitle: true,
-            title: Padding(
-              padding: const EdgeInsets.only(left: 0, top: 10,right: 30),
-              child: Center(
-                  child: Text('Edit Profile',
-                      style: TextStyle(fontSize: 18, color: Colors.black))),
-            ),
+            title:  Text('Particulars Update',
+                      style: TextStyle(fontSize: 18,fontFamily: 'CircularStd-Bold', color: Colors.black)
+                      ),
             backgroundColor: Colors.white,
           ),
         body: Container(
@@ -421,14 +435,20 @@ class _EditProfileState extends State<EditProfile> {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
+                          new Divider(
+                        height: 0,
+                        endIndent: 0,
+                        indent: 0,
+                        color: Hexcolor('#D9DBDA'),
+                      ),
                           SizedBox(
-                            height: height * .1,
+                            height: height * .01,
                           ),
-                          // _profileImageWidget(),
-                          SizedBox(height: 20),
+                          _profileImageWidget(),
+                          SizedBox(height: 5),
                           // _titleWidget(),
                           SizedBox(
-                            height: 50,
+                            height: 20,
                           ),
                           _credientialWidget(),
                           SizedBox(

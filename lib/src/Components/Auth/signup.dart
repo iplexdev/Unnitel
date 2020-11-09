@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:unniTel/src/Components/Auth/login.dart';
 import 'package:unniTel/src/Components/homeScreen.dart';
 // Data Member
@@ -73,6 +74,7 @@ class _SignUpState extends State<SignUp> {
          text: 'Create your account',
             style: TextStyle(
               fontSize:20,
+              fontFamily: 'CircularStd-Medium',
               color:Colors.black
               ),
       )
@@ -86,7 +88,7 @@ class _SignUpState extends State<SignUp> {
       children:<Widget>[
         _emailField('Email'),
         _passworfField('Password', isPassword: true),
-        _confirmedPasswordField('confirm Password', isPassword: true),
+        _confirmedPasswordField('Confirm Password', isPassword: true),
       ]
     ),
     );
@@ -103,6 +105,7 @@ class _SignUpState extends State<SignUp> {
             title,
             style: TextStyle(
               fontSize: 16,
+              fontFamily: 'CircularStd-Book',
               color: Colors.black45
             ),
           ),
@@ -116,13 +119,15 @@ class _SignUpState extends State<SignUp> {
               fillColor: Color(0xfff3f3f4),
               filled: true,
               hintText: 'example@example.com',
+              hintStyle: TextStyle(fontSize: 16)
             ),
+            style: TextStyle(fontSize:18, fontFamily:'CircularStd-Medium', color:Colors.black),
             validator: (email) => EmailValidator.validate(email)?null
             : "Invalid Email",
             onSaved: (email) => _email = email,
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.emailAddress,
-            autofocus: true,
+            // autofocus: true,
             focusNode: _emailFocusNode,
             onFieldSubmitted: (_) {
               fieldFocusNode(context, _emailFocusNode, _passwordFocusNode);
@@ -143,6 +148,7 @@ class _SignUpState extends State<SignUp> {
             title,
             style:TextStyle(
               fontSize: 16,
+              fontFamily: 'CircularStd-Book',
               color: Colors.black45
             ),
           ),
@@ -156,7 +162,9 @@ class _SignUpState extends State<SignUp> {
               fillColor: Color(0xfff3f3f4),
               filled: true,
               hintText: '********',
+              hintStyle: TextStyle(fontSize: 16)
             ),
+            style: TextStyle(fontSize:18,fontFamily: 'CircularStd-Medium',color: Colors.black),
             validator:(value){
               // Pattern pattern = r'^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$';
               // RegExp regExp = new RegExp(pattern);
@@ -191,6 +199,7 @@ class _SignUpState extends State<SignUp> {
             title,
             style:TextStyle(
               fontSize: 16,
+              fontFamily: 'CircularStd-Book',
               color: Colors.black45
             ),
           ),
@@ -204,7 +213,9 @@ class _SignUpState extends State<SignUp> {
               fillColor: Color(0xfff3f3f4),
               filled: true,
               hintText: '********',
+              hintStyle: TextStyle(fontSize:16)
             ),
+            style: TextStyle(fontSize:18,fontFamily:'CircularStd-Medium', color:Colors.black),
             validator:(value){
               if(value.isEmpty){
                 return 'Please enter Password';
@@ -253,6 +264,7 @@ class _SignUpState extends State<SignUp> {
             'Sign Up',
             style: TextStyle(
               fontSize: 20,
+              fontFamily: 'CircularStd-Medium',
               color: Colors.white
             ),
           ),
@@ -354,8 +366,8 @@ Widget _socialLoginWidget() {
           children: <Widget>[
             Text('Already have an account ?',
             style: TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w600
+              fontSize: 16,
+              fontFamily: 'CircularStd-Book',
             ),
             ),
             SizedBox(
@@ -364,9 +376,9 @@ Widget _socialLoginWidget() {
             Text(
               'Sign In',
               style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w600,
-                color: Color(0xfff79c4f),
+                fontSize: 18,
+                fontFamily: 'CircularStd-Bold',
+                color: Hexcolor('#C2D21D'),
               ),
             )
           ]

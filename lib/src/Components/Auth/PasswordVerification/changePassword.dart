@@ -43,13 +43,14 @@ class _ChangePasswordState extends State<ChangePassword> {
           children: <Widget>[
             Text(
               title,
-              style: TextStyle(fontSize: 16, color: Colors.black45),
+              style: TextStyle(fontSize: 16, color: Hexcolor("#9D9D9C"),
+              fontWeight: FontWeight.w400,fontFamily: 'CircularStd-Book'),
             ),
             SizedBox(
               height: 8,
             ),
             TextFormField(
-              // controller: _newPassCntrl,
+              controller: _oldPassCntrl,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 fillColor: Color(0xfff3f3f4),
@@ -68,7 +69,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                 return null;
               },
               onSaved: (value) => _oldPass = value,
-              autofocus: true,
+              // autofocus: true,
               focusNode: _oldPasswordFocus,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
@@ -90,7 +91,8 @@ class _ChangePasswordState extends State<ChangePassword> {
           children: <Widget>[
             Text(
               title,
-              style: TextStyle(fontSize: 16, color: Colors.black45),
+              style: TextStyle(fontSize: 16, color: Hexcolor("#9D9D9C"),
+              fontWeight: FontWeight.w400,fontFamily: 'CircularStd-Book'),
             ),
             SizedBox(
               height: 8,
@@ -137,7 +139,8 @@ class _ChangePasswordState extends State<ChangePassword> {
           children: <Widget>[
             Text(
               title,
-              style: TextStyle(fontSize: 16, color: Colors.black45),
+              style: TextStyle(fontSize: 16, color: Hexcolor("#9D9D9C"),
+              fontWeight: FontWeight.w400,fontFamily: 'CircularStd-Book'),
             ),
             SizedBox(
               height: 8,
@@ -173,19 +176,21 @@ class _ChangePasswordState extends State<ChangePassword> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          InkWell(
+          GestureDetector(
             onTap: () {
+              FocusScope.of(context).requestFocus(FocusNode());
               Navigator.pop(context);
             },
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Row(children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(left: 0, top: 20, bottom: 10),
-                  child: Icon(
-                    Icons.keyboard_arrow_left,
-                    color: Colors.black,
-                  ),
+                  padding: EdgeInsets.only(left: 0, top: 12, bottom: 10),
+                  // child: Icon(
+                  //   Icons.keyboard_arrow_left,
+                  //   color: Colors.black,
+                  // ),
+                  child:Image(image: AssetImage('assets/images/back-arrow-icon.png'),width: 20, fit: BoxFit.fill,)
                 ),
               ]),
             ),
@@ -216,7 +221,7 @@ class _ChangePasswordState extends State<ChangePassword> {
         ),
         child: Text(
           'Save',
-          style: TextStyle(fontSize: 20, color: Colors.white),
+          style: TextStyle(fontSize: 20,fontFamily: 'CircularStd-Medium', color: Colors.white),
         ),
       ),
     );
@@ -225,56 +230,65 @@ class _ChangePasswordState extends State<ChangePassword> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      minimum: const EdgeInsets.only(bottom: 5.0),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomPadding:false,
         backgroundColor: Colors.white,
         appBar: AppBar(
           elevation: 0.0,
           leading: _backArrowWidget(),
           centerTitle: true,
-          title: Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Text(
+          title:  Text(
               'Change Password',
-              style: TextStyle(fontSize: 20, color: Colors.black),
+              style: TextStyle(fontSize: 20,fontFamily: 'CircularStd-Bold', color: Colors.black),
               textAlign: TextAlign.center,
             ),
-          ),
+          
           backgroundColor: Colors.white,
         ),
-        body: Container(
-          child: Stack(
-            children: [
-              Column(
-                children: [
-                  new Divider(
-                    height: 0,
-                    color: Hexcolor('#5D6561'),
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        _credientialWidget(),
-                      ],
+        body: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            child: Stack(
+              children: [
+                Column(
+                  children: [
+                    new Divider(
+                      height: 0,
+                      color: Hexcolor('#5D6561'),
                     ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 50, left: 20, right: 20),
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Positioned(
-                    child: Column(
-                      //  crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [_savePassWidget()],
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          _credientialWidget(),
+                          SizedBox(height:80),
+                          _savePassWidget()
+                        ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              )
-            ],
+                // Padding(
+                //   padding: const EdgeInsets.only(bottom: 60, left: 20, right: 20),
+                //   child: 
+                //   Align(
+                //     alignment: Alignment.bottomCenter,
+                //     child: Positioned(
+                //       child: Column(
+                //         //  crossAxisAlignment: CrossAxisAlignment.end,
+                //         mainAxisAlignment: MainAxisAlignment.end,
+                //         children: [
+                //           _savePassWidget()
+                //           ],
+                //       ),
+                //     ),
+                //   ),
+                // )
+              ],
+            ),
           ),
         ),
       ),

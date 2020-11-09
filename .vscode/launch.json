@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+      
 
         
         {
@@ -12,29 +13,29 @@
             "request": "launch",
             "type": "dart"
         },
-        {
-            "name": "Android",
-            "request": "launch",
-            "type": "dart",
-            "deviceId": "emulator-5554"
-          },
+        // {
+        //     "name": "Android",
+        //     "request": "launch",
+        //     "type": "dart",
+        //     "deviceId": "emulator-5554"
+        //   },
           // {
           //   "name": "iPhone",
           //   "request": "launch",
           //   "type": "dart",
           //   "deviceId": "8F538B14-E3A1-48E3-BACB-CEFBABED93DF"
           // },
-          {
-            "name": "iPhone",
-            "request": "launch",
-            "type": "dart",
-            "deviceId": "783C02A1-2118-4F61-A5F0-17ED22938340"
-          },
+          // {
+          //   "name": "iPhone",
+          //   "request": "launch",
+          //   "type": "dart",
+          //   "deviceId": "783C02A1-2118-4F61-A5F0-17ED22938340"
+          // },
     ],
-    "compounds": [
-        {
-          "name": "All Devices",
-          "configurations": ["Android", "iPhone"]
-        }
-      ]
+    // "compounds": [
+    //     {
+    //       "name": "All Devices",
+    //       "configurations": ["Android", "iPhone"]
+    //     }
+    //   ]
 }

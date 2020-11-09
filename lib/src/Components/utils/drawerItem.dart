@@ -3,27 +3,27 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 Color primaryGreen = Color(0xff416d6d);
 List<Map> drawerItems=[
   {
-    'icon': FontAwesomeIcons.home,
+    'icon': 'assets/images/home-icon.png',
     'title' : 'Home'
   },
   {
-    'icon': FontAwesomeIcons.equals,
+    'icon': 'assets/images/package-icon.png',
     'title' : 'Packages'
   },
   {
-    'icon': FontAwesomeIcons.wifi,
+    'icon': 'assets/images/device-icon.png',
     'title' : 'Devices'
   },
   {
-    'icon': FontAwesomeIcons.user,
+    'icon': 'assets/images/account-icon.png',
     'title' : 'My Account'
   },
   {
-    'icon': FontAwesomeIcons.cog,
+    'icon': 'assets/images/setting-icon.png',
     'title' : 'Settings'
   },
   {
-    'icon': FontAwesomeIcons.signOutAlt,
+    'icon': 'assets/images/sign-out-icon.png',
     'title' : 'Sign Out'
   },
 ];

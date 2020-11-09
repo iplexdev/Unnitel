@@ -24,7 +24,7 @@ class _SettingsState extends State<Settings> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          InkWell(
+          GestureDetector(
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => MainScreen(res: widget.actualData,)));
@@ -33,11 +33,8 @@ class _SettingsState extends State<Settings> {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Row(children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(left: 0, top: 20, bottom: 10),
-                  child: Icon(
-                    Icons.keyboard_arrow_left,
-                    color: Colors.black,
-                  ),
+                  padding: EdgeInsets.only(left: 0, top: 12, bottom: 10,),
+                  child:Image(image: AssetImage('assets/images/back-arrow-icon.png'),width: 20, fit: BoxFit.fill,)
                 ),
               ]),
             ),
@@ -56,37 +53,51 @@ class _SettingsState extends State<Settings> {
           elevation: 0.0,
           leading: _backArrowWidget(),
           centerTitle: true,
-          title: Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Text(
+          title:  Text(
               'Settings',
-              style: TextStyle(fontSize: 20, color: Colors.black),
+              style: TextStyle(fontSize: 20,fontFamily: 'CircularStd-Bold', color: Colors.black),
               textAlign: TextAlign.center,
             ),
-          ),
+          
           backgroundColor: Colors.white,
         ),
         body: Container(
+          height: MediaQuery.of(context).size.height,
           child: Stack(
             children: [
               Column(
                 children: [
                   new Divider(
                     color: Hexcolor('#5D6561'),
+                    height: 0,
                   ),
+                  SizedBox(height:10),
                   Container(
-                    height: 500,
+                    height: 350,
                     child: ListView(
                       children: <Widget>[
                         ListTile(
+                          onTap: () {
+                            Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              NotificationScreen(actualData: widget.actualData))
+                                              );
+                          },
                             leading: Image.asset(
                                 'assets/images/notification_icon.png'),
-                            title: Text('Notification Settings', style: TextStyle(
-                              fontSize: 18,fontWeight: FontWeight.w400
-                            ),),
+                            title: Text('Notification Settings',
+                             style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                              // fontWeight: FontWeight.normal,
+                               fontFamily: 'SFUIText-Medium'
+                            ),
+                            ),
                             trailing: IconButton(
                                 icon: Icon(
-                                  Icons.arrow_right_alt_outlined,
+                                  Icons.arrow_forward_rounded,
                                   color: Colors.black,
                                   size: 30,
                                 ),
@@ -95,7 +106,8 @@ class _SettingsState extends State<Settings> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              NotificationScreen(actualData: widget.actualData)));
+                                              NotificationScreen(actualData: widget.actualData))
+                                              );
                                 })),
                         new Divider(
                           color: Hexcolor('#5D6561'),
@@ -105,14 +117,24 @@ class _SettingsState extends State<Settings> {
                           endIndent: 20,
                         ),
                         ListTile(
+                          onTap: () {
+                             Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ChangePassword(actualData: widget.actualData))
+                                              );
+                          },
                             leading: Image.asset(
                                 'assets/images/data_remianing_icon.png'),
                             title: Text('Change password', style: TextStyle(
-                              fontSize: 18,fontWeight: FontWeight.w400
+                              fontSize: 18,fontFamily: 'SFUIText-Medium',
+                              // fontWeight: FontWeight.normal,
+                              color: Colors.black
                             ),),
                             trailing: IconButton(
                                 icon: Icon(
-                                  Icons.arrow_right_alt_outlined,
+                                  Icons.arrow_forward_rounded,
                                   color: Colors.black,
                                   size: 30,
                                 ),
@@ -121,7 +143,8 @@ class _SettingsState extends State<Settings> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              ChangePassword(actualData: widget.actualData)));
+                                              ChangePassword(actualData: widget.actualData))
+                                              );
                                 })),
                         new Divider(
                           color: Hexcolor('#5D6561'),
@@ -131,14 +154,22 @@ class _SettingsState extends State<Settings> {
                           height: 0,
                         ),
                         ListTile(
+                          onTap: () {
+                             Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Profile(accountData: widget.actualData,)));
+                          },
                             leading: Image.asset(
                                 'assets/images/change_part_icon.png'),
                             title: Text('Change Particulars', style: TextStyle(
-                              fontSize: 18,fontWeight: FontWeight.w400
+                              fontSize: 18,fontFamily: 'SFUIText-Medium',
+                              fontWeight: FontWeight.normal,
+                              color: Colors.black
                             ),),
                             trailing: IconButton(
                                 icon: Icon(
-                                  Icons.arrow_right_alt_outlined,
+                                   Icons.arrow_forward_rounded,
                                   color: Colors.black,
                                   size: 30,
                                 ),
@@ -157,10 +188,14 @@ class _SettingsState extends State<Settings> {
                         ),
                         ListTile(
                             leading: Image.asset('assets/images/help_icon.png'),
-                            title: Text('Help'),
+                            title: Text('Help', style: TextStyle(
+                              fontSize: 18,fontFamily: 'SFUIText-Medium',
+                              fontWeight: FontWeight.normal,
+                              color: Colors.black
+                            ),),
                             trailing: IconButton(
                                 icon: Icon(
-                                  Icons.arrow_right_alt_outlined,
+                                   Icons.arrow_forward_rounded,
                                   color: Colors.black,
                                   size: 30,
                                 ),
@@ -173,14 +208,23 @@ class _SettingsState extends State<Settings> {
                           height: 0,
                         ),
                         ListTile(
+                          onTap: () {
+                             Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ManageDevices(accountData: widget.actualData)));
+                          },
                             leading:
                                 Image.asset('assets/images/manage_device.png'),
                             title: Text('Manage Devices', style: TextStyle(
-                              fontSize: 18,fontWeight: FontWeight.w400
+                              fontSize: 18,fontFamily: 'SFUIText-Medium',
+                              fontWeight: FontWeight.normal,
+                              color: Colors.black
                             ),),
                             trailing: IconButton(
                                 icon: Icon(
-                                  Icons.arrow_right_alt_outlined,
+                                   Icons.arrow_forward_rounded,
                                   color: Colors.black,
                                   size: 30,
                                 ),
@@ -199,14 +243,22 @@ class _SettingsState extends State<Settings> {
                           height: 0,
                         ),
                         ListTile(
+                          onTap: () {
+                                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder:
+                                   (BuildContext context) =>
+                                   LoginScreen()), 
+                                   (route) => false);
+                          },
                             leading:
                                 Image.asset('assets/images/logouts_icon.png'),
                             title: Text('Sign Out', style: TextStyle(
-                              fontSize: 18,fontWeight: FontWeight.w400
+                              fontSize: 18,fontFamily: 'SFUIText-Medium',
+                              fontWeight: FontWeight.normal,
+                              color: Colors.black
                             ),),
                             trailing: IconButton(
                                 icon: Icon(
-                                  Icons.arrow_right_alt_outlined,
+                                   Icons.arrow_forward_rounded,
                                   color: Colors.black,
                                   size: 30,
                                 ),

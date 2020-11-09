@@ -47,11 +47,12 @@ class _PaymentState extends State<Payment> {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Row(children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(left: 0, top: 20, bottom: 10),
-                  child: Icon(
-                    Icons.keyboard_arrow_left,
-                    color: Colors.black,
-                  ),
+                  padding: EdgeInsets.only(left: 0, top: 12, bottom: 10),
+                  // child: Icon(
+                  //   Icons.keyboard_arrow_left,
+                  //   color: Colors.black,
+                  // ),
+                  child:Image(image: AssetImage('assets/images/back-arrow-icon.png'),width: 20, fit: BoxFit.fill,)
                 ),
               ]),
             ),
@@ -104,32 +105,33 @@ class _PaymentState extends State<Payment> {
                           widget.actualData['devices'][1]['dataPackages'][0]['goodsName'],
                           style: TextStyle(
                               color: Colors.black,
-                              fontWeight: FontWeight.normal,
+                              // fontWeight: FontWeight.normal,
+                              fontFamily: 'CircularStd-Bold',
                               fontSize: 16.0),
                         ),
                         Text(
                           'Quality:' + "1",
                           style: TextStyle(
-                              color: Hexcolor('#9D9D9C'), fontSize: 12.0),
+                              color: Hexcolor('#9D9D9C'), fontSize: 13.0,fontFamily: 'CircularStd-Book'),
                         ),
                         Text(
                           'Price: ' + "US\$" + (widget.price).toString(),
                           style: TextStyle(
-                              color: Hexcolor('#9D9D9C'), fontSize: 12.0),
+                              color: Hexcolor('#9D9D9C'), fontSize: 13.0,fontFamily: 'CircularStd-Book'),
                         )
                       ],
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(left: 70),
-                    //   child: Flexible(
-                    //     child: FDottedLine(
-                    //       color: Hexcolor("#F0F1F6"),
-                    //       height: 60.0,
-                    //       dottedLength: 4,
-                    //       space: 2,
-                    //     ),
-                    //   ),
-                    // ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 135),
+                      child: Flexible(
+                        child: FDottedLine(
+                          color: Hexcolor("#F0F1F6"),
+                          height: 50.0,
+                          dottedLength: 4,
+                          space: 2,
+                        ),
+                      ),
+                    ),
                     // Padding(
                     //   padding: const EdgeInsets.only(right: 8.0),
                       Flexible(
@@ -144,19 +146,22 @@ class _PaymentState extends State<Payment> {
                           //       width: 1,
                           //     ),
                           //     color: Hexcolor('#E5F7F1')),
-                          child: Column(
-                            children: [
-                              Text(
-                                'Total',
-                                style: TextStyle(
-                                    color: Hexcolor('#00B074'), fontSize: 14.0,fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                'US\$' + (widget.price).toString(),
-                                style: TextStyle(
-                                    color: Hexcolor('#00B074'), fontSize: 14.0,fontWeight: FontWeight.bold),
-                              ),
-                            ],
+                          child: Padding(
+                            padding: EdgeInsets.only(top:5),
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Total',
+                                  style: TextStyle(
+                                      color: Hexcolor('#00B074'), fontSize: 14.0,fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  'US\$' + (widget.price).toString(),
+                                  style: TextStyle(
+                                      color: Hexcolor('#00B074'), fontSize: 14.0,fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -181,7 +186,8 @@ class _PaymentState extends State<Payment> {
             'Payment Details',
             style: TextStyle(
                 fontSize: 18,
-                fontWeight: FontWeight.normal,
+                // fontWeight: FontWeight.normal,
+                fontFamily: 'CircularStd-Bold',
                 color: Colors.black),
           ),
           SizedBox(height: 25),
@@ -197,7 +203,7 @@ class _PaymentState extends State<Payment> {
       key: _formKey,
       child: Column(
         children: <Widget>[
-          _fullNameWidget('Cart Name'),
+          _fullNameWidget('Name on Card'),
           SizedBox(height: 30),
           _cardNumberField('Card Number'),
           SizedBox(height: 24),
@@ -221,7 +227,7 @@ class _PaymentState extends State<Payment> {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(fname,
-                  style: TextStyle(fontSize: 14, color: Hexcolor('#9D9D9C'))),
+                  style: TextStyle(fontSize: 16,fontFamily: 'CircularStd-Book', color: Hexcolor('#9D9D9C'))),
               SizedBox(height: 10),
               TextFormField(
                 controller: _fnameCntrl,
@@ -229,12 +235,15 @@ class _PaymentState extends State<Payment> {
                   border: InputBorder.none,
                   fillColor: Color(0xfff3f3f4),
                   filled: true,
-                  hintText: 'Cart Name',
+                  hintText: 'Name on Card',
+                  hintStyle: TextStyle(fontSize: 16)
+                  // hintStyle: TextStyle(color: Colors.black)
                 ),
+                style: TextStyle(fontSize: 18,fontFamily: 'CircularStd-Medium',color:Colors.black),
                 validator: (value) {
                   // RegExp regExp = new RegExp(r'^[a-z]*$');
                   if (value.isEmpty) {
-                    return "Please Enter Cart Name";
+                    return "Please Enter Name on Card";
                   } 
                   // else if (!regExp.hasMatch(value)) {
                   //   return "Invalid Name";
@@ -249,7 +258,7 @@ class _PaymentState extends State<Payment> {
                   // ignore: deprecated_member_use
                   new WhitelistingTextInputFormatter(RegExp("[a-zA-Z]")),
                 ],
-                autofocus: true,
+                // autofocus: true,
                 focusNode: _fnameFocus,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.text,
@@ -311,7 +320,7 @@ class _PaymentState extends State<Payment> {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
           title,
-          style: TextStyle(fontSize: 14, color: Hexcolor('#9D9D9C')),
+          style: TextStyle(fontSize: 16, color: Hexcolor('#9D9D9C'),fontFamily: 'CircularStd-Book'),
         ),
         SizedBox(height: 10),
         TextFormField(
@@ -321,7 +330,9 @@ class _PaymentState extends State<Payment> {
             fillColor: Color(0xfff3f3f4),
             filled: true,
             hintText: '1111222233334444',
+            hintStyle: TextStyle(fontSize: 16)
           ),
+          style: TextStyle(fontSize: 18,fontFamily: 'CircularStd-Medium',color: Colors.black),
           validator: (value) {
             RegExp regExp = new RegExp(r'^[0-9]*$');
             if (value.isEmpty) {
@@ -330,7 +341,7 @@ class _PaymentState extends State<Payment> {
             else if (!regExp.hasMatch(value)) {
               return "Invalid Phone Number";
             } 
-            else if (_cardNoCntrl.text.length <= 16) {
+            else if (_cardNoCntrl.text.length < 16) {
               return "Invalid.Must be 16 digit";
             }
             return null;
@@ -360,7 +371,7 @@ class _PaymentState extends State<Payment> {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(month,
-                  style: TextStyle(fontSize: 14, color: Hexcolor('#9D9D9C'))),
+                  style: TextStyle(fontSize: 16, color: Hexcolor('#9D9D9C'),fontFamily: 'CircularStd-Book')),
               SizedBox(height: 10),
               TextFormField(
                 controller: _monthCntrl,
@@ -369,7 +380,9 @@ class _PaymentState extends State<Payment> {
                   fillColor: Color(0xfff3f3f4),
                   filled: true,
                   hintText: 'Month',
+                  hintStyle: TextStyle(fontSize: 16)
                 ),
+                style: TextStyle(fontSize: 18,fontFamily: 'CircularStd-Medium',color: Colors.black),
                 validator: (value) {
                   RegExp regExp = new RegExp(r'^[0-9]*$');
                   if (value.isEmpty) {
@@ -404,7 +417,7 @@ class _PaymentState extends State<Payment> {
                   children: [
                     Text(year,
                         style: TextStyle(
-                            fontSize: 14, color: Hexcolor('#9D9D9C'))),
+                            fontSize: 16,fontFamily: 'CircularStd-Book', color: Hexcolor('#9D9D9C'))),
                     SizedBox(height: 10),
                     TextFormField(
                       controller: _yearCntrl,
@@ -413,7 +426,9 @@ class _PaymentState extends State<Payment> {
                         fillColor: Color(0xfff3f3f4),
                         filled: true,
                         hintText: 'Year',
+                        hintStyle: TextStyle(fontSize: 16)
                       ),
+                      style: TextStyle(fontSize: 18, fontFamily:'CircularStd-Medium',color:Colors.black),
                       validator: (value) {
                         RegExp regExp = new RegExp(r'^[0-9]*$');
                         if (value.isEmpty) {
@@ -450,7 +465,7 @@ class _PaymentState extends State<Payment> {
   Widget _cardSecurityCodeWidget(String code) {
     return Container(
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(code, style: TextStyle(fontSize: 14, color: Hexcolor('#9D9D9C'))),
+        Text(code, style: TextStyle(fontSize: 16,fontFamily: 'CircularStd-Book', color: Hexcolor('#9D9D9C'))),
         SizedBox(height: 10),
         TextFormField(
           controller: _secCntrl,
@@ -459,7 +474,9 @@ class _PaymentState extends State<Payment> {
             fillColor: Color(0xfff3f3f4),
             filled: true,
             hintText: 'Enter Security Code',
+            hintStyle: TextStyle(fontSize: 16)
           ),
+          style: TextStyle(fontSize: 18, fontFamily:'CircularStd-Medium',color:Colors.black),
           validator: (value) {
             RegExp regExp = new RegExp(r'^[0-9]*$');
             if (value.isEmpty) {
@@ -522,7 +539,7 @@ class _PaymentState extends State<Payment> {
   Widget _playNowWidget() {
     return InkWell(
       onTap: () {
-        if (_formKey.currentState.validate() && isSwitched) {
+        if (_formKey.currentState.validate()) {
            _formKey.currentState.save();
           toastMessage('Save Successfully', isSwitched);
           Navigator.push(context,
@@ -540,8 +557,8 @@ class _PaymentState extends State<Payment> {
           color: Colors.lime[600],
         ),
         child: Text(
-          'Play Now',
-          style: TextStyle(fontSize: 20, color: Colors.white),
+          'Pay Now',
+          style: TextStyle(fontSize: 20, color: Colors.white,fontFamily: 'CircularStd-Medium'),
         ),
       ),
     );
@@ -559,18 +576,18 @@ class _PaymentState extends State<Payment> {
           elevation: 0.0,
           leading: _backArrowWidget(),
           centerTitle: true,
-          title: Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Text(
+          title:  Text(
               'Cart',
-              style: TextStyle(fontSize: 20, color: Colors.black),
+              style: TextStyle(fontSize: 20,
+              fontFamily: 'CircularStd-Bold',
+               color: Colors.black),
               textAlign: TextAlign.center,
             ),
-          ),
           backgroundColor: Colors.white,
         ),
         body: SingleChildScrollView(
           child: Container(
+            color: Colors.white,
             // height: MediaQuery.of(context).size.height,
             child: Stack(
               children: [
@@ -578,7 +595,8 @@ class _PaymentState extends State<Payment> {
                   children: [
                     new Divider(
                       height: 0,
-                      color: Hexcolor('#5D6561'),
+                      // color: Hexcolor('#5D6561'),
+                      color: Hexcolor('#DEDFE0'),
                     ),
                     Container(
                       padding:

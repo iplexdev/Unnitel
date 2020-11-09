@@ -11,7 +11,7 @@ class _VerifyPasswordState extends State<VerifyPassword> {
     bool _onEditing = true;
   // BACK WIDGET
   Widget _backWidget() {
-    return InkWell(
+    return GestureDetector(
       onTap:() {
         Navigator.pop(context);
       },
@@ -21,10 +21,12 @@ class _VerifyPasswordState extends State<VerifyPassword> {
           children:<Widget>[
             Container(
               padding: EdgeInsets.only(left:0,top:10,bottom:10),
-              child: Icon(
-                Icons.keyboard_arrow_left,
-                color: Colors.black,
-                ),
+              child: 
+              // Icon(
+              //   Icons.keyboard_arrow_left,
+              //   color: Colors.black,
+              //   ),
+               Image.asset('assets/images/back-arrow-icon.png')
             ),
           ]
         ),
@@ -50,6 +52,7 @@ class _VerifyPasswordState extends State<VerifyPassword> {
          text: 'Verification Code',
             style: TextStyle(
               fontSize:20,
+              fontFamily: 'CircularStd-Medium',
               color:Colors.black
               ),
       )
@@ -64,10 +67,11 @@ class _VerifyPasswordState extends State<VerifyPassword> {
             length: 6,
             textStyle: TextStyle(
               fontSize:20,
+              fontFamily: 'CircularStd-Medium',
               color:Colors.black,
             ),
             keyboardType: TextInputType.number,
-            autofocus: true,
+            // autofocus: true,
             onCompleted: (String value) {
               setState(() {
                 _code = value;
@@ -113,6 +117,7 @@ class _VerifyPasswordState extends State<VerifyPassword> {
           "Verify",
           style:TextStyle(
             fontSize:20,
+            fontFamily: 'CircularStd-Medium',
             color: Colors.white,
           ),
         ),
@@ -131,7 +136,7 @@ class _VerifyPasswordState extends State<VerifyPassword> {
            children:<Widget>[
              Positioned(
                top:30,
-               left:0,
+               left:10,
                child:_backWidget(),
              ),
              Container(

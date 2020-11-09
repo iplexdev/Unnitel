@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:unniTel/src/Components/Settings/Manage%20Devices/manageDevice.dart';
 
 class NotificationScreen extends StatefulWidget {
   final actualData;
@@ -10,13 +11,15 @@ class NotificationScreen extends StatefulWidget {
 
 class _NotificationScreenState extends State<NotificationScreen> {
   bool isSwitched = true;
+  bool isSwitch = true;
+  bool isEnable = true;
   // Back Widget
   Widget _backArrowWidget() {
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          InkWell(
+          GestureDetector(
             onTap: () {
               Navigator.pop(context);
             },
@@ -24,11 +27,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Row(children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(left: 0, top: 20, bottom: 10),
-                  child: Icon(
-                    Icons.keyboard_arrow_left,
-                    color: Colors.black,
-                  ),
+                  padding: EdgeInsets.only(left: 0, top: 12, bottom: 10),
+                  // child: Icon(
+                  //   Icons.keyboard_arrow_left,
+                  //   color: Colors.black,
+                  // ),
+                  child:Image(image: AssetImage('assets/images/back-arrow-icon.png'),width: 20, fit: BoxFit.fill,),
                 ),
               ]),
             ),
@@ -47,14 +51,11 @@ class _NotificationScreenState extends State<NotificationScreen> {
           elevation: 0.0,
           leading: _backArrowWidget(),
           centerTitle: true,
-          title: Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Text(
+          title:Text(
               'Notifications',
-              style: TextStyle(fontSize: 20, color: Colors.black),
+              style: TextStyle(fontSize: 20,fontFamily: 'CircularStd-Bold', color: Colors.black),
               textAlign: TextAlign.center,
             ),
-          ),
           backgroundColor: Colors.white,
         ),
         body: Container(
@@ -64,6 +65,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 children: [
                   new Divider(
                     color: Hexcolor('#5D6561'),
+                    height: 0,
                   ),
                   Container(
                     height: 250,
@@ -72,7 +74,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         ListTile(
                           leading: Image.asset('assets/images/atrate_icon.png'),
                           title: Text('Email Data usage', style: TextStyle(
-                              fontSize: 18,fontWeight: FontWeight.w400
+                              fontSize: 18,fontFamily: 'SFUIText-Medium',
                             ),),
                           trailing: Switch(
                             value: isSwitched,
@@ -95,13 +97,13 @@ class _NotificationScreenState extends State<NotificationScreen> {
                           leading: Image.asset(
                               'assets/images/data_remianing_icon.png'),
                           title: Text('Data Remaining', style: TextStyle(
-                              fontSize: 18,fontWeight: FontWeight.w400
+                              fontSize: 18,fontFamily: 'SFUIText-Medium',
                             ),),
-                          trailing: Switch(
-                            value: false,
+                         trailing: Switch(
+                            value: isSwitch,
                             onChanged: (value) {
                               setState(() {
-                                // isSwitched = value;
+                                isSwitch = value;
                               });
                             },
                             activeTrackColor: Hexcolor('#C2D22B'),
@@ -118,13 +120,13 @@ class _NotificationScreenState extends State<NotificationScreen> {
                           leading:
                               Image.asset('assets/images/battery_icon.png'),
                           title: Text('Battery Alarm', style: TextStyle(
-                              fontSize: 18,fontWeight: FontWeight.w400
+                              fontSize: 18,fontFamily: 'SFUIText-Medium',
                             ),),
                           trailing: Switch(
-                            value: false,
+                            value: isEnable,
                             onChanged: (value) {
                               setState(() {
-                                // isSwitched = value;
+                                isEnable = value;
                               });
                             },
                             activeTrackColor: Hexcolor('#C2D22B'),

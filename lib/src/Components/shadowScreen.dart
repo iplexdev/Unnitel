@@ -3,7 +3,7 @@ import 'package:hexcolor/hexcolor.dart';
 
 class ShadowScreen extends StatelessWidget {
   double xOffset = 290;
-  double yOffset = 190;
+  double yOffset = 160;
   double scaleFactor = 0.6;
   @override
   Widget build(BuildContext context) {

@@ -11,7 +11,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   final _formKey = GlobalKey<FormState>();
   // BACK WIDGET
   Widget _backWidget() {
-    return InkWell(
+    return GestureDetector(
       onTap:() {
         Navigator.pop(context);
       },
@@ -21,10 +21,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           children:<Widget>[
             Container(
               padding: EdgeInsets.only(left:0,top:10,bottom:10),
-              child: Icon(
-                Icons.keyboard_arrow_left,
-                color: Colors.black,
-                ),
+              child: 
+              // Icon(
+              //   Icons.keyboard_arrow_left,
+              //   color: Colors.black,
+              //   ),
+              Image.asset('assets/images/back-arrow-icon.png')
             ),
           ]
         ),
@@ -50,6 +52,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
          text: 'Forgot Password',
             style: TextStyle(
               fontSize:20,
+              fontFamily: 'CircularStd-Medium',
               color:Colors.black
               ),
       )
@@ -76,6 +79,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             title,
             style: TextStyle(
               fontSize: 16,
+              fontFamily: 'CircularStd-Book',
               color: Colors.black45,
             ),
           ),
@@ -88,11 +92,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               fillColor: Color(0xfff3f3f4),
               filled: true,
               hintText: 'example@example.com',
+              hintStyle: TextStyle(fontSize:16)
             ),
+            style: TextStyle(fontSize: 18, fontFamily:'CircularStd-Medium', color:Colors.black),
             validator: (email) => EmailValidator.validate(email)?null: 'Invalid Email',
            keyboardType: TextInputType.emailAddress,
            textInputAction: TextInputAction.done,
-           autofocus: true,
+          //  autofocus: true,
           ),
         ],
       ),
@@ -123,6 +129,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             'Send',
             style: TextStyle(
               fontSize: 20,
+              fontFamily: 'CircularStd-Medium',
               color: Colors.white
             ),
           ),
@@ -135,13 +142,15 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     final height = MediaQuery.of(context).size.height;
    return SafeArea(
      child: Scaffold(
+       resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomPadding:false,
        body: Container(
            height: height,
            child: Stack(
              children: <Widget>[
                Positioned(
                  top:30,
-                 left:0,
+                 left:10,
                  child: _backWidget(),
                ),
                Container(

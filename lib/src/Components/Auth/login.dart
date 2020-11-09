@@ -2,6 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:unniTel/Api/api.dart';
 import 'package:unniTel/src/Components/Auth/PasswordVerification/forgotPassword.dart';
@@ -47,6 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
          text: 'Welcome to UNNItel',
             style: TextStyle(
               fontSize:20,
+              fontFamily: 'CircularStd-Medium',
               color:Colors.black
               ),
       )
@@ -76,7 +78,8 @@ class _LoginScreenState extends State<LoginScreen> {
             title,
             style: TextStyle(
               fontSize: 16,
-              color: Colors.black45
+              fontFamily: 'CircularStd-Book',
+              color: Hexcolor('#9D9D9C')
             ),
           ),
           SizedBox(
@@ -87,15 +90,17 @@ class _LoginScreenState extends State<LoginScreen> {
               border:InputBorder.none,
               fillColor:Color(0xfff3f3f4),
               filled: true,
-              hintText: 'example@example.com'
+              hintText: 'example@example.com',
+              hintStyle: TextStyle(fontSize:16)
             ),
+            style: TextStyle(fontSize:18, fontFamily: 'CircularStd-Medium', color:Colors.black),
             validator: (email) => EmailValidator.validate(email) ? null 
             : 'Invalid Email',
             onSaved: (email) => _email = email,
             controller: emailController,
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.emailAddress,
-            autofocus: true,
+            // autofocus: true,
             focusNode: _emailFocusNode,
             onFieldSubmitted: (_){
               fieldFocusNode(context, _emailFocusNode, _passwordFocusNode);
@@ -115,7 +120,8 @@ class _LoginScreenState extends State<LoginScreen> {
             title,
             style:TextStyle(
               fontSize: 16,
-              color: Colors.black45
+              color: Hexcolor('#9D9D9C'),
+              fontFamily: 'CircularStd-Book'
             ),
           ),
           SizedBox(height:10),
@@ -125,7 +131,9 @@ class _LoginScreenState extends State<LoginScreen> {
               fillColor:Color(0xfff3f3f4),
               filled: true,
               hintText: '********',
+              hintStyle: TextStyle(fontSize:16)
             ),
+            style: TextStyle(fontSize:18, fontFamily:'CircularStd-Medium', color:Colors.black),
             textInputAction: TextInputAction.done,
             obscureText: true,
             keyboardType: TextInputType.text,
@@ -163,12 +171,14 @@ class _LoginScreenState extends State<LoginScreen> {
           if(res.containsKey('status')) {
             toastMessage(res['status']);
             if(res['status'] == 'Login Successful') {
-              setState(() {
-                _isLoading = false;
-              sharedPreferences.setString('token', res['token']);
-              Navigator.push(context, 
-              MaterialPageRoute(builder: (context) => MainScreen(res: res)));
-              });
+               Navigator.of(context).pushAndRemoveUntil(
+                           MaterialPageRoute(builder: (BuildContext context) => MainScreen(res: res)), (Route<dynamic> route) => false);
+              // setState(() {
+              //   _isLoading = false;
+              // sharedPreferences.setString('token', res['token']);
+              //  Navigator.of(context).pushAndRemoveUntil(
+              //              MaterialPageRoute(builder: (BuildContext context) => MainScreen(res: res)), (Route<dynamic> route) => false);
+              // });
             }
           } else {
             toastMessage("Login Failed");
@@ -187,7 +197,8 @@ class _LoginScreenState extends State<LoginScreen> {
             'Sign In',
             style: TextStyle(
               fontSize: 20,
-              color: Colors.white
+              color: Colors.white,
+              fontFamily: 'CircularStd-Medium'
             ),
           ),
         ),
@@ -208,8 +219,9 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Text(
           'Forgot your Password ?',
           style: TextStyle(
-            fontSize: 14,
-            fontWeight:FontWeight.w500,
+            fontSize: 16,
+            // fontWeight:FontWeight.w500,
+            fontFamily: 'CircularStd-Medium',
             color:Colors.black
           ),
         ),
@@ -312,19 +324,21 @@ Widget _registeredWidget() {
           Text(
             'Don\'t have an account ?',
             style: TextStyle(
-              fontSize: 13,
-              fontWeight:FontWeight.w600
+              fontSize: 16,
+              color: Hexcolor('#9D9D9C'),
+              fontFamily: 'CircularStd-Book',
             ),
             ),
             SizedBox(
               width: 5
             ),
             Text(
-              'Sign-up',
+              'Sign Up',
               style:TextStyle(
-                color: Color(0xfff79c4f),
+                color: Hexcolor('#C2D21D'),
+                fontFamily: 'CircularStd-Bold',
                 fontWeight: FontWeight.w600,
-                fontSize: 13
+                fontSize: 18
               )
             )
         ]
@@ -363,14 +377,12 @@ Widget _registeredWidget() {
                     SizedBox(
                       height: 20
                     ),
-                    _loginWidget(),
                     _forgotPasswordWidget(),
-                    // _divider(),
-                    // _socialLoginWidget(),
-                    SizedBox(
-                      height:20
-                    ),
-                    _registeredWidget(),
+                    _loginWidget(),
+                    Container(
+                    transform: Matrix4.translationValues(0.0, -15.0, 0.0),
+                    child:_registeredWidget(),
+                    )
                   ]
                 )
               ),

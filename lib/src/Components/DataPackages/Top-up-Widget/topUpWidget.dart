@@ -64,11 +64,12 @@ class _TopUpWidgetState extends State<TopUpWidget> {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Row(children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(left: 0, top: 20, bottom: 10),
-                  child: Icon(
-                    Icons.keyboard_arrow_left,
-                    color: Colors.black,
-                  ),
+                  padding: EdgeInsets.only(left: 0, top: 12, bottom: 10),
+                  // child: Icon(
+                  //   Icons.keyboard_arrow_left,
+                  //   color: Colors.black,
+                  // ),
+                  child:Image(image: AssetImage('assets/images/back-arrow-icon.png'),width: 20, fit: BoxFit.fill,)
                 ),
               ]),
             ),
@@ -102,7 +103,7 @@ class _TopUpWidgetState extends State<TopUpWidget> {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
           title,
-          style: TextStyle(color: Hexcolor('#9D9D9C'), fontSize: 16,fontWeight: FontWeight.normal),
+          style: TextStyle(color: Hexcolor('#9D9D9C'), fontSize: 16,fontFamily: 'CircularStd-Book'),
         ),
         SizedBox(height: 10),
         Container(
@@ -118,17 +119,16 @@ class _TopUpWidgetState extends State<TopUpWidget> {
                 items: [
                   DropdownMenuItem(
                     child: Text(
-                      _regionDataIndex1
+                      _regionDataIndex1,
                       //  widget.selectedDevice ==0 ? _regionDataIndex0:
                       //   _regionDataIndex1,
-                    ),
+                    style: TextStyle(fontSize: 14,fontFamily: 'CircularStd-Medium'),),
                     value: 1,
                   ),
                   DropdownMenuItem(
                     child: Text(
-                      _regionDataIndex0
-                      //  widget.selectedDevice ==0 ? widget.actualData['devices'][0]['dataPackages'][1]['goodsName']:
-                      //   widget.actualData['devices'][1]['dataPackages'][1]['goodsName'],
+                      _regionDataIndex0,
+                      style: TextStyle(fontSize: 14, fontFamily: 'CircularStd-Medium'),
                     ),
                     value: 2,
                   ),
@@ -157,7 +157,7 @@ class _TopUpWidgetState extends State<TopUpWidget> {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
           title,
-          style: TextStyle(color: Hexcolor('#9D9D9C'), fontSize: 16, fontWeight: FontWeight.normal),
+          style: TextStyle(color: Hexcolor('#9D9D9C'), fontSize: 16, fontFamily: 'CircularStd-Book'),
         ),
         SizedBox(height: 10),
         Container(
@@ -174,28 +174,32 @@ class _TopUpWidgetState extends State<TopUpWidget> {
                   DropdownMenuItem(
                     child: Text(
                       // _selectedGBAtIndex0[1]
-                      "1GB"
+                      "1GB",
+                      style: TextStyle(fontSize: 14,fontFamily: 'CircularStd-Medium'),
                     ),
                     value: 1,
                   ),
                   DropdownMenuItem(
                     child: Text(
                       // _selectedGBAtIndex1[1]
-                      "3GB"
+                      "3GB",
+                       style: TextStyle(fontSize: 14,fontFamily: 'CircularStd-Medium'),
                     ),
                     value: 2,
                   ),
                    DropdownMenuItem(
                     child: Text(
                       // _selectedGBAtIndex1[1]
-                      "5GB"
+                      "5GB",
+                       style: TextStyle(fontSize: 14,fontFamily: 'CircularStd-Medium'),
                     ),
                     value: 3,
                   ),
                    DropdownMenuItem(
                     child: Text(
                       // _selectedGBAtIndex1[1]
-                      "10GB"
+                      "10GB",
+                       style: TextStyle(fontSize: 14,fontFamily: 'CircularStd-Medium'),
                     ),
                     value: 4,
                   ),
@@ -265,11 +269,11 @@ class _TopUpWidgetState extends State<TopUpWidget> {
         children: [
           Text(
             'Price',
-            style: TextStyle(fontSize: 16, color: Hexcolor("#9D9D9C"), fontWeight: FontWeight.normal),
+            style: TextStyle(fontSize: 16, color: Hexcolor("#9D9D9C"), fontFamily: 'CircularStd-Book'),
           ),
           Text(
             'US\$' + (_setPrice).toString(),
-            style: TextStyle(fontSize: 18, color: Hexcolor("#C2D21D")),
+            style: TextStyle(fontSize: 18,fontFamily: 'CircularStd-Bold', color: Hexcolor("#C2D21D")),
           )
         ],
       ),
@@ -283,7 +287,7 @@ class _TopUpWidgetState extends State<TopUpWidget> {
         children:[
         Text(
           title,
-          style: TextStyle(color: Hexcolor('#9D9D9C'), fontSize: 16, fontWeight: FontWeight.normal),
+          style: TextStyle(color: Hexcolor('#9D9D9C'), fontSize: 16,fontFamily: 'CircularStd-Book')
         ),
         SizedBox(height: 10),
           Container(
@@ -302,7 +306,7 @@ class _TopUpWidgetState extends State<TopUpWidget> {
           Text(
             widget.selectedDevice == 0 ?  widget.actualData['devices'][0]['name']:
              widget.actualData['devices'][1]['name'],
-            style: TextStyle(fontSize: 18,),
+            style: TextStyle(fontSize: 14,fontFamily: 'CircularStd-Medium',color: Colors.black),
           )
         ],
       ),
@@ -328,7 +332,7 @@ class _TopUpWidgetState extends State<TopUpWidget> {
         ),
         child: Text(
           'Add to Cart',
-          style: TextStyle(fontSize: 20, color: Colors.white),
+          style: TextStyle(fontSize: 20,fontFamily: 'CircularStd-Medium', color: Colors.white),
         ),
       ),
     );
@@ -343,14 +347,13 @@ class _TopUpWidgetState extends State<TopUpWidget> {
           elevation: 0.0,
           leading: _backArrowWidget(),
           centerTitle: true,
-          title: Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Text(
+          title:Text(
               'Top Up',
-              style: TextStyle(fontSize: 20, color: Colors.black),
+              style: TextStyle(fontSize: 20,
+              fontFamily: 'CircularStd-Bold',
+               color: Colors.black),
               textAlign: TextAlign.center,
             ),
-          ),
           backgroundColor: Colors.white,
         ),
         body: Container(

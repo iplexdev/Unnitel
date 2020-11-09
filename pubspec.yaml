@@ -45,6 +45,8 @@ dependencies:
   shared_preferences: ^0.5.10
   decimal: ^0.3.0
   intl: ^0.16.1
+  auto_size_text: ^2.1.0
+  jiffy: ^3.0.1
 
 
   
@@ -102,6 +104,21 @@ flutter:
      - assets/images/wifi_notConnected.png
      - assets/images/default-flag-icon.png
      - assets/images/battery-icon.png
+     - assets/images/arrow-icon.png
+     - assets/images/user-profile-icon.png
+     - assets/images/back-arrow-icon.png
+     - assets/images/upload-image-icon.png
+     - assets/images/cancel-icon.png
+     - assets/images/home-icon.png
+     - assets/images/package-icon.png
+     - assets/images/device-icon.png
+     - assets/images/account-icon.png
+     - assets/images/setting-icon.png
+     - assets/images/sign-out-icon.png
+
+
+
+
 
 
 
@@ -145,11 +162,28 @@ flutter:
   #       - asset: fonts/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+  fonts:
+    - family: SFUIText-Medium
+      fonts:
+        - asset: fonts/SF-UI-Text-Medium.ttf
+        # - asset: fonts/TrajanPro_Bold.ttf
+          weight: 400
+    - family: CircularStd-Bold
+      fonts:
+        - asset: fonts/CircularStd-Bold.otf
+          weight: 700
+    - family: CircularStd-Book
+      fonts:
+        - asset: fonts/CircularStd-Book.otf
+          weight: 400
+    - family: CircularStd-Medium
+      fonts:
+        - asset: fonts/CircularStd-Medium.otf
+          weight: 500
+    # - family: CircularStd-Black
+    #   fonts:
+    #     - asset: fonts/CircularStd-Black.otf
+    #     - weight: 500     
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

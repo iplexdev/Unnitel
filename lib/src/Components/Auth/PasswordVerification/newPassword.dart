@@ -16,7 +16,7 @@ class _NewPasswordState extends State<NewPassword> {
   FocusNode _confirmPasswordFocus = FocusNode();
   // BACK WIDGET
   Widget _backWidget() {
-    return InkWell(
+    return GestureDetector(
       onTap:() {
         Navigator.pop(context);
       },
@@ -26,10 +26,12 @@ class _NewPasswordState extends State<NewPassword> {
           children:<Widget>[
             Container(
               padding: EdgeInsets.only(left:0,top:10,bottom:10),
-              child: Icon(
-                Icons.keyboard_arrow_left,
-                color: Colors.black,
-                ),
+              child: 
+              // Icon(
+              //   Icons.keyboard_arrow_left,
+              //   color: Colors.black,
+              //   ),
+               Image.asset('assets/images/back-arrow-icon.png')
             ),
           ]
         ),
@@ -55,6 +57,7 @@ class _NewPasswordState extends State<NewPassword> {
         text: "New Password",
         style: TextStyle(
           fontSize: 20,
+          fontFamily: 'CircularStd-Medium',
           color: Colors.black
         ),
       )
@@ -82,7 +85,8 @@ class _NewPasswordState extends State<NewPassword> {
           Text(
             title,
             style:TextStyle(
-              fontSize: 13,
+              fontSize: 16,
+              fontFamily: 'CircularStd-Book',
               color: Colors.black45
             ),
           ),
@@ -96,7 +100,9 @@ class _NewPasswordState extends State<NewPassword> {
               fillColor: Color(0xfff3f3f4),
               filled: true,
               hintText: '*******', 
+              hintStyle: TextStyle(fontSize:16)
             ),
+            style: TextStyle(fontSize: 18, fontFamily:'CircularStd-Medium', color:Colors.black),
             validator: (value) {
               if (value.isEmpty){
                 return "Please Enter New Password";
@@ -106,7 +112,7 @@ class _NewPasswordState extends State<NewPassword> {
               return null;
             },
             onSaved: (value) => _newPass= value,
-            autofocus: true,
+            // autofocus: true,
             focusNode: _newPasswordFocus,
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.text,
@@ -129,7 +135,8 @@ class _NewPasswordState extends State<NewPassword> {
           Text(
             title,
             style:TextStyle(
-              fontSize: 13,
+              fontSize: 16,
+              fontFamily: 'CircularStd-Medium',
               color: Colors.black45
             ),
           ),
@@ -143,7 +150,9 @@ class _NewPasswordState extends State<NewPassword> {
               fillColor: Color(0xfff3f3f4),
               filled: true,
               hintText: '*******', 
+              hintStyle: TextStyle(fontSize: 16)
             ),
+            style: TextStyle(fontSize: 18, fontFamily: 'CircularStd-Medium', color: Colors.black),
             validator: (value) {
               if(value.isEmpty) {
                 return "Please Enter confirm Password";
@@ -185,6 +194,7 @@ class _NewPasswordState extends State<NewPassword> {
           "Save",
           style:TextStyle(
             fontSize:20,
+            fontFamily: 'CircularStd-Medium',
             color: Colors.white,
           ),
         ),
@@ -201,11 +211,7 @@ class _NewPasswordState extends State<NewPassword> {
             height: height,
             child: Stack(
               children: <Widget>[
-                Positioned(
-                  top: 30,
-                  left: 0,
-                  child: _backWidget(),
-                ),
+                
                 Container(
                   child: SingleChildScrollView(
                      padding: EdgeInsets.symmetric(horizontal:20),
@@ -231,6 +237,11 @@ class _NewPasswordState extends State<NewPassword> {
                      ]
                    ),
                   ),
+                ),
+                Positioned(
+                  top: 30,
+                  left: 10,
+                  child: _backWidget(),
                 ),
               ],
             )

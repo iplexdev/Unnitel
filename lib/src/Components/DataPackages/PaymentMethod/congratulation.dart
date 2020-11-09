@@ -41,16 +41,16 @@ class _CongratulationState extends State<Congratulation> {
                   children:[
               Image.asset('assets/images/package_icon.png'),
               SizedBox(height:6),
-              Text('GLOBAL',style: TextStyle(fontSize: 18,color: Colors.white,fontWeight: FontWeight.w400,decoration: TextDecoration.none,),),
+              Text('GLOBAL',style: TextStyle(fontSize: 18,color: Colors.white,fontFamily: 'CircularStd-Bold',decoration: TextDecoration.none,),),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset('assets/images/wifi_icon.png'),
                   SizedBox(width:10),
                   Text('Huawei WIFI Family', style: TextStyle(
-                    fontWeight: FontWeight.w400,
                     fontSize: 12,
                     color: Hexcolor('#C59FA7'),
+                    fontFamily: 'CircularStd-Book',
                     decoration: TextDecoration.none
                   ),),
                    
@@ -62,6 +62,7 @@ class _CongratulationState extends State<Congratulation> {
               SizedBox(height:20),
               Text('Congratulations', style: TextStyle(
                     fontWeight: FontWeight.w400,
+                    fontFamily: 'CircularStd-Bold',
                     fontSize: 24,
                     color: Hexcolor('#ffffff'),
                     decoration: TextDecoration.none
@@ -106,7 +107,7 @@ class _CongratulationState extends State<Congratulation> {
               decoration: TextDecoration.none,
               fontSize: 20,
               color: Colors.white,
-              fontWeight: FontWeight.normal),
+             fontFamily: 'CircularStd-Medium'),
         ),
       ),
     );
