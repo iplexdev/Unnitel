@@ -65,7 +65,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
               //     MaterialPageRoute(builder: (context) => Profile(data: 'home', accountData: widget.accountData,)));
               //   },
               // )
-                Text('View Profile',style: TextStyle(fontSize: 14,fontFamily: 'CircularStd-Book', color: Hexcolor("#888485")),),
+                Text('View Profile',style: TextStyle(fontSize: 14,fontFamily: 'CircularStd-Book', color: HexColor("#888485")),),
                 ],
               ),
               )
@@ -132,7 +132,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children:[
-              Text('App v.3.4.30',style:TextStyle(fontSize:12,color:Hexcolor('#888485'))),
+              Text('App v.3.4.30',style:TextStyle(fontSize:12,color:HexColor('#888485'))),
               Image.asset('assets/images/footer_logo.png',)
             ]
           )

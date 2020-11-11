@@ -115,7 +115,7 @@ class _ManageDevicesState extends State<ManageDevices> {
                         ),
                       ),
                       new Divider(
-                        color: Hexcolor('#5D6561'),
+                        color: HexColor('#5D6561'),
                         height: 0,
                       ),
                       Container(
@@ -130,7 +130,7 @@ class _ManageDevicesState extends State<ManageDevices> {
                               child: Text(
                                 'SSID',
                                 style: TextStyle(
-                                    color: Hexcolor("#9D9D9C"),
+                                    color: HexColor("#9D9D9C"),
                                     fontFamily: 'CircularStd-Book',
                                      fontSize: 16),
                               ),
@@ -141,7 +141,7 @@ class _ManageDevicesState extends State<ManageDevices> {
                                 enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(12),
                                     borderSide: BorderSide(
-                                        color: Hexcolor('#DEDEDE'), width: 1)),
+                                        color: HexColor('#DEDEDE'), width: 1)),
                                 hintText: 'Enter SSID',
                               ),
                               validator: (value) {
@@ -159,7 +159,7 @@ class _ManageDevicesState extends State<ManageDevices> {
                               alignment: Alignment.centerLeft,
                               child: Text('Passcode',
                                   style: TextStyle(
-                                      color: Hexcolor("#9D9D9C"),fontFamily: 'CircularStd-Book', fontSize: 16)),
+                                      color: HexColor("#9D9D9C"),fontFamily: 'CircularStd-Book', fontSize: 16)),
                             ),
                             SizedBox(height: 10),
                             TextFormField(
@@ -167,7 +167,7 @@ class _ManageDevicesState extends State<ManageDevices> {
                                 enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(12),
                                     borderSide: BorderSide(
-                                        color: Hexcolor('#DEDEDE'), width: 1)),
+                                        color: HexColor('#DEDEDE'), width: 1)),
                                 hintText: '*******',
                               ),
                               validator: (value) {
@@ -248,7 +248,7 @@ class _ManageDevicesState extends State<ManageDevices> {
                 children: [
                   Text('SSID:', style: TextStyle(
                     fontSize: 14,
-                    color: Hexcolor("#9D9D9C"),
+                    color: HexColor("#9D9D9C"),
                     fontFamily: 'CircularStd-Book'
                   ),textAlign: TextAlign.left,),
                   Flexible(
@@ -269,7 +269,7 @@ class _ManageDevicesState extends State<ManageDevices> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Radio(
-                    activeColor: Hexcolor('#C2D22B'),
+                    activeColor: HexColor('#C2D22B'),
                     value: 0,
                     groupValue: _character,
                     onChanged: _handleRadioValueChanged,
@@ -283,7 +283,7 @@ class _ManageDevicesState extends State<ManageDevices> {
             ),
           ),
           new Divider(
-            color: Hexcolor('#5D6561'),
+            color: HexColor('#5D6561'),
             thickness: 0,
             indent: 10,
             endIndent: 20,
@@ -306,7 +306,7 @@ class _ManageDevicesState extends State<ManageDevices> {
                 children: [
                   Text('SSID:', style: TextStyle(
                     fontSize: 14,
-                    color: Hexcolor("#9D9D9C"),
+                    color: HexColor("#9D9D9C"),
                     fontFamily: 'CircularStd-Book'
                   ),textAlign: TextAlign.start,),
                   Text(
@@ -325,7 +325,7 @@ class _ManageDevicesState extends State<ManageDevices> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Radio(
-                          activeColor: Hexcolor('#C2D22B'),
+                          activeColor: HexColor('#C2D22B'),
                           value: 1,
                           groupValue: _character,
                           onChanged: _handleRadioValueChanged,
@@ -339,7 +339,7 @@ class _ManageDevicesState extends State<ManageDevices> {
             ),
           ),
           new Divider(
-            color: Hexcolor('#5D6561'),
+            color: HexColor('#5D6561'),
             thickness: 0,
             indent: 10,
             endIndent: 20,
@@ -379,7 +379,7 @@ class _ManageDevicesState extends State<ManageDevices> {
                   children: [
                     new Divider(
                       height: 0,
-                      color: Hexcolor('#5D6561'),
+                      color: HexColor('#5D6561'),
                     ),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 2, vertical: 10),

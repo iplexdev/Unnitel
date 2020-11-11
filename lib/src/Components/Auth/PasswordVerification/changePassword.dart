@@ -43,7 +43,7 @@ class _ChangePasswordState extends State<ChangePassword> {
           children: <Widget>[
             Text(
               title,
-              style: TextStyle(fontSize: 16, color: Hexcolor("#9D9D9C"),
+              style: TextStyle(fontSize: 16, color: HexColor("#9D9D9C"),
               fontWeight: FontWeight.w400,fontFamily: 'CircularStd-Book'),
             ),
             SizedBox(
@@ -91,7 +91,7 @@ class _ChangePasswordState extends State<ChangePassword> {
           children: <Widget>[
             Text(
               title,
-              style: TextStyle(fontSize: 16, color: Hexcolor("#9D9D9C"),
+              style: TextStyle(fontSize: 16, color: HexColor("#9D9D9C"),
               fontWeight: FontWeight.w400,fontFamily: 'CircularStd-Book'),
             ),
             SizedBox(
@@ -139,7 +139,7 @@ class _ChangePasswordState extends State<ChangePassword> {
           children: <Widget>[
             Text(
               title,
-              style: TextStyle(fontSize: 16, color: Hexcolor("#9D9D9C"),
+              style: TextStyle(fontSize: 16, color: HexColor("#9D9D9C"),
               fontWeight: FontWeight.w400,fontFamily: 'CircularStd-Book'),
             ),
             SizedBox(
@@ -256,7 +256,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                   children: [
                     new Divider(
                       height: 0,
-                      color: Hexcolor('#5D6561'),
+                      color: HexColor('#5D6561'),
                     ),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),

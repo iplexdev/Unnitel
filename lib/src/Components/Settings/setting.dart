@@ -68,7 +68,7 @@ class _SettingsState extends State<Settings> {
               Column(
                 children: [
                   new Divider(
-                    color: Hexcolor('#5D6561'),
+                    color: HexColor('#5D6561'),
                     height: 0,
                   ),
                   SizedBox(height:10),
@@ -110,7 +110,7 @@ class _SettingsState extends State<Settings> {
                                               );
                                 })),
                         new Divider(
-                          color: Hexcolor('#5D6561'),
+                          color: HexColor('#5D6561'),
                           thickness: 0,
                           indent: 70,
                           height: 0,
@@ -147,7 +147,7 @@ class _SettingsState extends State<Settings> {
                                               );
                                 })),
                         new Divider(
-                          color: Hexcolor('#5D6561'),
+                          color: HexColor('#5D6561'),
                           thickness: 0,
                           indent: 70,
                           endIndent: 20,
@@ -180,7 +180,7 @@ class _SettingsState extends State<Settings> {
                                           builder: (context) => Profile(accountData: widget.actualData,)));
                                 })),
                         new Divider(
-                          color: Hexcolor('#5D6561'),
+                          color: HexColor('#5D6561'),
                           thickness: 0,
                           indent: 70,
                           endIndent: 20,
@@ -201,7 +201,7 @@ class _SettingsState extends State<Settings> {
                                 ),
                                 onPressed: () {})),
                         new Divider(
-                          color: Hexcolor('#5D6561'),
+                          color: HexColor('#5D6561'),
                           thickness: 0,
                           indent: 70,
                           endIndent: 20,
@@ -236,7 +236,7 @@ class _SettingsState extends State<Settings> {
                                               ManageDevices(accountData: widget.actualData)));
                                 })),
                         new Divider(
-                          color: Hexcolor('#5D6561'),
+                          color: HexColor('#5D6561'),
                           thickness: 0,
                           indent: 70,
                           endIndent: 20,
@@ -270,7 +270,7 @@ class _SettingsState extends State<Settings> {
                                   Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => LoginScreen()), (route) => false);
                                 })),
                         new Divider(
-                          color: Hexcolor('#707070'),
+                          color: HexColor('#707070'),
                           indent: 70,
                           endIndent: 20,
                           height: 0,
@@ -297,7 +297,7 @@ class _SettingsState extends State<Settings> {
                         ),
                         Text('App v.3.4.30',
                             style: TextStyle(
-                                fontSize: 12, color: Hexcolor('#888485'))),
+                                fontSize: 12, color: HexColor('#888485'))),
                       ],
                     ),
                   ),

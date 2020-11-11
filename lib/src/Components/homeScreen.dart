@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen>
       padding: EdgeInsets.only(top:10),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.only(bottomRight: Radius.circular(15), bottomLeft:Radius.circular(15)),
-            color: Hexcolor('#6E0F24'),
+            color: HexColor('#6E0F24'),
             ),
           
            height: 246,
@@ -187,7 +187,7 @@ class _HomeScreenState extends State<HomeScreen>
               fontSize: 14,
               // fontWeight: FontWeight.bold,
               fontFamily: 'CircularStd-Medium',
-              color: Hexcolor('#6E0F24'),
+              color: HexColor('#6E0F24'),
             ),
           ),
         ),
@@ -280,19 +280,19 @@ class _HomeScreenState extends State<HomeScreen>
                         Text(
                           'Remaining Balance:' + _getDataInMB,
                           style: TextStyle(
-                              color: Hexcolor('#9D9D9C'), fontSize: 12.0, fontFamily: 'CircularStd-Book',),
+                              color: HexColor('#9D9D9C'), fontSize: 12.0, fontFamily: 'CircularStd-Book',),
                         ),
                         Text(
                          "Purchase Date: " + purchaseDate0.toString(),
                           style: TextStyle(
-                              color: Hexcolor('#9D9D9C'), fontSize: 12.0,fontFamily: 'CircularStd-Book'),
+                              color: HexColor('#9D9D9C'), fontSize: 12.0,fontFamily: 'CircularStd-Book'),
                         )
                       ],
                     ),
                     Padding(
                        padding: const EdgeInsets.only(left: 45.0),
                       child: FDottedLine(
-                        color: Hexcolor("#F0F1F6"),
+                        color: HexColor("#F0F1F6"),
                         height: 60.0,
                         dottedLength: 4,
                         space: 2,
@@ -309,13 +309,13 @@ class _HomeScreenState extends State<HomeScreen>
                               color: Colors.transparent,
                               width: 1,
                             ),
-                            color: Hexcolor('#F9FBE8')),
+                            color: HexColor('#F9FBE8')),
                         child: Text(
                           _character == 0 ? widget.actualData['devices'][0]['dataPackages'][1]['status'] == 'IN_USING' ? "ACTIVE" :""
                          :widget.actualData['devices'][1]['dataPackages'][1]['status']== 'IN_USING' ? "ACTIVE" :"" ,
                           style: TextStyle(
                             fontFamily: 'CircularStd-bold',
-                              color: Hexcolor('#C2D21D'), fontSize: 12.0,),
+                              color: HexColor('#C2D21D'), fontSize: 12.0,),
                         ),
                       ),
                     )
@@ -356,19 +356,19 @@ class _HomeScreenState extends State<HomeScreen>
                         Text(
                           'Remaining Balance:' + _getGlobalData,
                           style: TextStyle(
-                              color: Hexcolor('#9D9D9C'), fontSize: 12.0, fontFamily: 'CircularStd-Book'),
+                              color: HexColor('#9D9D9C'), fontSize: 12.0, fontFamily: 'CircularStd-Book'),
                         ),
                         Text(
                          "Purchase Date: " + purchaseDate1.toString(),
                           style: TextStyle(
-                              color: Hexcolor('#9D9D9C'), fontSize: 12.0,fontFamily: 'CircularStd-Book'),
+                              color: HexColor('#9D9D9C'), fontSize: 12.0,fontFamily: 'CircularStd-Book'),
                         )
                       ],
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 45.0),
                       child: FDottedLine(
-                        color: Hexcolor("#F0F1F6"),
+                        color: HexColor("#F0F1F6"),
                         height: 60.0,
                         dottedLength: 4,
                         space: 2,
@@ -385,13 +385,13 @@ class _HomeScreenState extends State<HomeScreen>
                               color: Colors.transparent,
                               width: 1,
                             ),
-                            color: Hexcolor('#E5F7F1')),
+                            color: HexColor('#E5F7F1')),
                         child: Text(
                          _character == 0 ? widget.actualData['devices'][0]['dataPackages'][0]['status'] == 'NOT_ACTIVATED' ? "AVAILABLE" :""
                          : widget.actualData['devices'][1]['dataPackages'][0]['status'] == 'NOT_ACTIVATED' ? "AVAILABLE" :"",
                           style: TextStyle(
                             fontFamily: 'CircularStd-bold',
-                              color: Hexcolor('#00B074'), fontSize: _character == 0 || _character == 1 ?  8.0 : 12),
+                              color: HexColor('#00B074'), fontSize: _character == 0 || _character == 1 ?  8.0 : 12),
                         ),
                       ),
                     )
@@ -488,7 +488,7 @@ class _HomeScreenState extends State<HomeScreen>
             Text(
               _character == 0 ? 'Connected' : 'Not Connected',
               style: TextStyle(fontSize: 18, fontFamily: 'CircularStd-Book',
-               color: _character == 0 ? Hexcolor("#00B074") : Colors.red),
+               color: _character == 0 ? HexColor("#00B074") : Colors.red),
             ),
           ],
         ),
@@ -538,7 +538,7 @@ class _HomeScreenState extends State<HomeScreen>
                       Text(
                         'Remaining',
                         style:
-                            TextStyle(fontSize: 12, color: Hexcolor("#9D9D9C")),
+                            TextStyle(fontSize: 12, color: HexColor("#9D9D9C")),
                       ),
                       Text(
                         _character == 0 ?(widget.actualData['devices'][0]['dataPackages'][1]['remainingDataMB']).toString() + "MB":
@@ -550,7 +550,7 @@ class _HomeScreenState extends State<HomeScreen>
                         _character == 0 ? widget.actualData['devices'][0]['dataPackages'][1]['goodsName']:
                         widget.actualData['devices'][1]['dataPackages'][1]['goodsName'],
                         style:
-                            TextStyle(fontSize: 12, color: Hexcolor("#9D9D9C")),
+                            TextStyle(fontSize: 12, color: HexColor("#9D9D9C")),
                       ),
                       SizedBox(
                         height: 50,
@@ -568,7 +568,7 @@ class _HomeScreenState extends State<HomeScreen>
 // DIVIDER Container
   Widget _dividerWidget() {
     return Divider(
-      color: Hexcolor('#DEDEDE'),
+      color: HexColor('#DEDEDE'),
       indent: 20,
       endIndent: 20,
      thickness: 1,
@@ -620,7 +620,7 @@ class _HomeScreenState extends State<HomeScreen>
         // padding: EdgeInsets.symmetric(vertical: 15),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(8)),
-            color: Hexcolor("#6E0F24")),
+            color: HexColor("#6E0F24")),
         child: ButtonBar(
           children: <Widget>[
             FlatButton(
@@ -671,7 +671,7 @@ class _HomeScreenState extends State<HomeScreen>
       alignment: Alignment.center,
       padding: EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
-          border: Border.all(width: 1, color: Hexcolor("#DEDEDE")),
+          border: Border.all(width: 1, color: HexColor("#DEDEDE")),
           borderRadius: BorderRadius.all(Radius.circular(12)),
           color: Colors.white),
       child: Stack(
@@ -700,7 +700,7 @@ class _HomeScreenState extends State<HomeScreen>
                   style: TextStyle(
                     fontSize: 11,
                     fontFamily: 'CircularStd-Book',
-                    color: Hexcolor('#9D9D9C'),
+                    color: HexColor('#9D9D9C'),
                   )),
                   SizedBox(height:2),
               Text(
@@ -762,7 +762,7 @@ class _HomeScreenState extends State<HomeScreen>
                 SizedBox(height: 23),
                 Text(
                   'Data Consumed',
-                  style: TextStyle(fontSize: 12,fontFamily: 'SFUIText-Medium', color: Hexcolor('#9D9D9C')),
+                  style: TextStyle(fontSize: 12,fontFamily: 'SFUIText-Medium', color: HexColor('#9D9D9C')),
                 ),
                 SizedBox(height: 3),
                   // dataSet >= 1000 ? 
@@ -789,7 +789,7 @@ class _HomeScreenState extends State<HomeScreen>
                     SizedBox(height: 23),
                     Text(
                       'Connected Devices',
-                      style: TextStyle(fontSize: 12, color: Hexcolor('#9D9D9C'),fontFamily: 'SFUIText-Medium'),
+                      style: TextStyle(fontSize: 12, color: HexColor('#9D9D9C'),fontFamily: 'SFUIText-Medium'),
                     ),
                     SizedBox(height: 3),
                     Text(
@@ -817,7 +817,7 @@ class _HomeScreenState extends State<HomeScreen>
                 SizedBox(height: 23),
                 Text(
                    'Connected Since',
-                  style: TextStyle(fontSize: 12,fontFamily: 'SFUIText-Medium', color: Hexcolor('#9D9D9C')),
+                  style: TextStyle(fontSize: 12,fontFamily: 'SFUIText-Medium', color: HexColor('#9D9D9C')),
                 ),
                 SizedBox(height: 3),
                 FittedBox(
@@ -849,7 +849,7 @@ class _HomeScreenState extends State<HomeScreen>
                       'Time Connected',
                       style: TextStyle(fontSize: 12,
                       fontFamily: 'SFUIText-Medium',
-                       color: Hexcolor('#9D9D9C')),
+                       color: HexColor('#9D9D9C')),
                     ),
                     SizedBox(height: 3),
                     Text(
@@ -925,7 +925,7 @@ class _HomeScreenState extends State<HomeScreen>
             Container(
                padding:const EdgeInsets.symmetric(horizontal: 0),
               decoration: BoxDecoration(
-              border: Border.all(width: 0.5, color: Hexcolor("#DEDEDE")),
+              border: Border.all(width: 0.5, color: HexColor("#DEDEDE")),
           ),
           ),
           // _dividerWidget(),
@@ -949,7 +949,7 @@ class _HomeScreenState extends State<HomeScreen>
     // return SingleChildScrollView(
         return Container(
           height: MediaQuery.of(context).size.height,
-          color: Hexcolor('#F0F1F6'),
+          color: HexColor('#F0F1F6'),
       // padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(children: <Widget>[
         SizedBox(
@@ -1076,7 +1076,7 @@ class _HomeScreenState extends State<HomeScreen>
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Radio(
-                                  activeColor: Hexcolor('#C2D22B'),
+                                  activeColor: HexColor('#C2D22B'),
                                   value: 0,
                                   groupValue: _character,
                                   onChanged: _handleRadioValueChanged,
@@ -1085,7 +1085,7 @@ class _HomeScreenState extends State<HomeScreen>
                           ),
                         ),
                 new Divider(
-                  color: Hexcolor('#5D6561'),
+                  color: HexColor('#5D6561'),
                   thickness: 0,
                   indent: 10,
                   endIndent: 20,
@@ -1109,7 +1109,7 @@ class _HomeScreenState extends State<HomeScreen>
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Radio(
-                          activeColor: Hexcolor('#C2D22B'),
+                          activeColor: HexColor('#C2D22B'),
                           value: 1,
                           groupValue: _character,
                           onChanged: _handleRadioValueChanged,
@@ -1118,7 +1118,7 @@ class _HomeScreenState extends State<HomeScreen>
                   ),
                 ),
                 new Divider(
-                  color: Hexcolor('#5D6561'),
+                  color: HexColor('#5D6561'),
                   thickness: 0,
                   indent: 10,
                   endIndent: 20,
@@ -1138,7 +1138,7 @@ class _HomeScreenState extends State<HomeScreen>
         alignment: Alignment.center,
         padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
         decoration: BoxDecoration(
-            border: Border.all(width: 1, color: Hexcolor("#DEDEDE")),
+            border: Border.all(width: 1, color: HexColor("#DEDEDE")),
             borderRadius: BorderRadius.all(Radius.circular(12)),
             color: Colors.white),
         child: Stack(
@@ -1221,7 +1221,7 @@ class _HomeScreenState extends State<HomeScreen>
                               centerTitle: true,
                               title: Image.asset('assets/images/home_logo.png',
                                   height: 100, width: 100),
-                              backgroundColor: Hexcolor('#6E0F24'),
+                              backgroundColor: HexColor('#6E0F24'),
                               actions: <Widget>[
                                 _settingWidget(),
                               ],
@@ -1243,8 +1243,8 @@ class _HomeScreenState extends State<HomeScreen>
                                 indicatorSize: TabBarIndicatorSize.label,
                                 labelPadding: EdgeInsets.symmetric(horizontal: 25),
                                 isScrollable: true,
-                                labelColor: Hexcolor("#C2D21D"),
-                                unselectedLabelColor: Hexcolor('#C59FA7'),
+                                labelColor: HexColor("#C2D21D"),
+                                unselectedLabelColor: HexColor('#C59FA7'),
                                 tabs: [
                                   Container(
                                     padding: EdgeInsets.symmetric(vertical: 10),

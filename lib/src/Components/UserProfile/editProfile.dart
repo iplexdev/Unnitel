@@ -143,7 +143,7 @@ class _EditProfileState extends State<EditProfile> {
             style: TextStyle(
               fontSize: 16,
               fontFamily: 'CircularStd-Book',
-              color: Hexcolor("#9D9D9C"),
+              color: HexColor("#9D9D9C"),
             ),
           ),
           SizedBox(
@@ -199,7 +199,7 @@ class _EditProfileState extends State<EditProfile> {
               style: TextStyle(
                 fontSize: 16,
                 fontFamily: 'CircularStd-Book',
-                 color: Hexcolor("#9D9D9C"),
+                 color: HexColor("#9D9D9C"),
               ),
             ),
             SizedBox(height: 10),
@@ -244,7 +244,7 @@ class _EditProfileState extends State<EditProfile> {
               style: TextStyle(
                 fontSize: 16,
                 fontFamily: 'CircularStd-Book',
-                 color: Hexcolor("#9D9D9C"),
+                 color: HexColor("#9D9D9C"),
               ),
             ),
             SizedBox(height: 10),
@@ -439,7 +439,7 @@ class _EditProfileState extends State<EditProfile> {
                         height: 0,
                         endIndent: 0,
                         indent: 0,
-                        color: Hexcolor('#D9DBDA'),
+                        color: HexColor('#D9DBDA'),
                       ),
                           SizedBox(
                             height: height * .01,

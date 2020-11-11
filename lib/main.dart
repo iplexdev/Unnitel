@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 // void main() => runApp(MyApp());
  Future<void> main() async {
       WidgetsFlutterBinding.ensureInitialized();
-      FlutterStatusbarcolor.setStatusBarColor(Hexcolor('#6E0F24'));
+      FlutterStatusbarcolor.setStatusBarColor(HexColor('#6E0F24'));
       SystemChrome.setPreferredOrientations([
         DeviceOrientation.portraitUp,
       ]);

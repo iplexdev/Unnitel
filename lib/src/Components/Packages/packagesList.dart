@@ -54,7 +54,7 @@ class _PackagesListState extends State<PackagesList> {
     final  _selectedGBAtIndex3= _index3.split(' ');
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Hexcolor('#FFFFFF'),
+        backgroundColor: HexColor('#FFFFFF'),
           appBar: AppBar(
             elevation: 0.0,
             leading: _backArrowWidget(),
@@ -114,14 +114,14 @@ class _PackagesListState extends State<PackagesList> {
                                     Text(
                                       'Price: US\$25',
                                       style: TextStyle(
-                                          color: Hexcolor('#9D9D9C'),
+                                          color: HexColor('#9D9D9C'),
                                           fontFamily: 'CircularStd-Book',
                                           fontSize: 12.0),
                                     ),
                                     Text(
                                       'Package Data: ' +  _selectedGBAtIndex0[1],
                                       style: TextStyle(
-                                          color: Hexcolor('#9D9D9C'),
+                                          color: HexColor('#9D9D9C'),
                                           fontFamily: 'CircularStd-Book',
                                           fontSize: 12.0),
                                     )
@@ -130,7 +130,7 @@ class _PackagesListState extends State<PackagesList> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 95.0),
                                   child: FDottedLine(
-                                    color: Hexcolor("#F0F1F6"),
+                                    color: HexColor("#F0F1F6"),
                                     height: 60.0,
                                     dottedLength: 4,
                                     space: 2,
@@ -147,13 +147,13 @@ class _PackagesListState extends State<PackagesList> {
                                           color: Colors.transparent,
                                           width: 1,
                                         ),
-                                        color: Hexcolor('#F9FBE8')),
+                                        color: HexColor('#F9FBE8')),
                                     child: Align(
                                       alignment: Alignment.center,
                                       child: Text(
                                        widget.accountData['devices'][0]['dataPackages'][0]['status'] == 'NOT_ACTIVATED' ? "AVAILABLE":"",
                                         style: TextStyle(
-                                            color: Hexcolor('#C2D21D'),
+                                            color: HexColor('#C2D21D'),
                                             fontFamily: 'CircularStd-Book',
                                             fontSize: 8.0),
                                       ),
@@ -208,14 +208,14 @@ class _PackagesListState extends State<PackagesList> {
                                     Text(
                                       'Price: US\$15',
                                       style: TextStyle(
-                                          color: Hexcolor('#9D9D9C'),
+                                          color: HexColor('#9D9D9C'),
                                           fontFamily: 'CircularStd-Book',
                                           fontSize: 12.0),
                                     ),
                                     Text(
                                       'Package Data: ' + _selectedGBAtIndex2[1],
                                       style: TextStyle(
-                                          color: Hexcolor('#9D9D9C'),
+                                          color: HexColor('#9D9D9C'),
                                           fontFamily: 'CircularStd-Book',
                                           fontSize: 12.0),
                                     )
@@ -224,7 +224,7 @@ class _PackagesListState extends State<PackagesList> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 95.0),
                                   child: FDottedLine(
-                                    color: Hexcolor("#F0F1F6"),
+                                    color: HexColor("#F0F1F6"),
                                     height: 60.0,
                                     dottedLength: 4,
                                     space: 2,
@@ -241,13 +241,13 @@ class _PackagesListState extends State<PackagesList> {
                                           color: Colors.transparent,
                                           width: 1,
                                         ),
-                                        color: Hexcolor('#F9FBE8')),
+                                        color: HexColor('#F9FBE8')),
                                     child: Align(
                                       alignment: Alignment.center,
                                       child: Text(
                                        widget.accountData['devices'][0]['dataPackages'][1]['status'] == 'IN_USING' ? "ACTIVE" :"",
                                         style: TextStyle(
-                                            color: Hexcolor('#C2D21D'),
+                                            color: HexColor('#C2D21D'),
                                             fontFamily: 'CircularStd-Book',
                                             fontSize: 8.0),
                                       ),
@@ -302,14 +302,14 @@ class _PackagesListState extends State<PackagesList> {
                                     Text(
                                       'Price: US\$80',
                                       style: TextStyle(
-                                          color: Hexcolor('#9D9D9C'),
+                                          color: HexColor('#9D9D9C'),
                                           fontFamily: 'CircularStd-Book',
                                           fontSize: 12.0),
                                     ),
                                     Text(
                                       'Package Data: ' + _selectedGBAtIndex1[1],
                                       style: TextStyle(
-                                          color: Hexcolor('#9D9D9C'),
+                                          color: HexColor('#9D9D9C'),
                                           fontFamily: 'CircularStd-Book',
                                           fontSize: 12.0),
                                     )
@@ -318,7 +318,7 @@ class _PackagesListState extends State<PackagesList> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 95.0),
                                   child: FDottedLine(
-                                    color: Hexcolor("#F0F1F6"),
+                                    color: HexColor("#F0F1F6"),
                                     height: 60.0,
                                     dottedLength: 4,
                                     space: 2,
@@ -335,13 +335,13 @@ class _PackagesListState extends State<PackagesList> {
                                           color: Colors.transparent,
                                           width: 1,
                                         ),
-                                        color: Hexcolor('#F9FBE8')),
+                                        color: HexColor('#F9FBE8')),
                                     child: Align(
                                       alignment: Alignment.center,
                                       child: Text(
                                        widget.accountData['devices'][0]['dataPackages'][0]['status'] == 'NOT_ACTIVATED' ? "AVAILABLE":"",
                                         style: TextStyle(
-                                            color: Hexcolor('#C2D21D'),
+                                            color: HexColor('#C2D21D'),
                                             fontFamily: 'CircularStd-Book',
                                             fontSize: 8.0),
                                       ),
@@ -396,14 +396,14 @@ class _PackagesListState extends State<PackagesList> {
                                     Text(
                                       'Price: US\$24',
                                       style: TextStyle(
-                                          color: Hexcolor('#9D9D9C'),
+                                          color: HexColor('#9D9D9C'),
                                           fontFamily: 'CircularStd-Book',
                                           fontSize: 12.0),
                                     ),
                                     Text(
                                       'Package Data: ' + _selectedGBAtIndex3[1],
                                       style: TextStyle(
-                                          color: Hexcolor('#9D9D9C'),
+                                          color: HexColor('#9D9D9C'),
                                           fontFamily: 'CircularStd-Book',
                                           fontSize: 12.0),
                                     )
@@ -412,7 +412,7 @@ class _PackagesListState extends State<PackagesList> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 95.0),
                                   child: FDottedLine(
-                                    color: Hexcolor("#F0F1F6"),
+                                    color: HexColor("#F0F1F6"),
                                     height: 60.0,
                                     dottedLength: 4,
                                     space: 2,
@@ -429,13 +429,13 @@ class _PackagesListState extends State<PackagesList> {
                                           color: Colors.transparent,
                                           width: 1,
                                         ),
-                                        color: Hexcolor('#F9FBE8')),
+                                        color: HexColor('#F9FBE8')),
                                     child: Align(
                                       alignment: Alignment.center,
                                       child: Text(
                                        widget.accountData['devices'][0]['dataPackages'][1]['status'] == 'IN_USING' ? "ACTIVE" :"",
                                         style: TextStyle(
-                                            color: Hexcolor('#C2D21D'),
+                                            color: HexColor('#C2D21D'),
                                             fontFamily: 'CircularStd-Book',
                                             fontSize: 8.0),
                                       ),

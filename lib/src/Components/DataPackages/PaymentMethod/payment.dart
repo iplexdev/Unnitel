@@ -112,12 +112,12 @@ class _PaymentState extends State<Payment> {
                         Text(
                           'Quality:' + "1",
                           style: TextStyle(
-                              color: Hexcolor('#9D9D9C'), fontSize: 13.0,fontFamily: 'CircularStd-Book'),
+                              color: HexColor('#9D9D9C'), fontSize: 13.0,fontFamily: 'CircularStd-Book'),
                         ),
                         Text(
                           'Price: ' + "US\$" + (widget.price).toString(),
                           style: TextStyle(
-                              color: Hexcolor('#9D9D9C'), fontSize: 13.0,fontFamily: 'CircularStd-Book'),
+                              color: HexColor('#9D9D9C'), fontSize: 13.0,fontFamily: 'CircularStd-Book'),
                         )
                       ],
                     ),
@@ -125,7 +125,7 @@ class _PaymentState extends State<Payment> {
                       padding: const EdgeInsets.only(left: 135),
                       child: Flexible(
                         child: FDottedLine(
-                          color: Hexcolor("#F0F1F6"),
+                          color: HexColor("#F0F1F6"),
                           height: 50.0,
                           dottedLength: 4,
                           space: 2,
@@ -153,12 +153,12 @@ class _PaymentState extends State<Payment> {
                                 Text(
                                   'Total',
                                   style: TextStyle(
-                                      color: Hexcolor('#00B074'), fontSize: 14.0,fontWeight: FontWeight.bold),
+                                      color: HexColor('#00B074'), fontSize: 14.0,fontWeight: FontWeight.bold),
                                 ),
                                 Text(
                                   'US\$' + (widget.price).toString(),
                                   style: TextStyle(
-                                      color: Hexcolor('#00B074'), fontSize: 14.0,fontWeight: FontWeight.bold),
+                                      color: HexColor('#00B074'), fontSize: 14.0,fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -227,7 +227,7 @@ class _PaymentState extends State<Payment> {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(fname,
-                  style: TextStyle(fontSize: 16,fontFamily: 'CircularStd-Book', color: Hexcolor('#9D9D9C'))),
+                  style: TextStyle(fontSize: 16,fontFamily: 'CircularStd-Book', color: HexColor('#9D9D9C'))),
               SizedBox(height: 10),
               TextFormField(
                 controller: _fnameCntrl,
@@ -276,7 +276,7 @@ class _PaymentState extends State<Payment> {
           //         children: [
           //           Text(lname,
           //               style: TextStyle(
-          //                   fontSize: 14, color: Hexcolor('#9D9D9C'))),
+          //                   fontSize: 14, color: HexColor('#9D9D9C'))),
           //           SizedBox(height: 10),
           //           TextFormField(
           //             controller: _lnameCntrl,
@@ -320,7 +320,7 @@ class _PaymentState extends State<Payment> {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
           title,
-          style: TextStyle(fontSize: 16, color: Hexcolor('#9D9D9C'),fontFamily: 'CircularStd-Book'),
+          style: TextStyle(fontSize: 16, color: HexColor('#9D9D9C'),fontFamily: 'CircularStd-Book'),
         ),
         SizedBox(height: 10),
         TextFormField(
@@ -371,7 +371,7 @@ class _PaymentState extends State<Payment> {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(month,
-                  style: TextStyle(fontSize: 16, color: Hexcolor('#9D9D9C'),fontFamily: 'CircularStd-Book')),
+                  style: TextStyle(fontSize: 16, color: HexColor('#9D9D9C'),fontFamily: 'CircularStd-Book')),
               SizedBox(height: 10),
               TextFormField(
                 controller: _monthCntrl,
@@ -417,7 +417,7 @@ class _PaymentState extends State<Payment> {
                   children: [
                     Text(year,
                         style: TextStyle(
-                            fontSize: 16,fontFamily: 'CircularStd-Book', color: Hexcolor('#9D9D9C'))),
+                            fontSize: 16,fontFamily: 'CircularStd-Book', color: HexColor('#9D9D9C'))),
                     SizedBox(height: 10),
                     TextFormField(
                       controller: _yearCntrl,
@@ -465,7 +465,7 @@ class _PaymentState extends State<Payment> {
   Widget _cardSecurityCodeWidget(String code) {
     return Container(
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(code, style: TextStyle(fontSize: 16,fontFamily: 'CircularStd-Book', color: Hexcolor('#9D9D9C'))),
+        Text(code, style: TextStyle(fontSize: 16,fontFamily: 'CircularStd-Book', color: HexColor('#9D9D9C'))),
         SizedBox(height: 10),
         TextFormField(
           controller: _secCntrl,
@@ -513,12 +513,12 @@ class _PaymentState extends State<Payment> {
             style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w400,
-                color: Hexcolor('#000000'))),
+                color: HexColor('#000000'))),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('You can remove this card at anytime\n in Unnitel',
-                style: TextStyle(fontSize: 14, color: Hexcolor('#9D9D9C'))),
+                style: TextStyle(fontSize: 14, color: HexColor('#9D9D9C'))),
             Switch(
               value: isSwitched,
               onChanged: (value) {
@@ -526,7 +526,7 @@ class _PaymentState extends State<Payment> {
                   isSwitched = value;
                 });
               },
-              activeTrackColor: Hexcolor('#C2D22B'),
+              activeTrackColor: HexColor('#C2D22B'),
               activeColor: Colors.white,
             ),
           ],
@@ -595,8 +595,8 @@ class _PaymentState extends State<Payment> {
                   children: [
                     new Divider(
                       height: 0,
-                      // color: Hexcolor('#5D6561'),
-                      color: Hexcolor('#DEDFE0'),
+                      // color: HexColor('#5D6561'),
+                      color: HexColor('#DEDFE0'),
                     ),
                     Container(
                       padding:
@@ -610,7 +610,7 @@ class _PaymentState extends State<Payment> {
                           ),
                           new Divider(
                             height: 0,
-                            color: Hexcolor('#DEDFE0'),
+                            color: HexColor('#DEDFE0'),
                           ),
                           SizedBox(height: 19),
                           _paymentMethodWidget(),

@@ -13,7 +13,7 @@ class ShadowScreen extends StatelessWidget {
       duration: Duration(milliseconds: 250),
       decoration: BoxDecoration(
           borderRadius:BorderRadius.circular(40),
-          color: Hexcolor("#707070")
+          color: HexColor("#707070")
         ),
     );
   }

@@ -378,7 +378,7 @@ Widget _socialLoginWidget() {
               style: TextStyle(
                 fontSize: 18,
                 fontFamily: 'CircularStd-Bold',
-                color: Hexcolor('#C2D21D'),
+                color: HexColor('#C2D21D'),
               ),
             )
           ]

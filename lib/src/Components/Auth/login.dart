@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
             style: TextStyle(
               fontSize: 16,
               fontFamily: 'CircularStd-Book',
-              color: Hexcolor('#9D9D9C')
+              color: HexColor('#9D9D9C')
             ),
           ),
           SizedBox(
@@ -120,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
             title,
             style:TextStyle(
               fontSize: 16,
-              color: Hexcolor('#9D9D9C'),
+              color: HexColor('#9D9D9C'),
               fontFamily: 'CircularStd-Book'
             ),
           ),
@@ -325,7 +325,7 @@ Widget _registeredWidget() {
             'Don\'t have an account ?',
             style: TextStyle(
               fontSize: 16,
-              color: Hexcolor('#9D9D9C'),
+              color: HexColor('#9D9D9C'),
               fontFamily: 'CircularStd-Book',
             ),
             ),
@@ -335,7 +335,7 @@ Widget _registeredWidget() {
             Text(
               'Sign Up',
               style:TextStyle(
-                color: Hexcolor('#C2D21D'),
+                color: HexColor('#C2D21D'),
                 fontFamily: 'CircularStd-Bold',
                 fontWeight: FontWeight.w600,
                 fontSize: 18

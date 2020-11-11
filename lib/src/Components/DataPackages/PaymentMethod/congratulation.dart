@@ -33,7 +33,7 @@ class _CongratulationState extends State<Congratulation> {
                   decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
-                              color: Hexcolor('#C85972'),
+                              color: HexColor('#C85972'),
                               width: 1,
                             )),
                 child:Column(
@@ -49,7 +49,7 @@ class _CongratulationState extends State<Congratulation> {
                   SizedBox(width:10),
                   Text('Huawei WIFI Family', style: TextStyle(
                     fontSize: 12,
-                    color: Hexcolor('#C59FA7'),
+                    color: HexColor('#C59FA7'),
                     fontFamily: 'CircularStd-Book',
                     decoration: TextDecoration.none
                   ),),
@@ -64,7 +64,7 @@ class _CongratulationState extends State<Congratulation> {
                     fontWeight: FontWeight.w400,
                     fontFamily: 'CircularStd-Bold',
                     fontSize: 24,
-                    color: Hexcolor('#ffffff'),
+                    color: HexColor('#ffffff'),
                     decoration: TextDecoration.none
                   ),)
             ],

@@ -64,7 +64,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
               Column(
                 children: [
                   new Divider(
-                    color: Hexcolor('#5D6561'),
+                    color: HexColor('#5D6561'),
                     height: 0,
                   ),
                   Container(
@@ -83,12 +83,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                 isSwitched = value;
                               });
                             },
-                            activeTrackColor: Hexcolor('#C2D22B'),
+                            activeTrackColor: HexColor('#C2D22B'),
                             activeColor: Colors.white,
                           ),
                         ),
                         new Divider(
-                          color: Hexcolor('#5D6561'),
+                          color: HexColor('#5D6561'),
                           thickness: 0,
                           indent: 70,
                           endIndent: 40,
@@ -106,12 +106,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                 isSwitch = value;
                               });
                             },
-                            activeTrackColor: Hexcolor('#C2D22B'),
+                            activeTrackColor: HexColor('#C2D22B'),
                             activeColor: Colors.white,
                           ),
                         ),
                         new Divider(
-                          color: Hexcolor('#5D6561'),
+                          color: HexColor('#5D6561'),
                           thickness: 0,
                           indent: 70,
                           endIndent: 40,
@@ -129,12 +129,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                 isEnable = value;
                               });
                             },
-                            activeTrackColor: Hexcolor('#C2D22B'),
+                            activeTrackColor: HexColor('#C2D22B'),
                             activeColor: Colors.white,
                           ),
                         ),
                         new Divider(
-                          color: Hexcolor('#5D6561'),
+                          color: HexColor('#5D6561'),
                           thickness: 0,
                           indent: 70,
                           endIndent: 40,

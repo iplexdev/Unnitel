@@ -103,7 +103,7 @@ class _TopUpWidgetState extends State<TopUpWidget> {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
           title,
-          style: TextStyle(color: Hexcolor('#9D9D9C'), fontSize: 16,fontFamily: 'CircularStd-Book'),
+          style: TextStyle(color: HexColor('#9D9D9C'), fontSize: 16,fontFamily: 'CircularStd-Book'),
         ),
         SizedBox(height: 10),
         Container(
@@ -112,7 +112,7 @@ class _TopUpWidgetState extends State<TopUpWidget> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
               color: Colors.white,
-              border: Border.all(width: 1, color: Hexcolor('#DEDEDE'))),
+              border: Border.all(width: 1, color: HexColor('#DEDEDE'))),
           child: DropdownButtonHideUnderline(
             child: DropdownButton(
                 value: _value,
@@ -157,7 +157,7 @@ class _TopUpWidgetState extends State<TopUpWidget> {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
           title,
-          style: TextStyle(color: Hexcolor('#9D9D9C'), fontSize: 16, fontFamily: 'CircularStd-Book'),
+          style: TextStyle(color: HexColor('#9D9D9C'), fontSize: 16, fontFamily: 'CircularStd-Book'),
         ),
         SizedBox(height: 10),
         Container(
@@ -166,7 +166,7 @@ class _TopUpWidgetState extends State<TopUpWidget> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
               color: Colors.white,
-              border: Border.all(width: 1, color: Hexcolor('#DEDEDE'))),
+              border: Border.all(width: 1, color: HexColor('#DEDEDE'))),
           child: DropdownButtonHideUnderline(
             child: DropdownButton(
                 value: _selectedGB,
@@ -262,18 +262,18 @@ class _TopUpWidgetState extends State<TopUpWidget> {
       padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(12)),
-          border: Border.all(width: 1, color: Hexcolor('#DEDEDE')),
+          border: Border.all(width: 1, color: HexColor('#DEDEDE')),
           color: Colors.white),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             'Price',
-            style: TextStyle(fontSize: 16, color: Hexcolor("#9D9D9C"), fontFamily: 'CircularStd-Book'),
+            style: TextStyle(fontSize: 16, color: HexColor("#9D9D9C"), fontFamily: 'CircularStd-Book'),
           ),
           Text(
             'US\$' + (_setPrice).toString(),
-            style: TextStyle(fontSize: 18,fontFamily: 'CircularStd-Bold', color: Hexcolor("#C2D21D")),
+            style: TextStyle(fontSize: 18,fontFamily: 'CircularStd-Bold', color: HexColor("#C2D21D")),
           )
         ],
       ),
@@ -287,7 +287,7 @@ class _TopUpWidgetState extends State<TopUpWidget> {
         children:[
         Text(
           title,
-          style: TextStyle(color: Hexcolor('#9D9D9C'), fontSize: 16,fontFamily: 'CircularStd-Book')
+          style: TextStyle(color: HexColor('#9D9D9C'), fontSize: 16,fontFamily: 'CircularStd-Book')
         ),
         SizedBox(height: 10),
           Container(
@@ -296,7 +296,7 @@ class _TopUpWidgetState extends State<TopUpWidget> {
       padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(12)),
-          border: Border.all(width: 1, color: Hexcolor('#DEDEDE')),
+          border: Border.all(width: 1, color: HexColor('#DEDEDE')),
           color: Colors.white),
       child: Row(
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -363,7 +363,7 @@ class _TopUpWidgetState extends State<TopUpWidget> {
                 children: [
                   new Divider(
                     height: 0,
-                    color: Hexcolor('#5D6561'),
+                    color: HexColor('#5D6561'),
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),

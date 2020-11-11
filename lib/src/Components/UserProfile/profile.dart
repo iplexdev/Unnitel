@@ -64,7 +64,7 @@ class _ProfileState extends State<Profile> {
         margin: EdgeInsets.symmetric(horizontal: 100),
         child: Text(
           'Delete Account',
-          style: TextStyle(fontSize: 20, color: Hexcolor("#7F7F7F"),fontFamily: 'CircularStd-Book'),
+          style: TextStyle(fontSize: 20, color: HexColor("#7F7F7F"),fontFamily: 'CircularStd-Book'),
         ),
       ),
     );
@@ -103,7 +103,7 @@ class _ProfileState extends State<Profile> {
                           child: Text(
                         'Edit',
                         style:
-                            TextStyle(fontSize: 18,fontFamily: 'CircularStd-Medium', color: Hexcolor("#C2D21D")),
+                            TextStyle(fontSize: 18,fontFamily: 'CircularStd-Medium', color: HexColor("#C2D21D")),
                       )),
                     )
                   ])),
@@ -119,7 +119,7 @@ class _ProfileState extends State<Profile> {
                       
                       new Divider(
                         height: 0,
-                        color: Hexcolor('#E0E1E1'),
+                        color: HexColor('#E0E1E1'),
                       ),
                       Column(
                         children: [
@@ -150,7 +150,7 @@ class _ProfileState extends State<Profile> {
                           Divider(
                             indent: 25,
                             endIndent: 25,
-                            color: Hexcolor('#E0E1E1'),
+                            color: HexColor('#E0E1E1'),
                           )
                         ],
                       ),
@@ -171,7 +171,7 @@ class _ProfileState extends State<Profile> {
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontFamily: 'CircularStd-Medium',
-                                            color: Hexcolor("#3F4046")),
+                                            color: HexColor("#3F4046")),
                                       ),
                                       Column(
                                         mainAxisAlignment:
@@ -181,7 +181,7 @@ class _ProfileState extends State<Profile> {
                                             widget.accountData['accountData']['name'],
                                               style: TextStyle(
                                                   fontSize: 16,
-                                                  color: Hexcolor('#9D9D9C'),fontFamily: 'CircularStd-Book')),
+                                                  color: HexColor('#9D9D9C'),fontFamily: 'CircularStd-Book')),
                                         ],
                                       ),
                                     ],
@@ -192,7 +192,7 @@ class _ProfileState extends State<Profile> {
                                 decoration: BoxDecoration(
                                     border: Border(
                                   bottom: BorderSide(
-                                      width: 0, color: Hexcolor('#5D6561')),
+                                      width: 0, color: HexColor('#5D6561')),
                                 )),
                               ),
                               Container(
@@ -209,7 +209,7 @@ class _ProfileState extends State<Profile> {
                                         style: TextStyle(
                                             fontSize: 18,
                                              fontFamily: 'CircularStd-Medium',
-                                            color: Hexcolor("#3F4046")),
+                                            color: HexColor("#3F4046")),
                                       ),
                                       Column(
                                         mainAxisAlignment:
@@ -218,7 +218,7 @@ class _ProfileState extends State<Profile> {
                                           Text(widget.accountData['accountData']['country'],
                                               style: TextStyle(
                                                   fontSize: 16,
-                                                  color: Hexcolor('#9D9D9C'),fontFamily: 'CircularStd-Book')),
+                                                  color: HexColor('#9D9D9C'),fontFamily: 'CircularStd-Book')),
                                         ],
                                       ),
                                       
@@ -230,7 +230,7 @@ class _ProfileState extends State<Profile> {
                                 decoration: BoxDecoration(
                                     border: Border(
                                   bottom: BorderSide(
-                                      width: 0, color: Hexcolor('#5D6561')),
+                                      width: 0, color: HexColor('#5D6561')),
                                 )),
                               ),
                               Container(
@@ -247,7 +247,7 @@ class _ProfileState extends State<Profile> {
                                         style: TextStyle(
                                             fontSize: 18,
                                              fontFamily: 'CircularStd-Medium',
-                                            color: Hexcolor("#3F4046")),
+                                            color: HexColor("#3F4046")),
                                       ),
                                       Column(
                                         mainAxisAlignment:
@@ -256,7 +256,7 @@ class _ProfileState extends State<Profile> {
                                           Text(widget.accountData['accountData']['email'],
                                               style: TextStyle(
                                                   fontSize: 16,
-                                                  color: Hexcolor('#9D9D9C'),fontFamily: 'CircularStd-Book')),
+                                                  color: HexColor('#9D9D9C'),fontFamily: 'CircularStd-Book')),
                                         ],
                                       ),
                                       
@@ -268,7 +268,7 @@ class _ProfileState extends State<Profile> {
                                 decoration: BoxDecoration(
                                     border: Border(
                                   bottom: BorderSide(
-                                      width: 0, color: Hexcolor('#5D6561')),
+                                      width: 0, color: HexColor('#5D6561')),
                                 )),
                               ),
                               Container(
@@ -285,7 +285,7 @@ class _ProfileState extends State<Profile> {
                                         style: TextStyle(
                                             fontSize: 18,
                                              fontFamily: 'CircularStd-Medium',
-                                             color: Hexcolor("#3F4046")),
+                                             color: HexColor("#3F4046")),
                                       ),
                                       Column(
                                         mainAxisAlignment:
@@ -294,7 +294,7 @@ class _ProfileState extends State<Profile> {
                                           Text(widget.accountData['accountData']['mobile'],
                                               style: TextStyle(
                                                   fontSize: 16,
-                                                  color: Hexcolor('#9D9D9C'),fontFamily: 'CircularStd-Book')),
+                                                  color: HexColor('#9D9D9C'),fontFamily: 'CircularStd-Book')),
                                         ],
                                       ),
                                       
@@ -306,7 +306,7 @@ class _ProfileState extends State<Profile> {
                                 decoration: BoxDecoration(
                                     border: Border(
                                   bottom: BorderSide(
-                                      width: 0, color: Hexcolor('#5D6561')),
+                                      width: 0, color: HexColor('#5D6561')),
                                 )),
                               ),
                               
