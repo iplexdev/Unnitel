@@ -2,7 +2,6 @@ import 'package:fdottedline/fdottedline.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:unniTel/src/Components/mainScreen.dart';
-import 'package:unniTel/src/Components/utils/drawerItem.dart';
 
 class PackagesList extends StatefulWidget {
   final accountData;
